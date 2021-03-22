@@ -11,5 +11,5 @@ Programare
 Consultatie
 Reteta
 
-Interogarile:
+Interogarile (se lucreaza la proiect):
 1.
