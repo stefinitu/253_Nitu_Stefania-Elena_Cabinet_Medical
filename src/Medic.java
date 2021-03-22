@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Medic extends Personal {
     private double cod_parafa;
     private String specializare;
@@ -41,6 +43,42 @@ public class Medic extends Personal {
 
     public void setGarda(boolean garda) {
         this.garda = garda;
+    }
+
+    @Override
+    public void CitirePersonal() {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Introduceti cnp:");
+        this.cnp=scanner.nextDouble();
+        System.out.println("Introduceti numele:");
+        this.nume=scanner.nextLine();
+        System.out.println("Introduceti prenumele:");
+        this.prenume=scanner.nextLine();
+        System.out.println("Introduceti sectia:");
+        this.sectie=scanner.nextLine();
+        System.out.println("Introduceti ziua angajarii:");
+        this.zi_angajare=scanner.nextInt();
+        System.out.println("Introduceti luna angajarii:");
+        this.luna_angajare=scanner.nextInt();
+        System.out.println("Introduceti anul angajarii:");
+        this.an_angajare=scanner.nextInt();
+        System.out.println("Introduceti salariul:");
+        this.salariu=scanner.nextDouble();
+        System.out.println("Introduceti numarul de telefon:");
+        this.nr_telefon=scanner.nextLine();
+        System.out.println("Introduceti adresa de email:");
+        this.email=scanner.nextLine();
+        System.out.println("Introduceti codul parafei:");
+        this.cod_parafa=scanner.nextDouble();
+        System.out.println("Introduceti specializarea:");
+        this.specializare=scanner.nextLine();
+        System.out.println("Este rezident?:");
+        this.rezident=scanner.nextBoolean();
+        System.out.println("Este medic de garda?:");
+        this.garda=scanner.nextBoolean();}
+        @Override
+    public void AfisarePersonal(){
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.zi_angajare + "\nLuna angajarii: " + this.luna_angajare + "\nAnul angajarii: " + this.an_angajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nr_telefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.cod_parafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
     }
 }
 

@@ -1,4 +1,4 @@
-public class Personal {
+abstract public class Personal {
     protected double cnp;
     protected String nume;
     protected String prenume;
@@ -102,4 +102,7 @@ public class Personal {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    abstract void CitirePersonal();
+    abstract void AfisarePersonal();
 }

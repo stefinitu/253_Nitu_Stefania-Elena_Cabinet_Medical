@@ -16,8 +16,8 @@ public class Consultatie {
         this.luna_consultatie = luna_consultatie;
         this.an_consultatie = an_consultatie;
         this.diagnostic = diagnostic;
-        Reteta cl_reteta=new Reteta();
-        this.reteta=cl_reteta;
+        //Reteta cl_reteta=new Reteta(0,0,{""},0, 0);
+        this.reteta=reteta;
         this.medic = medic;
         this.nr_zile_spitalizare = nr_zile_spitalizare;
     }

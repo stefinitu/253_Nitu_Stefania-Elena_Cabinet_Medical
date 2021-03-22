@@ -5,7 +5,7 @@ public class ClientMinor extends Client {
     private String prenume_insotitor;
     private String nr_telefon_insotitor;
 
-    public ClientMinor(double cnp, String nume, String prenume, String email, String nr_telefon, String gen, String adresa, String nume_insotitor, String prenume_insotitor, String nr_telefon_insotitor) {
+    public ClientMinor(double cnp, String nume, String prenume, String email, String gen, String adresa, String nume_insotitor, String prenume_insotitor, String nr_telefon_insotitor) {
         super(cnp, nume, prenume, email, gen, adresa);
         this.nume_insotitor = nume_insotitor;
         this.prenume_insotitor = prenume_insotitor;
@@ -35,7 +35,8 @@ public class ClientMinor extends Client {
     public void setNr_telefon_insotitor(String nr_telefon_insotitor) {
         this.nr_telefon_insotitor = nr_telefon_insotitor;
     }
-    public void AfisareClienti() {
+    @Override
+    public void CitireClienti() {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti cnp:");
         this.cnp=scanner.nextDouble();
@@ -55,6 +56,8 @@ public class ClientMinor extends Client {
         this.prenume_insotitor=scanner.nextLine();
         System.out.println("Introduceti numarul de telefon al insotitorului:");
         this.nr_telefon_insotitor=scanner.nextLine();
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email + "\nGen:" + this.gen + "\nAdresa:" + this.adresa);
     }
+    @Override
+public void AfisareClienti() {
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email + "\nGen:" + this.gen + "\nAdresa:" + this.adresa + "\n Nume de familie insotitor: " + this.nume_insotitor + "\nPrenume insotitor: "+ this.prenume_insotitor + "\nNumar de telefon insotitor: "+ this.nr_telefon_insotitor);}
 }

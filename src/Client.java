@@ -62,5 +62,6 @@ abstract public class Client {
     public String getAdresa() {
         return adresa;
     }
+    abstract public void CitireClienti();
     abstract public void AfisareClienti();
 }

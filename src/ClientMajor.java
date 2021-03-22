@@ -26,7 +26,7 @@ public class ClientMajor extends Client {
     }
 
     @Override
-    public void AfisareClienti() {
+    public void CitireClienti() {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti cnp:");
         this.cnp=scanner.nextDouble();
@@ -44,6 +44,8 @@ public class ClientMajor extends Client {
         this.id_card_sanatate=scanner.nextDouble();
         System.out.println("Introduceti numarul de telefon:");
         this.nr_telefon=scanner.nextLine();
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email);
+    }
+    @Override
+    public void AfisareClienti() { System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email);
     }
 }
