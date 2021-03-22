@@ -6,7 +6,6 @@ Client
 Personal
    Medic
    Asistent
-   Paznic
    Infirmier
 Programare
 Consultatie
