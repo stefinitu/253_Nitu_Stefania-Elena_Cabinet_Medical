@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Programare {
     private double id_programare;
     private double cod_bilet_trimitere;
@@ -101,5 +103,50 @@ public class Programare {
 
     public void setSectia(String sectia) {
         this.sectia = sectia;
+    }
+
+    public void CitireProg()
+    {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Introduceti ID-ul programarii:");
+        this.id_programare=Double.parseDouble(scanner.nextLine());
+        System.out.println("Introduceti codul biletului de trimitere:");
+        this.cod_bilet_trimitere=Double.parseDouble(scanner.nextLine());
+        String linie;
+            System.out.println("Introduceti tipul de client (minor/major):");
+            linie=scanner.next();
+            switch(linie.toUpperCase()){
+                case "MINOR":
+                    this.client=new ClientMinor(0, " ", " ", " ", " ", " ", " ", " ", " ");
+                    this.client.CitireClienti();
+                    break;
+                case "MAJOR":
+                    this.client=new ClientMajor(0, " ", " ", " "," "," ",0, " ");
+                    this.client.CitireClienti();
+                    break;
+                default:
+                    System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
+                    break;
+            }
+            scanner.nextLine();
+        System.out.println("Introduceti ziua programarii:");
+        this.zi_programare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti luna programarii:");
+        this.luna_programare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti anul programarii:");
+        this.an_programare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti ziua planificarii:");
+        this.zi_planificare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti luna planificarii:");
+        this.luna_planificare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti anul planificarii:");
+        this.an_planificare=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti sectia:");
+        this.sectia=scanner.nextLine();
+    }
+
+    public void AfisareProgramare()
+    {
+        System.out.println("ID-ul programarii este: " + id_programare + "\nCodul biletului de trimitere este:" + cod_bilet_trimitere + "\nZiua programarii este: " + zi_programare + "\nLuna programarii este: " + luna_programare + "\nAnul programarii este: " + an_programare + "\nZiua planificarii este: " + zi_planificare + "\nLuna planificarii este: " + luna_planificare + "\nAnul planificarii este: " + an_planificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
     }
 }

@@ -1,5 +1,7 @@
-public class Consultatie {
-    private double id_consultatie;
+import java.util.Scanner;
+
+public class Consultatie implements IdentifiableCons {
+    private String id_consultatie;
     private Programare prog;
     private int zi_consultatie;
     private int luna_consultatie;
@@ -9,8 +11,8 @@ public class Consultatie {
     private Medic medic;
     private int nr_zile_spitalizare;
 
-    public Consultatie(double id_consultatie, Programare prog, int zi_consultatie, int luna_consultatie, int an_consultatie, String diagnostic, Reteta reteta, Medic medic, int nr_zile_spitalizare) {
-        this.id_consultatie = id_consultatie;
+    public Consultatie(String id_consultatie, Programare prog, int zi_consultatie, int luna_consultatie, int an_consultatie, String diagnostic, Reteta reteta, Medic medic, int nr_zile_spitalizare) {
+        //this.id_consultatie = id_consultatie;
         this.prog = prog;
         this.zi_consultatie = zi_consultatie;
         this.luna_consultatie = luna_consultatie;
@@ -22,11 +24,12 @@ public class Consultatie {
         this.nr_zile_spitalizare = nr_zile_spitalizare;
     }
 
-    public double getId_consultatie() {
+    public String getId_consultatie() {
+        //id_consultatie=generateID();
         return id_consultatie;
     }
 
-    public void setId_consultatie(double id_consultatie) {
+    public void setId_consultatie(String id_consultatie) {
         this.id_consultatie = id_consultatie;
     }
 
@@ -93,5 +96,39 @@ public class Consultatie {
     public void setNr_zile_spitalizare(int nr_zile_spitalizare) {
         this.nr_zile_spitalizare = nr_zile_spitalizare;
     }
+    public Consultatie()
+    {
+        this.id_consultatie=generateID();
+    }
+
+    public void CitireConsultatie()
+    {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Introduceti programarea:");
+        this.prog.CitireProg();
+        System.out.println("Introduceti ziua consultatiei:");
+        this.zi_consultatie=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti luna consultatiei:");
+        this.luna_consultatie=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti anul consultatiei:");
+        this.an_consultatie=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti diagnosticul:");
+        this.diagnostic=scanner.nextLine();
+        System.out.println("Introduceti reteta:");
+        this.reteta.CitireReteta();
+        System.out.println("Introduceti datele medicului:");
+        this.medic.CitirePersonal();
+        System.out.println("Introduceti numarul de zile de spitalizare:");
+        this.nr_zile_spitalizare=Integer.parseInt(scanner.nextLine());
+    }
+@Override
+public String genID()
+{
+    return id_consultatie;
 }
 
+public void AfisareConsultatie()
+{
+    System.out.println("ID-ul consultatiei generat automat este: " + id_consultatie + "\nziua consultatiei" + zi_consultatie);
+}
+}

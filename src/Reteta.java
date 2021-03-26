@@ -1,18 +1,21 @@
 import java.util.Scanner;
 
 public class Reteta {
-    private double id_reteta;
-    private int nr_medicamente;
-    private String[] denumire;
-    private double[] pret;
-    private int[] nr_bucati;
+    private double id_reteta=222;
+    private int nr_medicamente=2;
+    private String[] denumire={"a","b"};
+    private double[] pret={3,4};
+    private int[] nr_bucati={5,6};
 
     public Reteta(double id_reteta, int nr_medicamente, String[] denumire, double[] pret, int[] nr_bucati) {
         this.id_reteta = id_reteta;
         this.nr_medicamente = nr_medicamente;
-        this.denumire = denumire;
-        this.pret = pret;
-        this.nr_bucati = nr_bucati;
+        for(int i=0;i<nr_medicamente;i++)
+        this.denumire[i] = denumire[i];
+        for(int i=0;i<nr_medicamente;i++)
+        this.pret[i] = pret[i];
+        for(int i=0;i<nr_medicamente;i++)
+        this.nr_bucati[i] = nr_bucati[i];
     }
 
     public double getId_reteta() {
@@ -67,21 +70,24 @@ public class Reteta {
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti ID-ul retetei:");
-        this.id_reteta=scanner.nextDouble();
+        this.id_reteta=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numarul de medicamente:");
-        this.nr_medicamente=scanner.nextInt();
+        this.nr_medicamente=Integer.parseInt(scanner.nextLine());
+        System.out.println("Introduceti denumirile medicamentelor:");
         for(int i=0;i<nr_medicamente;i++)
-        {System.out.println("Introduceti denumirile medicamentelor:");
+        {
         System.out.println(i);
         this.denumire[i]=scanner.nextLine();}
+        System.out.println("Introduceti pretul fiecarui medicament:");
         for(int i=0;i<nr_medicamente;i++)
-        {System.out.println("Introduceti pretul fiecarui medicament:");
+        {
             System.out.println(i);
-            this.pret[i]=scanner.nextDouble();}
+            this.pret[i]=Double.parseDouble(scanner.nextLine());}
+        System.out.println("Introduceti numarul de bucati pentru fiecare medicament:");
         for(int i=0;i<nr_medicamente;i++)
-        {System.out.println("Introduceti numarul de bucati pentru fiecare medicament:");
+        {
             System.out.println(i);
-            this.nr_bucati[i]=scanner.nextInt();}
+            this.nr_bucati[i]=Integer.parseInt(scanner.nextLine());}
     }
     public void AfisareReteta()
     {

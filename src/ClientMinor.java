@@ -39,7 +39,7 @@ public class ClientMinor extends Client {
     public void CitireClienti() {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti cnp:");
-        this.cnp=scanner.nextDouble();
+        this.cnp=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numele:");
         this.nume=scanner.nextLine();
         System.out.println("Introduceti prenumele:");

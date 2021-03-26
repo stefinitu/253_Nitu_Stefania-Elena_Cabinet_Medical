@@ -3,7 +3,7 @@ public class ClientMajor extends Client {
     private double id_card_sanatate;
     private String nr_telefon;
 
-    public ClientMajor(double cnp, String nume, String prenume, String email, String nr_telefon, String gen, String adresa, double id_card_sanatate, String nr_telefon1) {
+    public ClientMajor(double cnp, String nume, String prenume, String email, String gen, String adresa, double id_card_sanatate, String nr_telefon) {
         super(cnp, nume, prenume, email, gen, adresa);
         this.id_card_sanatate = id_card_sanatate;
         this.nr_telefon = nr_telefon;
@@ -25,11 +25,12 @@ public class ClientMajor extends Client {
         this.nr_telefon = nr_telefon;
     }
 
+
     @Override
     public void CitireClienti() {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti cnp:");
-        this.cnp=scanner.nextDouble();
+        this.cnp=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numele:");
         this.nume=scanner.nextLine();
         System.out.println("Introduceti prenumele:");
@@ -41,7 +42,7 @@ public class ClientMajor extends Client {
         System.out.println("Introduceti adresa:");
         this.adresa=scanner.nextLine();
         System.out.println("Introduceti ID-ul cardului de sanatate:");
-        this.id_card_sanatate=scanner.nextDouble();
+        this.id_card_sanatate=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numarul de telefon:");
         this.nr_telefon=scanner.nextLine();
     }
