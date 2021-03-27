@@ -1,14 +1,18 @@
 # 253_Nitu_Stefania-Elena_Cabinet_Medical
 Clasele din aplicatie:
-Client
+-Client:
   ClientMajor
   ClientMinor
-Personal
+
+-Personal:
    Medic
    Asistent
-Programare
-Consultatie
-Reteta
+
+-Programare
+
+-Consultatie
+
+-Reteta
 
 Interogarile (se lucreaza la proiect):
 
@@ -26,5 +30,7 @@ Interogarile (se lucreaza la proiect):
 
 7.Stergere programare dupa ID-ul sau dintr-o lista de programari data
 
-8.Sa se numere rezidentii dintr-un vector de medici dat
+8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa acordarea bonusului.
+
+9.Pentru clientii cu varsta mai mare de 60 ani se acorda o reducere de 80% pentru fiecare medicament din reteta. Sa se afiseze noua suma a retetei dupa aplicarea reducerii pentru un vector de consultatii (consultatia face legatura intre client si reteta).
 
