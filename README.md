@@ -24,7 +24,7 @@ Interogarile (se lucreaza la proiect):
 
 6.Adaugare client nou intr-un vector de clienti dat
 
-7.Stergere programare dupa ID-ul sau dintr-o lista de progrmari data
+7.Stergere programare dupa ID-ul sau dintr-o lista de programari data
 
 8.Sa se numere rezidentii dintr-un vector de medici dat
 

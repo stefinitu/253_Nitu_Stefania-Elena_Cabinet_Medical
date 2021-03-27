@@ -117,11 +117,11 @@ public class Programare {
             linie=scanner.next();
             switch(linie.toUpperCase()){
                 case "MINOR":
-                    this.client=new ClientMinor(0, " ", " ", " ", " ", " ", " ", " ", " ");
+                    this.client=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                     this.client.CitireClienti();
                     break;
                 case "MAJOR":
-                    this.client=new ClientMajor(0, " ", " ", " "," "," ",0, " ");
+                    this.client=new ClientMajor(" ", " ", " ", " "," "," ",0, " ");
                     this.client.CitireClienti();
                     break;
                 default:

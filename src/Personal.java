@@ -1,5 +1,5 @@
 abstract public class Personal {
-    protected double cnp;
+    protected String cnp;
     protected String nume;
     protected String prenume;
     protected String sectie;
@@ -10,7 +10,7 @@ abstract public class Personal {
     protected String nr_telefon;
     protected String email;
 
-    public Personal(double cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email) {
+    public Personal(String cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email) {
         this.cnp = cnp;
         this.nume = nume;
         this.prenume = prenume;
@@ -23,11 +23,11 @@ abstract public class Personal {
         this.email = email;
     }
 
-    public double getCnp() {
+    public String getCnp() {
         return cnp;
     }
 
-    public void setCnp(double cnp) {
+    public void setCnp(String cnp) {
         this.cnp = cnp;
     }
 

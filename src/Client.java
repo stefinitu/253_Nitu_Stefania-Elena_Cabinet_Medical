@@ -1,12 +1,13 @@
-abstract public class Client {
-    protected double cnp;
+import java.util.Arrays;
+abstract public class Client implements Comparable<Client>{
+    protected String cnp;
     protected String nume;
     protected String prenume;
     protected String email;
     protected String gen;
     protected String adresa;
 
-    public Client(double cnp, String nume, String prenume, String email, String gen, String adresa) {
+    public Client(String cnp, String nume, String prenume, String email, String gen, String adresa) {
         this.cnp = cnp;
         this.nume = nume;
         this.prenume = prenume;
@@ -15,7 +16,7 @@ abstract public class Client {
         this.adresa = adresa;
     }
 
-    public void setCnp(double cnp) {
+    public void setCnp(String cnp) {
         this.cnp = cnp;
     }
 
@@ -39,7 +40,7 @@ abstract public class Client {
         this.adresa = adresa;
     }
 
-    public double getCnp() {
+    public String getCnp() {
         return cnp;
     }
 
@@ -64,4 +65,10 @@ abstract public class Client {
     }
     abstract public void CitireClienti();
     abstract public void AfisareClienti();
+    abstract public void CalculVarsta();
+
+    @Override
+    public int compareTo(Client client) {
+        return this.nume.compareTo(client.nume);
+    }
 }
