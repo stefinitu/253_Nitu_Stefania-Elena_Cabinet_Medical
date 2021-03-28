@@ -1,5 +1,6 @@
 import java.text.*;
 import java.util.*;
+import Services.SumaMedicamente;
 public class Menu_Main {
     public void menu()
     {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie \n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga o programare dintr-o lista de programari data dupa id-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). ");
@@ -54,11 +55,13 @@ public class Menu_Main {
                     r[i]=new Reteta(0,2,den,pr,bu);
                 }
                 for(int i=0;i<nr_retete;i++)
-                {r[i].CitireReteta();
-                    System.out.println("citit");}
+                {r[i].CitireReteta();}
                 for(int i=0;i<nr_retete;i++)
-                {System.out.println("\nMedicamentul " + (i+1));
-                    System.out.println(Double.toString(r[i].SumaMedicamente(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret())));}
+                {
+                    SumaMedicamente sum = new SumaMedicamente();
+                    double calc =sum.CalculSumaMed(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret());
+                    System.out.println("\nSuma medicamentelor de pe reteta "+(i+1)+" este "+calc);
+                }
                 break;
             case 3:
                 Scanner sca=new Scanner(System.in);
@@ -288,7 +291,7 @@ public class Menu_Main {
                 int year = Calendar.getInstance().get(Calendar.YEAR);
                 int age=year-Integer.parseInt(anNasterii);
                 if(age>=60) consult[i].getReteta().ReducereMedicamente();
-                    System.out.println("Pentru pacientul "+ (i+1) + " noua suma dupa reducere este " + consult[i].getReteta().SumaMedicamente(consult[i].getReteta().getNr_medicamente(), consult[i].getReteta().getNr_bucati(), consult[i].getReteta().getPret()));
+                    System.out.println("Pentru pacientul "+ (i+1) + " noua suma dupa reducere este " + consult[i].getReteta().SumaMed(consult[i].getReteta().getNr_medicamente(), consult[i].getReteta().getNr_bucati(), consult[i].getReteta().getPret()));
         }
                 break;
             case 10:

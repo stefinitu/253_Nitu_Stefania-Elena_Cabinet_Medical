@@ -58,7 +58,7 @@ public class Reteta {
         this.nr_bucati = nr_bucati;
     }
 
-    public double SumaMedicamente(int nr_medicemante, int[] nr_bucati, double[] pret) {
+    public double SumaMed(int nr_medicamente, int[] nr_bucati, double[] pret) {
         double suma = 0;
         for (int i = 0; i < nr_medicamente; i++) {
             double dnr_bucati = Double.valueOf(nr_bucati[i]);
