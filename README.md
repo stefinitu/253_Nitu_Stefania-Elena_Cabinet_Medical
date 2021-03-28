@@ -34,3 +34,4 @@ Interogarile (se lucreaza la proiect):
 
 9.Pentru clientii cu varsta mai mare de 60 ani se acorda o reducere de 80% pentru fiecare medicament din reteta. Sa se afiseze noua suma a retetei dupa aplicarea reducerii pentru un vector de consultatii (consultatia face legatura intre client si reteta).
 
+10.Se verifica daca data planificarii este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare).
