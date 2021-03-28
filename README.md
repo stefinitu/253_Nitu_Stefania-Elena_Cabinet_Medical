@@ -1,11 +1,11 @@
 # 253_Nitu_Stefania-Elena_Cabinet_Medical
 Clasele din aplicatie:
 -Client:
-  ClientMajor
+  ClientMajor,
   ClientMinor
 
 -Personal:
-   Medic
+   Medic,
    Asistent
 
 -Programare

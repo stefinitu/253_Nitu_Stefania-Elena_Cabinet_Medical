@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.text.*;
+import java.util.*;
 
 public class Programare {
     private double id_programare;
@@ -149,4 +150,27 @@ public class Programare {
     {
         System.out.println("ID-ul programarii este: " + id_programare + "\nCodul biletului de trimitere este:" + cod_bilet_trimitere + "\nZiua programarii este: " + zi_programare + "\nLuna programarii este: " + luna_programare + "\nAnul programarii este: " + an_programare + "\nZiua planificarii este: " + zi_planificare + "\nLuna planificarii este: " + luna_planificare + "\nAnul planificarii este: " + an_planificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
     }
-}
+    public void VerificarePlanificareWeekend() throws ParseException {
+        String dataPlanif=Integer.toString(zi_planificare).concat("/").concat(Integer.toString(luna_planificare)).concat("/").concat(Integer.toString(an_planificare));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date dataPlan=sdf.parse(dataPlanif);
+        Calendar c = Calendar.getInstance();
+        c.setTime(dataPlan);
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        if(dayOfWeek==1)  {
+            System.out.println("\nZiua planificarii este duminica. Se modifica data planificarii! ");
+            c.add(Calendar.DATE, 1);
+            dataPlanif=sdf.format(c.getTime());}
+            else if(dayOfWeek==7) {
+            System.out.println("\nZiua planificarii este sambata. Se modifica data planificarii! ");
+            c.add(Calendar.DATE, 2);
+            dataPlanif=sdf.format(c.getTime());}
+            int iend = dataPlanif.indexOf("/");
+            zi_planificare=new Integer(dataPlanif.substring(0,iend));
+            dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
+            iend = dataPlanif.indexOf("/");
+            luna_planificare=new Integer(dataPlanif.substring(0,iend));
+            dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
+            an_planificare=new Integer(dataPlanif.substring(0,4));
+    }
+        }

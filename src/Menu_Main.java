@@ -1,10 +1,10 @@
+import java.text.*;
 import java.util.*;
 public class Menu_Main {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie \n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga o programare dintr-o lista de programari data dupa id-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. ");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie \n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga o programare dintr-o lista de programari data dupa id-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). ");
     }
-    public Menu_Main()
-    {
+    public Menu_Main() throws ParseException {
         Scanner in =new Scanner(System.in);
         menu();
         switch(in.nextInt())
@@ -292,13 +292,35 @@ public class Menu_Main {
         }
                 break;
             case 10:
+                Scanner sc10=new Scanner(System.in);
+                Client pac;
+                int nr_pr=0;
+                String dataPlanif="05/05/2020";
+                String dataProg="04/06/2020";
+                pac = new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
+                System.out.println("Introduceti numarul de programari:");
+                nr_pr= Integer.parseInt(sc10.nextLine());
+                Programare[] programare=new Programare[nr_pr];
+                SimpleDateFormat sdf;
+                Date dataPlan,dataPr;
+                Calendar calendar = Calendar.getInstance();
+                for(int i=0;i<nr_pr;i++)
+                {programare[i]=new Programare(0,0,pac,0,0,0,0,0,0,"");
+                    programare[i].CitireProg();
+                    programare[i].VerificarePlanificareWeekend();
+                }
+                System.out.println("Noile date planificate sunt:");
+                for(int i=0;i<nr_pr;i++)
+                {
+                    System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZi_planificare()+"/"+programare[i].getLuna_planificare()+"/"+programare[i].getAn_planificare());
+                }
                 break;
             default:
                 System.err.println("Optiune invalida! Alegeti un numar intre 1-10!");
                 break;
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         new Menu_Main();
     }
 }
