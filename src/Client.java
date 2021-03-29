@@ -66,6 +66,7 @@ abstract public class Client implements Comparable<Client>{
     abstract public void CitireClienti();
     abstract public void AfisareClienti();
     abstract public void CalculVarsta();
+    abstract public void AdaugareClient(Client[] c,Client adaugat, int n);
 
     @Override
     public int compareTo(Client client) {

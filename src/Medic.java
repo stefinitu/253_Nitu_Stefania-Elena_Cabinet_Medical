@@ -72,9 +72,9 @@ public class Medic extends Personal {
         this.cod_parafa=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti specializarea:");
         this.specializare=scanner.nextLine();
-        System.out.println("Este rezident?:");
+        System.out.println("Este rezident? (true/false):");
         this.rezident=Boolean.parseBoolean(scanner.nextLine());
-        System.out.println("Este medic de garda?:");
+        System.out.println("Este medic de garda? (true/false):");
         this.garda=Boolean.parseBoolean(scanner.nextLine());;}
         @Override
     public void AfisarePersonal(){

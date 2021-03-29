@@ -71,19 +71,19 @@ public class Reteta {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduceti ID-ul retetei:");
         this.id_reteta = Double.parseDouble(scanner.nextLine());
-        System.out.println("Introduceti numarul de medicamente:");
+        System.out.println("Introduceti numarul de tipuri de medicamente:");
         this.nr_medicamente = Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti denumirile medicamentelor:");
         for (int i = 0; i < nr_medicamente; i++) {
-            System.out.println(i);
+            System.out.println((i+1));
             this.denumire[i] = scanner.nextLine();
         }
         System.out.println("Introduceti pretul fiecarui medicament:");
         for (int i = 0; i < nr_medicamente; i++) {
-            System.out.println(i);
+            System.out.println((i+1));
             this.pret[i] = Double.parseDouble(scanner.nextLine());
         }
-        System.out.println("Introduceti numarul de bucati pentru fiecare medicament:");
+        System.out.println("Introduceti numarul de bucati pentru fiecare tip de medicament:");
         for (int i = 0; i < nr_medicamente; i++) {
             System.out.println(i);
             this.nr_bucati[i] = Integer.parseInt(scanner.nextLine());

@@ -1,9 +1,11 @@
 import java.text.*;
 import java.util.*;
 import Services.SumaMedicamente;
+import Services.CostSpitalizare;
+import Services.VerificareDate;
 public class Menu_Main {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie \n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga o programare dintr-o lista de programari data dupa id-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). ");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie si verificarea corectitudinii datelor introduse\n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga o programare dintr-o lista de programari data dupa id-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). \n11.Sa se calculeze costul suplimentar platit de un client care necesita spitalizare (100 lei/zi pentru major, 80 lei/zi pentru minor");
     }
     public Menu_Main() throws ParseException {
         Scanner in =new Scanner(System.in);
@@ -15,6 +17,7 @@ public class Menu_Main {
                 int nr_clienti;
                 System.out.println("Introduceti numarul de clienti:");
                 nr_clienti=Integer.parseInt(sc.nextLine());
+                VerificareDate verif=new VerificareDate();
                 Client cl[] = new Client[nr_clienti];
                 String linie;
                 for(int i=0;i<nr_clienti;i++)
@@ -25,10 +28,14 @@ public class Menu_Main {
                 case "CLIENT MINOR":
                     cl[i]=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                     cl[i].CitireClienti();
+                    if(verif.VerificareCNP(cl[i].getCnp())==false) System.out.println("CNP invalid!");
+                    if(verif.VerificareEmail(cl[i].getEmail())==false) System.out.println("Email invalid!");
                     break;
                 case "CLIENT MAJOR":
                     cl[i]=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
                     cl[i].CitireClienti();
+                    if(verif.VerificareCNP(cl[i].getCnp())==false) System.out.println("CNP invalid!");
+                    if(verif.VerificareEmail(cl[i].getEmail())==false) System.out.println("Email invalid!");
                     break;
                 default:
                     System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
@@ -72,7 +79,7 @@ public class Menu_Main {
                 String line;
                 for(int i=0;i<nr_pers;i++)
                 {
-                    System.out.println("Introduceti tipul de angajat:");
+                    System.out.println("Introduceti tipul de angajat (medic/asistent):");
                     linie=in.next();
                     switch(linie.toUpperCase()){
                         case "MEDIC":
@@ -96,9 +103,9 @@ public class Menu_Main {
                 double maxsal=0.0;
                 double sumsal=0.0;
                 double minsal=0.0;
+                minsal=p[0].getSalariu();
                 for(int i=0;i<nr_pers;i++)
                 {
-                    minsal=p[i].getSalariu();
                     if(maxsal<p[i].getSalariu()) maxsal=p[i].getSalariu();
                     if(minsal>p[i].getSalariu()) minsal=p[i].getSalariu();
                     sumsal=sumsal+p[i].getSalariu();
@@ -108,23 +115,8 @@ public class Menu_Main {
                 break;
             case 4:
                 Scanner input=new Scanner(System.in);
-                System.out.println("Introduceti datele consultatiei:");
-                System.out.println("Introduceti tipul de client (client minor/client major):");
-                String lin=input.next();
-                Client cli;
-                switch(lin.toUpperCase()){
-                    case "CLIENT MINOR":
-                        cli=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
-                        cli.CitireClienti();
-                        break;
-                    case "CLIENT MAJOR":
-                        cli=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
-                        cli.CitireClienti();
-                        break;
-                    default:
-                        cli=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
-                        break;
-                }
+                System.out.println("Datele consultatiei (Datele programarii, datele pacientului, datele retetei si datele medicului care efectueaza consultatia!)");
+                Client cli=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");;
                 Programare progr=new Programare(0,0,cli,0,0,0,0,0,0,"");
                 String[] denum={"a","b"};
                 double[] pret={1.7,2.6};
@@ -132,9 +124,8 @@ public class Menu_Main {
                 Reteta re=new Reteta(0,2,denum,pret,bucati);
                 Medic med=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                 Consultatie cons=new Consultatie("",progr,0,0,0," ",re,med,0);
-                cons=new Consultatie();
-                //cons.CitireConsultatie();
-                System.out.println("ID-ul consultatiei generat automat este: " + cons.getId_consultatie());
+                cons.CitireConsultatie();
+                System.out.println("ID-ul consultatiei pacientului " + cons.getProg().getClient().getNume() + " " + cons.getProg().getClient().getPrenume() + " generat automat este: " + cons.getId_consultatie());
                 break;
             case 5:
                 Scanner scanner5=new Scanner(System.in);
@@ -195,16 +186,19 @@ public class Menu_Main {
                     c[i].AfisareClienti();
                 }
                 System.out.println("Noul client");
-                System.out.println("\nIntroduceti tipul de client:");
+                System.out.println("\nIntroduceti tipul de client (client minor/client major):");
                 l=scc.nextLine();
+                Client pacient_nou;
                 switch(l.toUpperCase()){
                     case "CLIENT MINOR":
-                        c[nr_cl]=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
-                        c[nr_cl].CitireClienti();
+                        pacient_nou=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
+                        pacient_nou.CitireClienti();
+                        pacient_nou.AdaugareClient(c,pacient_nou,nr_cl);
                         break;
                     case "CLIENT MAJOR":
-                        c[nr_cl]=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
-                        c[nr_cl].CitireClienti();
+                        pacient_nou=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
+                        pacient_nou.CitireClienti();
+                        pacient_nou.AdaugareClient(c,pacient_nou,nr_cl);
                         break;
                     default:
                         System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
@@ -279,7 +273,7 @@ public class Menu_Main {
                 consult[i].CitireConsultatie();
                 String prefAn=" ";
                 String sufAn=" ";
-                int genInt = new Integer(consult[i].getProg().getClient().cnp.substring(0,1));
+                int genInt = Integer.parseInt(consult[i].getProg().getClient().cnp.substring(0,1));
                 if(genInt == 1 || genInt == 2) {
                     prefAn = "19";
                 } else {
@@ -318,8 +312,37 @@ public class Menu_Main {
                     System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZi_planificare()+"/"+programare[i].getLuna_planificare()+"/"+programare[i].getAn_planificare());
                 }
                 break;
+            case 11:
+                Scanner scan11=new Scanner(System.in);
+                int numar_consultatii=0;
+                System.out.println("Introduceti numarul de consultatii:");
+                numar_consultatii=Integer.parseInt(scan11.nextLine());
+                Consultatie[] cs = new Consultatie[numar_consultatii];
+                CostSpitalizare costs=new CostSpitalizare();
+                Client client_initial=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
+                Programare program=new Programare(0,0,client_initial,0,0,0,0,0,0," ");
+                String[] namemed={"a","b"};
+                double[] pricemed={1.7,2.6};
+                int[] nrbucmed={5,6};
+                Reteta reteta=new Reteta(0,2,namemed,pricemed,nrbucmed);
+                Medic doctor=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
+                for(int i=0;i<numar_consultatii;i++)
+                {cs[i]=new Consultatie(" ",program,0,0,0," ",reteta,doctor,0);
+                cs[i].CitireConsultatie();
+                if(cs[i].getNr_zile_spitalizare()!=0)
+                {
+                    if (cs[i].getProg().getClient() instanceof ClientMinor)
+                    {int cost_spitalizare_minor=costs.CostClientMinor(cs[i].getNr_zile_spitalizare());
+                    System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ cost_spitalizare_minor + " lei.");}
+                    else
+                    {int cost_spitalizare_major=costs.CostClientMajor(cs[i].getNr_zile_spitalizare());
+                        System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ cost_spitalizare_major + " lei.");}
+                }
+                else System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
+                }
+                break;
             default:
-                System.err.println("Optiune invalida! Alegeti un numar intre 1-10!");
+                System.err.println("Optiune invalida! Alegeti un numar intre 1-11!");
                 break;
         }
     }

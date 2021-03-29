@@ -1,3 +1,5 @@
+import Services.VerificareDate;
+
 import java.util.Scanner;
 public class ClientMajor extends Client {
     private double id_card_sanatate;
@@ -37,7 +39,7 @@ public class ClientMajor extends Client {
         this.prenume=scanner.nextLine();
         System.out.println("Introduceti emailul:");
         this.email=scanner.nextLine();
-        System.out.println("Introduceti genul persoanei:");
+        System.out.println("Introduceti genul persoanei (masculin/feminin):");
         this.gen=scanner.nextLine();
         System.out.println("Introduceti adresa:");
         this.adresa=scanner.nextLine();
@@ -45,6 +47,8 @@ public class ClientMajor extends Client {
         this.id_card_sanatate=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numarul de telefon:");
         this.nr_telefon=scanner.nextLine();
+        VerificareDate verific = new VerificareDate();
+        if(verific.VerificareTelefon(this.nr_telefon)==false) System.out.println("Numar de telefon invalid!");
     }
     @Override
     public void AfisareClienti() { System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email);
@@ -74,6 +78,12 @@ public class ClientMajor extends Client {
             System.out.println("\nData nasterii este:".concat(dataNasterii));
         }
 
+    }
+
+    @Override
+    public void AdaugareClient(Client[] maj,Client adaugat, int n)
+    {
+        maj[n]=adaugat;
     }
 
     public static String aflaLuna(int luna) {

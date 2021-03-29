@@ -12,20 +12,18 @@ public class Consultatie implements IdentifiableCons {
     private int nr_zile_spitalizare;
 
     public Consultatie(String id_consultatie, Programare prog, int zi_consultatie, int luna_consultatie, int an_consultatie, String diagnostic, Reteta reteta, Medic medic, int nr_zile_spitalizare) {
-        //this.id_consultatie = id_consultatie;
+        this.id_consultatie=generateID();
         this.prog = prog;
         this.zi_consultatie = zi_consultatie;
         this.luna_consultatie = luna_consultatie;
         this.an_consultatie = an_consultatie;
         this.diagnostic = diagnostic;
-        //Reteta cl_reteta=new Reteta(0,0,{""},0, 0);
         this.reteta=reteta;
         this.medic = medic;
         this.nr_zile_spitalizare = nr_zile_spitalizare;
     }
 
     public String getId_consultatie() {
-        //id_consultatie=generateID();
         return id_consultatie;
     }
 
@@ -96,10 +94,10 @@ public class Consultatie implements IdentifiableCons {
     public void setNr_zile_spitalizare(int nr_zile_spitalizare) {
         this.nr_zile_spitalizare = nr_zile_spitalizare;
     }
-    public Consultatie()
+    /*public Consultatie()
     {
         this.id_consultatie=generateID();
-    }
+    }*/
 
     public void CitireConsultatie()
     {
