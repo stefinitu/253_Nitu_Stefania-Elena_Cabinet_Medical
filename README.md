@@ -16,7 +16,7 @@ Clasele din aplicatie:
 
 Interogarile (se lucreaza la proiect):
 
-1.Ordonarea crescatoare a clientilor dupa numele de familie
+1.Ordonarea crescatoare a clientilor dupa numele de familie si verificarea corectitudinii CNP-ului, email-ului si numarului de telefon.
 
 2.Suma medicamentelor pentru fiecare reteta dintr-o lista data de la tastatura
 
@@ -35,3 +35,5 @@ Interogarile (se lucreaza la proiect):
 9.Pentru clientii cu varsta mai mare de 60 ani se acorda o reducere de 80% pentru fiecare medicament din reteta. Sa se afiseze noua suma a retetei dupa aplicarea reducerii pentru un vector de consultatii (consultatia face legatura intre client si reteta).
 
 10.Se verifica daca data planificarii este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare).
+
+11.Pentru pacientii care necesita spitalizare se afiseaza costul spitalizarii (100 lei/zi pentru client major, 80 lei/zi pentru client minor).
