@@ -56,7 +56,7 @@ Interogarile din MENIU (se lucreaza la proiect):
 
 6.Adaugare client nou intr-un vector de clienti dat
 
-7.Stergere programare dupa ID-ul sau dintr-o lista de programari data
+7.Stergere client dupa CNP-ul sau dintr-un array de clienti citit
 
 8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa acordarea bonusului.
 
