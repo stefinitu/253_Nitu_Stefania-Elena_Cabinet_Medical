@@ -241,16 +241,14 @@ public class MenuMain {
                 System.out.println("Introduceti numarul de medici:");
                 nrMed=Integer.parseInt(scanner8.nextLine());
                 Medic medic[] = new Medic[nrMed];
-                int vechime=0;
-                int anActual = Calendar.getInstance().get(Calendar.YEAR);
                 for(int i=0;i<nrMed;i++) {
                     medic[i]=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                     medic[i].CitirePersonal();
                 }
                 for(int i=0;i<nrMed;i++)
                 {
-                    vechime=anActual-medic[i].getAnAngajare();
-                    if(vechime>=10) medic[i].SporuriMedic();
+                    BonusMedic bonusMedic=new BonusMedic(medic[i]);
+                    bonusMedic.AdaugareBonusMedic();
                 }
                 System.out.println("Afisare lista de medici dupa aplicarea bonusului:");
                 for(int i=0;i<nrMed;i++)
