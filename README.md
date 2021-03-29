@@ -9,37 +9,39 @@ Clasele din aplicatie:
    Medic,
    Asistent
 
--Programare
+-Programare - retine datele despre o programare efectuata inaintea unui consult
 
--Consultatie
+-Consultatie - retine datele despre programarea efectuata, datele medicului care a efectuat consultatia si datele retetei
 
--Reteta
+-Reteta - retine informatiile despre medicamentele prescrise de catre medic in timpul consultatiei
 
 Clase(servicii) cu metode:
 
--CostSpitalizare
+-CostSpitalizare - calculeaza costul spitalizarii
 
--SumaMedicamente
+-SumaMedicamente - calculeaza costul total al medicamentelor dintr-o reteta
 
--VerificareDate
+-VerificareDate - verifica corectitudinea datelor clientilor
 
--AddClient
+-AddClient - adauga un client la un array memorat
 
--DeleteClient
+-BonusMedic - adauga la salariul medicului un bonus de vechime (minim 10 ani)
 
--MaxMinAverage
+-DeleteClient - sterge un client dupa CNP dintr-un array de clienti
 
--Reducere
+-MaxMinAverage - calculeaza maximul, minimul si media salariilor dintr-un array de angajati
 
--VerificarePlanifWeekend
+-Reducere - se aplica reducere la costul medicamentelor dintr-o reteta persoanelor de peste 60 de ani
 
--WarningAdd, WarningDelete
+-VerificarePlanifWeekend - verifica daca planificarea cade in weekend
+
+-WarningAdd, WarningDelete - afiseaza mesaje la adaugarea/stergerea unui client dintr-un array dat
 
 Interfete:
 
--Reportable
+-Reportable - implementata in WarningAdd, WarningDelete
 
--IdentifiableCons
+-IdentifiableCons - genereaza automat ID-ul consultatiilor
 
 
 Interogarile din MENIU (se lucreaza la proiect):
@@ -54,7 +56,7 @@ Interogarile din MENIU (se lucreaza la proiect):
 
 5.Sa se afiseze data nasterii pentru fiecare client dat (utilizand CNP-ul)
 
-6.Adaugare client nou intr-un vector de clienti dat
+6.Adaugare client nou intr-un array de clienti dat
 
 7.Stergere client dupa CNP-ul sau dintr-un array de clienti citit
 
