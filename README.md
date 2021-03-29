@@ -15,7 +15,34 @@ Clasele din aplicatie:
 
 -Reteta
 
-Interogarile (se lucreaza la proiect):
+Clase(servicii) cu metode:
+
+-CostSpitalizare
+
+-SumaMedicamente
+
+-VerificareDate
+
+-AddClient
+
+-DeleteClient
+
+-MaxMinAverage
+
+-Reducere
+
+-VerificarePlanifWeekend
+
+-WarningAdd, WarningDelete
+
+Interfete:
+
+-Reportable
+
+-IdentifiableCons
+
+
+Interogarile din MENIU (se lucreaza la proiect):
 
 1.Ordonarea crescatoare a clientilor dupa numele de familie si verificarea corectitudinii CNP-ului, email-ului si numarului de telefon.
 
