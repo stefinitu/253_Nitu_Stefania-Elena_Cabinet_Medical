@@ -3,23 +3,23 @@ abstract public class Personal {
     protected String nume;
     protected String prenume;
     protected String sectie;
-    protected int zi_angajare;
-    protected int luna_angajare;
-    protected int an_angajare;
+    protected int ziAngajare;
+    protected int lunaAngajare;
+    protected int anAngajare;
     protected double salariu;
-    protected String nr_telefon;
+    protected String nrTelefon;
     protected String email;
 
-    public Personal(String cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email) {
+    public Personal(String cnp, String nume, String prenume, String sectie, int ziAngajare, int lunaAngajare, int anAngajare, double salariu, String nrTelefon, String email) {
         this.cnp = cnp;
         this.nume = nume;
         this.prenume = prenume;
         this.sectie = sectie;
-        this.zi_angajare = zi_angajare;
-        this.luna_angajare = luna_angajare;
-        this.an_angajare = an_angajare;
+        this.ziAngajare = ziAngajare;
+        this.lunaAngajare = lunaAngajare;
+        this.anAngajare = anAngajare;
         this.salariu = salariu;
-        this.nr_telefon = nr_telefon;
+        this.nrTelefon = nrTelefon;
         this.email = email;
     }
 
@@ -55,28 +55,28 @@ abstract public class Personal {
         this.sectie = sectie;
     }
 
-    public int getZi_angajare() {
-        return zi_angajare;
+    public int getZiAngajare() {
+        return ziAngajare;
     }
 
-    public void setZi_angajare(int zi_angajare) {
-        this.zi_angajare = zi_angajare;
+    public void setZiAngajare(int ziAngajare) {
+        this.ziAngajare = ziAngajare;
     }
 
-    public int getLuna_angajare() {
-        return luna_angajare;
+    public int getLunaAngajare() {
+        return lunaAngajare;
     }
 
-    public void setLuna_angajare(int luna_angajare) {
-        this.luna_angajare = luna_angajare;
+    public void setLunaAngajare(int lunaAngajare) {
+        this.lunaAngajare = lunaAngajare;
     }
 
-    public int getAn_angajare() {
-        return an_angajare;
+    public int getAnAngajare() {
+        return anAngajare;
     }
 
-    public void setAn_angajare(int an_angajare) {
-        this.an_angajare = an_angajare;
+    public void setAnAngajare(int anAngajare) {
+        this.anAngajare = anAngajare;
     }
 
     public double getSalariu() {
@@ -87,12 +87,12 @@ abstract public class Personal {
         this.salariu = salariu;
     }
 
-    public String getNr_telefon() {
-        return nr_telefon;
+    public String getNrTelefon() {
+        return nrTelefon;
     }
 
-    public void setNr_telefon(String nr_telefon) {
-        this.nr_telefon = nr_telefon;
+    public void setNrTelefon(String nrTelefon) {
+        this.nrTelefon = nrTelefon;
     }
 
     public String getEmail() {

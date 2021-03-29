@@ -1,34 +1,34 @@
 import java.util.Scanner;
 
 public class Consultatie implements IdentifiableCons {
-    private String id_consultatie;
+    private String idConsultatie;
     private Programare prog;
-    private int zi_consultatie;
-    private int luna_consultatie;
-    private int an_consultatie;
+    private int ziConsultatie;
+    private int lunaConsultatie;
+    private int anConsultatie;
     private String diagnostic;
     private Reteta reteta;
     private Medic medic;
-    private int nr_zile_spitalizare;
+    private int nrZileSpitalizare;
 
-    public Consultatie(String id_consultatie, Programare prog, int zi_consultatie, int luna_consultatie, int an_consultatie, String diagnostic, Reteta reteta, Medic medic, int nr_zile_spitalizare) {
-        this.id_consultatie=generateID();
+    public Consultatie(String idConsultatie, Programare prog, int ziConsultatie, int lunaConsultatie, int anConsultatie, String diagnostic, Reteta reteta, Medic medic, int nrZileSpitalizare) {
+        this.idConsultatie =generateID();
         this.prog = prog;
-        this.zi_consultatie = zi_consultatie;
-        this.luna_consultatie = luna_consultatie;
-        this.an_consultatie = an_consultatie;
+        this.ziConsultatie = ziConsultatie;
+        this.lunaConsultatie = lunaConsultatie;
+        this.anConsultatie = anConsultatie;
         this.diagnostic = diagnostic;
         this.reteta=reteta;
         this.medic = medic;
-        this.nr_zile_spitalizare = nr_zile_spitalizare;
+        this.nrZileSpitalizare = nrZileSpitalizare;
     }
 
-    public String getId_consultatie() {
-        return id_consultatie;
+    public String getIdConsultatie() {
+        return idConsultatie;
     }
 
-    public void setId_consultatie(String id_consultatie) {
-        this.id_consultatie = id_consultatie;
+    public void setIdConsultatie(String idConsultatie) {
+        this.idConsultatie = idConsultatie;
     }
 
     public Programare getProg() {
@@ -39,28 +39,28 @@ public class Consultatie implements IdentifiableCons {
         this.prog = prog;
     }
 
-    public int getZi_consultatie() {
-        return zi_consultatie;
+    public int getZiConsultatie() {
+        return ziConsultatie;
     }
 
-    public void setZi_consultatie(int zi_consultatie) {
-        this.zi_consultatie = zi_consultatie;
+    public void setZiConsultatie(int ziConsultatie) {
+        this.ziConsultatie = ziConsultatie;
     }
 
-    public int getLuna_consultatie() {
-        return luna_consultatie;
+    public int getLunaConsultatie() {
+        return lunaConsultatie;
     }
 
-    public void setLuna_consultatie(int luna_consultatie) {
-        this.luna_consultatie = luna_consultatie;
+    public void setLunaConsultatie(int lunaConsultatie) {
+        this.lunaConsultatie = lunaConsultatie;
     }
 
-    public int getAn_consultatie() {
-        return an_consultatie;
+    public int getAnConsultatie() {
+        return anConsultatie;
     }
 
-    public void setAn_consultatie(int an_consultatie) {
-        this.an_consultatie = an_consultatie;
+    public void setAnConsultatie(int anConsultatie) {
+        this.anConsultatie = anConsultatie;
     }
 
     public String getDiagnostic() {
@@ -87,12 +87,12 @@ public class Consultatie implements IdentifiableCons {
         this.medic = medic;
     }
 
-    public int getNr_zile_spitalizare() {
-        return nr_zile_spitalizare;
+    public int getNrZileSpitalizare() {
+        return nrZileSpitalizare;
     }
 
-    public void setNr_zile_spitalizare(int nr_zile_spitalizare) {
-        this.nr_zile_spitalizare = nr_zile_spitalizare;
+    public void setNrZileSpitalizare(int nrZileSpitalizare) {
+        this.nrZileSpitalizare = nrZileSpitalizare;
     }
     /*public Consultatie()
     {
@@ -105,11 +105,11 @@ public class Consultatie implements IdentifiableCons {
         System.out.println("Introduceti programarea:");
         this.prog.CitireProg();
         System.out.println("Introduceti ziua consultatiei:");
-        this.zi_consultatie=Integer.parseInt(scanner.nextLine());
+        this.ziConsultatie =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti luna consultatiei:");
-        this.luna_consultatie=Integer.parseInt(scanner.nextLine());
+        this.lunaConsultatie =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti anul consultatiei:");
-        this.an_consultatie=Integer.parseInt(scanner.nextLine());
+        this.anConsultatie =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti diagnosticul:");
         this.diagnostic=scanner.nextLine();
         System.out.println("Introduceti reteta:");
@@ -117,16 +117,21 @@ public class Consultatie implements IdentifiableCons {
         System.out.println("Introduceti datele medicului:");
         this.medic.CitirePersonal();
         System.out.println("Introduceti numarul de zile de spitalizare:");
-        this.nr_zile_spitalizare=Integer.parseInt(scanner.nextLine());
+        this.nrZileSpitalizare =Integer.parseInt(scanner.nextLine());
     }
 @Override
 public String genID()
 {
-    return id_consultatie;
+    return idConsultatie;
 }
 
 public void AfisareConsultatie()
 {
-    System.out.println("ID-ul consultatiei generat automat este: " + id_consultatie + "\nziua consultatiei" + zi_consultatie);
+    System.out.println("ID-ul consultatiei generat automat este: " + idConsultatie + "\nziua consultatiei" + ziConsultatie);
+}
+
+public void ReducereClient()
+{
+
 }
 }

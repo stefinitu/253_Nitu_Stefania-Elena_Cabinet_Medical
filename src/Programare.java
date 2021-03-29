@@ -2,44 +2,44 @@ import java.text.*;
 import java.util.*;
 
 public class Programare {
-    private double id_programare;
-    private double cod_bilet_trimitere;
+    private double idProgramare;
+    private double codBiletTrimitere;
     private Client client;
-    private int zi_programare;
-    private int luna_programare;
-    private int an_programare;
+    private int ziProgramare;
+    private int lunaProgramare;
+    private int anProgramare;
     private int zi_planificare;
     private int luna_planificare;
     private int an_planificare;
     private String sectia;
 
-    public Programare(double id_programare, double cod_bilet_trimitere, Client client, int zi_programare, int luna_programare, int an_programare, int zi_planificare, int luna_planificare, int an_planificare, String sectia) {
-        this.id_programare = id_programare;
-        this.cod_bilet_trimitere = cod_bilet_trimitere;
+    public Programare(double idProgramare, double codBiletTrimitere, Client client, int ziProgramare, int lunaProgramare, int anProgramare, int zi_planificare, int luna_planificare, int an_planificare, String sectia) {
+        this.idProgramare = idProgramare;
+        this.codBiletTrimitere = codBiletTrimitere;
         this.client=client;
-        this.zi_programare = zi_programare;
-        this.luna_programare = luna_programare;
-        this.an_programare = an_programare;
+        this.ziProgramare = ziProgramare;
+        this.lunaProgramare = lunaProgramare;
+        this.anProgramare = anProgramare;
         this.zi_planificare = zi_planificare;
         this.luna_planificare = luna_planificare;
         this.an_planificare = an_planificare;
         this.sectia = sectia;
     }
 
-    public double getId_programare() {
-        return id_programare;
+    public double getIdProgramare() {
+        return idProgramare;
     }
 
-    public void setId_programare(double id_programare) {
-        this.id_programare = id_programare;
+    public void setIdProgramare(double idProgramare) {
+        this.idProgramare = idProgramare;
     }
 
-    public double getCod_bilet_trimitere() {
-        return cod_bilet_trimitere;
+    public double getCodBiletTrimitere() {
+        return codBiletTrimitere;
     }
 
-    public void setCod_bilet_trimitere(double cod_bilet_trimitere) {
-        this.cod_bilet_trimitere = cod_bilet_trimitere;
+    public void setCodBiletTrimitere(double codBiletTrimitere) {
+        this.codBiletTrimitere = codBiletTrimitere;
     }
 
     public Client getClient() {
@@ -50,28 +50,28 @@ public class Programare {
         this.client = client;
     }
 
-    public int getZi_programare() {
-        return zi_programare;
+    public int getZiProgramare() {
+        return ziProgramare;
     }
 
-    public void setZi_programare(int zi_programare) {
-        this.zi_programare = zi_programare;
+    public void setZiProgramare(int ziProgramare) {
+        this.ziProgramare = ziProgramare;
     }
 
-    public int getLuna_programare() {
-        return luna_programare;
+    public int getLunaProgramare() {
+        return lunaProgramare;
     }
 
-    public void setLuna_programare(int luna_programare) {
-        this.luna_programare = luna_programare;
+    public void setLunaProgramare(int lunaProgramare) {
+        this.lunaProgramare = lunaProgramare;
     }
 
-    public int getAn_programare() {
-        return an_programare;
+    public int getAnProgramare() {
+        return anProgramare;
     }
 
-    public void setAn_programare(int an_programare) {
-        this.an_programare = an_programare;
+    public void setAnProgramare(int anProgramare) {
+        this.anProgramare = anProgramare;
     }
 
     public int getZi_planificare() {
@@ -110,9 +110,9 @@ public class Programare {
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Introduceti ID-ul programarii:");
-        this.id_programare=Double.parseDouble(scanner.nextLine());
+        this.idProgramare =Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti codul biletului de trimitere:");
-        this.cod_bilet_trimitere=Double.parseDouble(scanner.nextLine());
+        this.codBiletTrimitere =Double.parseDouble(scanner.nextLine());
         String linie;
             System.out.println("Introduceti tipul de client (minor/major):");
             linie=scanner.next();
@@ -131,11 +131,11 @@ public class Programare {
             }
             scanner.nextLine();
         System.out.println("Introduceti ziua programarii:");
-        this.zi_programare=Integer.parseInt(scanner.nextLine());
+        this.ziProgramare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti luna programarii:");
-        this.luna_programare=Integer.parseInt(scanner.nextLine());
+        this.lunaProgramare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti anul programarii:");
-        this.an_programare=Integer.parseInt(scanner.nextLine());
+        this.anProgramare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti ziua planificarii:");
         this.zi_planificare=Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti luna planificarii:");
@@ -148,29 +148,7 @@ public class Programare {
 
     public void AfisareProgramare()
     {
-        System.out.println("ID-ul programarii este: " + id_programare + "\nCodul biletului de trimitere este:" + cod_bilet_trimitere + "\nZiua programarii este: " + zi_programare + "\nLuna programarii este: " + luna_programare + "\nAnul programarii este: " + an_programare + "\nZiua planificarii este: " + zi_planificare + "\nLuna planificarii este: " + luna_planificare + "\nAnul planificarii este: " + an_planificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
+        System.out.println("ID-ul programarii este: " + idProgramare + "\nCodul biletului de trimitere este:" + codBiletTrimitere + "\nZiua programarii este: " + ziProgramare + "\nLuna programarii este: " + lunaProgramare + "\nAnul programarii este: " + anProgramare + "\nZiua planificarii este: " + zi_planificare + "\nLuna planificarii este: " + luna_planificare + "\nAnul planificarii este: " + an_planificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
     }
-    public void VerificarePlanificareWeekend() throws ParseException {
-        String dataPlanif=Integer.toString(zi_planificare).concat("/").concat(Integer.toString(luna_planificare)).concat("/").concat(Integer.toString(an_planificare));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        Date dataPlan=sdf.parse(dataPlanif);
-        Calendar c = Calendar.getInstance();
-        c.setTime(dataPlan);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        if(dayOfWeek==1)  {
-            System.out.println("\nZiua planificarii este duminica. Se modifica data planificarii! ");
-            c.add(Calendar.DATE, 1);
-            dataPlanif=sdf.format(c.getTime());}
-            else if(dayOfWeek==7) {
-            System.out.println("\nZiua planificarii este sambata. Se modifica data planificarii! ");
-            c.add(Calendar.DATE, 2);
-            dataPlanif=sdf.format(c.getTime());}
-            int iend = dataPlanif.indexOf("/");
-            zi_planificare=new Integer(dataPlanif.substring(0,iend));
-            dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
-            iend = dataPlanif.indexOf("/");
-            luna_planificare=new Integer(dataPlanif.substring(0,iend));
-            dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
-            an_planificare=new Integer(dataPlanif.substring(0,4));
-    }
+
         }

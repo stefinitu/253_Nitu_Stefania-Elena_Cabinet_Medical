@@ -57,15 +57,15 @@ public class Medic extends Personal {
         System.out.println("Introduceti sectia:");
         this.sectie=scanner.nextLine();
         System.out.println("Introduceti ziua angajarii:");
-        this.zi_angajare=Integer.parseInt(scanner.nextLine());
+        this.ziAngajare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti luna angajarii:");
-        this.luna_angajare=Integer.parseInt(scanner.nextLine());
+        this.lunaAngajare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti anul angajarii:");
-        this.an_angajare=Integer.parseInt(scanner.nextLine());
+        this.anAngajare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti salariul:");
         this.salariu=Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numarul de telefon:");
-        this.nr_telefon=scanner.nextLine();
+        this.nrTelefon =scanner.nextLine();
         System.out.println("Introduceti adresa de email:");
         this.email=scanner.nextLine();
         System.out.println("Introduceti codul parafei:");
@@ -78,7 +78,7 @@ public class Medic extends Personal {
         this.garda=Boolean.parseBoolean(scanner.nextLine());;}
         @Override
     public void AfisarePersonal(){
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.zi_angajare + "\nLuna angajarii: " + this.luna_angajare + "\nAnul angajarii: " + this.an_angajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nr_telefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.cod_parafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.ziAngajare + "\nLuna angajarii: " + this.lunaAngajare + "\nAnul angajarii: " + this.anAngajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nrTelefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.cod_parafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
     }
 
     public void SporuriMedic()

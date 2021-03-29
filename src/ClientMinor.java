@@ -3,39 +3,39 @@ import Services.VerificareDate;
 import java.util.Scanner;
 
 public class ClientMinor extends Client {
-    private String nume_insotitor;
-    private String prenume_insotitor;
-    private String nr_telefon_insotitor;
+    private String numeInsotitor;
+    private String prenumeInsotitor;
+    private String nrTelefonInsotitor;
 
-    public ClientMinor(String cnp, String nume, String prenume, String email, String gen, String adresa, String nume_insotitor, String prenume_insotitor, String nr_telefon_insotitor) {
+    public ClientMinor(String cnp, String nume, String prenume, String email, String gen, String adresa, String numeInsotitor, String prenumeInsotitor, String nrTelefonInsotitor) {
         super(cnp, nume, prenume, email, gen, adresa);
-        this.nume_insotitor = nume_insotitor;
-        this.prenume_insotitor = prenume_insotitor;
-        this.nr_telefon_insotitor = nr_telefon_insotitor;
+        this.numeInsotitor = numeInsotitor;
+        this.prenumeInsotitor = prenumeInsotitor;
+        this.nrTelefonInsotitor = nrTelefonInsotitor;
     }
 
-    public String getNume_insotitor() {
-        return nume_insotitor;
+    public String getNumeInsotitor() {
+        return numeInsotitor;
     }
 
-    public void setNume_insotitor(String nume_insotitor) {
-        this.nume_insotitor = nume_insotitor;
+    public void setNumeInsotitor(String numeInsotitor) {
+        this.numeInsotitor = numeInsotitor;
     }
 
-    public String getPrenume_insotitor() {
-        return prenume_insotitor;
+    public String getPrenumeInsotitor() {
+        return prenumeInsotitor;
     }
 
-    public void setPrenume_insotitor(String prenume_insotitor) {
-        this.prenume_insotitor = prenume_insotitor;
+    public void setPrenumeInsotitor(String prenumeInsotitor) {
+        this.prenumeInsotitor = prenumeInsotitor;
     }
 
-    public String getNr_telefon_insotitor() {
-        return nr_telefon_insotitor;
+    public String getNrTelefonInsotitor() {
+        return nrTelefonInsotitor;
     }
 
-    public void setNr_telefon_insotitor(String nr_telefon_insotitor) {
-        this.nr_telefon_insotitor = nr_telefon_insotitor;
+    public void setNrTelefonInsotitor(String nrTelefonInsotitor) {
+        this.nrTelefonInsotitor = nrTelefonInsotitor;
     }
     @Override
     public void CitireClienti() {
@@ -53,18 +53,18 @@ public class ClientMinor extends Client {
         System.out.println("Introduceti adresa:");
         this.adresa=scanner.nextLine();
         System.out.println("Introduceti numele insotitorului:");
-        this.nume_insotitor=scanner.nextLine();
+        this.numeInsotitor =scanner.nextLine();
         System.out.println("Introduceti prenumele insotitorului:");
-        this.prenume_insotitor=scanner.nextLine();
+        this.prenumeInsotitor =scanner.nextLine();
         System.out.println("Introduceti numarul de telefon al insotitorului:");
-        this.nr_telefon_insotitor=scanner.nextLine();
+        this.nrTelefonInsotitor =scanner.nextLine();
         VerificareDate verific = new VerificareDate();
-        if(verific.VerificareTelefon(this.nr_telefon_insotitor)==false) System.out.println("Numar de telefon invalid!");
+        if(verific.VerificareTelefon(this.nrTelefonInsotitor)==false) System.out.println("Numar de telefon invalid!");
 
     }
     @Override
 public void AfisareClienti() {
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email + "\nGen:" + this.gen + "\nAdresa:" + this.adresa + "\n Nume de familie insotitor: " + this.nume_insotitor + "\nPrenume insotitor: "+ this.prenume_insotitor + "\nNumar de telefon insotitor: "+ this.nr_telefon_insotitor);}
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email + "\nGen:" + this.gen + "\nAdresa:" + this.adresa + "\n Nume de familie insotitor: " + this.numeInsotitor + "\nPrenume insotitor: "+ this.prenumeInsotitor + "\nNumar de telefon insotitor: "+ this.nrTelefonInsotitor);}
 
     @Override
     public void CalculVarsta()
@@ -84,11 +84,27 @@ public void AfisareClienti() {
             System.out.println("\nData nasterii este:".concat(dataNasterii));
         }
 
-     @Override
-     public void AdaugareClient(Client[] min, Client adaugat, int n)
-     {
-             min[n]=adaugat;
-     }
+    @Override
+    public void AdaugareClient(Client[] oldClients,Client newClient, int n)
+    {
+        AddClient addClient=new AddClient(oldClients,newClient,n);
+        oldClients[n]=newClient;
+        WarningAdd warningAdd=new WarningAdd();
+        warningAdd.warning(addClient);
+    }
+
+    @Override
+    public void StergereClient(Client[] oldClients, String id)
+    {
+        int memorare=0;
+        DeleteClient deleteClient=new DeleteClient(oldClients,id);
+        for(int i=0;i< oldClients.length;i++)
+            if(oldClients[i].getCnp().equals(id))  memorare=i;
+        for(int i=memorare;i< oldClients.length-1;i++)
+            oldClients[i]=oldClients[i+1];
+        WarningAdd warningAdd=new WarningAdd();
+        warningAdd.warning(deleteClient);
+    }
 
     public static String aflaLuna(int luna) {
         switch (luna) {
