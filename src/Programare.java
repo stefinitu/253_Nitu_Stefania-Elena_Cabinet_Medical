@@ -1,4 +1,3 @@
-import java.text.*;
 import java.util.*;
 
 public class Programare {
@@ -8,21 +7,21 @@ public class Programare {
     private int ziProgramare;
     private int lunaProgramare;
     private int anProgramare;
-    private int zi_planificare;
-    private int luna_planificare;
-    private int an_planificare;
+    private int ziPlanificare;
+    private int lunaPlanificare;
+    private int anPlanificare;
     private String sectia;
 
-    public Programare(double idProgramare, double codBiletTrimitere, Client client, int ziProgramare, int lunaProgramare, int anProgramare, int zi_planificare, int luna_planificare, int an_planificare, String sectia) {
+    public Programare(double idProgramare, double codBiletTrimitere, Client client, int ziProgramare, int lunaProgramare, int anProgramare, int ziPlanificare, int lunaPlanificare, int anPlanificare, String sectia) {
         this.idProgramare = idProgramare;
         this.codBiletTrimitere = codBiletTrimitere;
         this.client=client;
         this.ziProgramare = ziProgramare;
         this.lunaProgramare = lunaProgramare;
         this.anProgramare = anProgramare;
-        this.zi_planificare = zi_planificare;
-        this.luna_planificare = luna_planificare;
-        this.an_planificare = an_planificare;
+        this.ziPlanificare = ziPlanificare;
+        this.lunaPlanificare = lunaPlanificare;
+        this.anPlanificare = anPlanificare;
         this.sectia = sectia;
     }
 
@@ -74,28 +73,28 @@ public class Programare {
         this.anProgramare = anProgramare;
     }
 
-    public int getZi_planificare() {
-        return zi_planificare;
+    public int getZiPlanificare() {
+        return ziPlanificare;
     }
 
-    public void setZi_planificare(int zi_planificare) {
-        this.zi_planificare = zi_planificare;
+    public void setZiPlanificare(int ziPlanificare) {
+        this.ziPlanificare = ziPlanificare;
     }
 
-    public int getLuna_planificare() {
-        return luna_planificare;
+    public int getLunaPlanificare() {
+        return lunaPlanificare;
     }
 
-    public void setLuna_planificare(int luna_planificare) {
-        this.luna_planificare = luna_planificare;
+    public void setLunaPlanificare(int lunaPlanificare) {
+        this.lunaPlanificare = lunaPlanificare;
     }
 
-    public int getAn_planificare() {
-        return an_planificare;
+    public int getAnPlanificare() {
+        return anPlanificare;
     }
 
-    public void setAn_planificare(int an_planificare) {
-        this.an_planificare = an_planificare;
+    public void setAnPlanificare(int anPlanificare) {
+        this.anPlanificare = anPlanificare;
     }
 
     public String getSectia() {
@@ -137,18 +136,18 @@ public class Programare {
         System.out.println("Introduceti anul programarii:");
         this.anProgramare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti ziua planificarii:");
-        this.zi_planificare=Integer.parseInt(scanner.nextLine());
+        this.ziPlanificare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti luna planificarii:");
-        this.luna_planificare=Integer.parseInt(scanner.nextLine());
+        this.lunaPlanificare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti anul planificarii:");
-        this.an_planificare=Integer.parseInt(scanner.nextLine());
+        this.anPlanificare =Integer.parseInt(scanner.nextLine());
         System.out.println("Introduceti sectia:");
         this.sectia=scanner.nextLine();
     }
 
     public void AfisareProgramare()
     {
-        System.out.println("ID-ul programarii este: " + idProgramare + "\nCodul biletului de trimitere este:" + codBiletTrimitere + "\nZiua programarii este: " + ziProgramare + "\nLuna programarii este: " + lunaProgramare + "\nAnul programarii este: " + anProgramare + "\nZiua planificarii este: " + zi_planificare + "\nLuna planificarii este: " + luna_planificare + "\nAnul planificarii este: " + an_planificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
+        System.out.println("ID-ul programarii este: " + idProgramare + "\nCodul biletului de trimitere este:" + codBiletTrimitere + "\nZiua programarii este: " + ziProgramare + "\nLuna programarii este: " + lunaProgramare + "\nAnul programarii este: " + anProgramare + "\nZiua planificarii este: " + ziPlanificare + "\nLuna planificarii este: " + lunaPlanificare + "\nAnul planificarii este: " + anPlanificare + "\nSectia este: " + sectia + "\nProgramarea corespunde lui: " + client.getNume() + " " + client.getPrenume());
     }
 
         }

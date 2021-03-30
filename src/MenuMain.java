@@ -300,7 +300,7 @@ public class MenuMain {
                 System.out.println("Noile date planificate sunt:");
                 for(int i=0;i<nrPr;i++)
                 {
-                    System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZi_planificare()+"/"+programare[i].getLuna_planificare()+"/"+programare[i].getAn_planificare());
+                    System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZiPlanificare()+"/"+programare[i].getLunaPlanificare()+"/"+programare[i].getAnPlanificare());
                 }
                 break;
             case 11:

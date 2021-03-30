@@ -24,7 +24,7 @@ public class VerificarePlanifWeekend implements Weekend
 
     @Override
     public void VerificarePlanificareWeekend() throws ParseException {
-        String dataPlanif=Integer.toString(prog.getZi_planificare()).concat("/").concat(Integer.toString(prog.getLuna_planificare())).concat("/").concat(Integer.toString(prog.getAn_planificare()));
+        String dataPlanif=Integer.toString(prog.getZiPlanificare()).concat("/").concat(Integer.toString(prog.getLunaPlanificare())).concat("/").concat(Integer.toString(prog.getAnPlanificare()));
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date dataPlan=sdf.parse(dataPlanif);
         Calendar c = Calendar.getInstance();
@@ -39,11 +39,11 @@ public class VerificarePlanifWeekend implements Weekend
             c.add(Calendar.DATE, 2);
             dataPlanif=sdf.format(c.getTime());}
         int iend = dataPlanif.indexOf("/");
-        prog.setZi_planificare(Integer.parseInt(dataPlanif.substring(0,iend)));
+        prog.setZiPlanificare(Integer.parseInt(dataPlanif.substring(0,iend)));
         dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
         iend = dataPlanif.indexOf("/");
-        prog.setLuna_planificare(Integer.parseInt(dataPlanif.substring(0,iend)));
+        prog.setLunaPlanificare(Integer.parseInt(dataPlanif.substring(0,iend)));
         dataPlanif=dataPlanif.replace(dataPlanif.substring(0,dataPlanif.substring(0,iend).length()+1),"");
-        prog.setAn_planificare(Integer.parseInt(dataPlanif.substring(0,4)));
+        prog.setAnPlanificare(Integer.parseInt(dataPlanif.substring(0,4)));
     }
 }

@@ -1,6 +1,4 @@
 
-import Services.Addable;
-
 import java.util.Scanner;
 public class ClientMajor extends Client {
     private double idCardSanatate;

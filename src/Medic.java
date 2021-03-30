@@ -1,20 +1,20 @@
 import java.util.*;
 
 public class Medic extends Personal {
-    private double cod_parafa;
+    private double codParafa;
     private String specializare;
     private boolean rezident;
     private boolean garda;
-    public Medic(String cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email, double cod_parafa, String specializare, boolean rezident, boolean garda) {
+    public Medic(String cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email, double codParafa, String specializare, boolean rezident, boolean garda) {
         super(cnp, nume, prenume, sectie, zi_angajare, luna_angajare, an_angajare, salariu, nr_telefon, email);
-        this.cod_parafa = cod_parafa;
+        this.codParafa = codParafa;
         this.specializare = specializare;
         this.rezident = rezident;
         this.garda = garda;
 }
 
-    public double getCod_parafa() {
-        return cod_parafa;
+    public double getCodParafa() {
+        return codParafa;
     }
 
     public String getSpecializare() {
@@ -29,8 +29,8 @@ public class Medic extends Personal {
         return garda;
     }
 
-    public void setCod_parafa(double cod_parafa) {
-        this.cod_parafa = cod_parafa;
+    public void setCodParafa(double codParafa) {
+        this.codParafa = codParafa;
     }
 
     public void setSpecializare(String specializare) {
@@ -69,7 +69,7 @@ public class Medic extends Personal {
         System.out.println("Introduceti adresa de email:");
         this.email=scanner.nextLine();
         System.out.println("Introduceti codul parafei:");
-        this.cod_parafa=Double.parseDouble(scanner.nextLine());
+        this.codParafa =Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti specializarea:");
         this.specializare=scanner.nextLine();
         System.out.println("Este rezident? (true/false):");
@@ -78,7 +78,7 @@ public class Medic extends Personal {
         this.garda=Boolean.parseBoolean(scanner.nextLine());;}
         @Override
     public void AfisarePersonal(){
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.ziAngajare + "\nLuna angajarii: " + this.lunaAngajare + "\nAnul angajarii: " + this.anAngajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nrTelefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.cod_parafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.ziAngajare + "\nLuna angajarii: " + this.lunaAngajare + "\nAnul angajarii: " + this.anAngajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nrTelefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.codParafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
     }
 
     public void SporuriMedic()

@@ -85,7 +85,7 @@ public class Reteta {
         }
         System.out.println("Introduceti numarul de bucati pentru fiecare tip de medicament:");
         for (int i = 0; i < nr_medicamente; i++) {
-            System.out.println(i);
+            System.out.println((i+1));
             this.nr_bucati[i] = Integer.parseInt(scanner.nextLine());
         }
     }
