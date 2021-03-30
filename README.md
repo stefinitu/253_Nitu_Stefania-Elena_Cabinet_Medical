@@ -15,7 +15,7 @@ Clasele din aplicatie:
 
 -Reteta - retine informatiile despre medicamentele prescrise de catre medic in timpul consultatiei
 
-Clase(servicii) cu metode:
+Clase cu metode:
 
 -CostSpitalizare - calculeaza costul spitalizarii
 
@@ -38,6 +38,24 @@ Clase(servicii) cu metode:
 -WarningAdd, WarningDelete - afiseaza mesaje la adaugarea/stergerea unui client dintr-un array dat
 
 Interfete:
+
+-Addable
+
+-Bonusable
+
+-CostSpital
+
+-DataVerifiable
+
+-Deletable
+
+-MaxMinAvCalculator
+
+-Reducible
+
+-Sumable
+
+-Weekend
 
 -Reportable - implementata in WarningAdd, WarningDelete
 

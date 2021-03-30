@@ -1,6 +1,8 @@
+import Services.Reducible;
+
 import java.util.Calendar;
 
-public class Reducere {
+public class Reducere implements Reducible {
     private Consultatie consult;
 
     public Reducere(Consultatie consult) {
@@ -15,6 +17,7 @@ public class Reducere {
         this.consult = consult;
     }
 
+    @Override
     public void ReducereClienti()
     {
         String prefAn=" ";

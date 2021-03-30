@@ -1,5 +1,5 @@
 
-import Services.VerificareDate;
+import Services.Addable;
 
 import java.util.Scanner;
 public class ClientMajor extends Client {
@@ -48,8 +48,6 @@ public class ClientMajor extends Client {
         this.idCardSanatate =Double.parseDouble(scanner.nextLine());
         System.out.println("Introduceti numarul de telefon:");
         this.nrTelefon =scanner.nextLine();
-        VerificareDate verific = new VerificareDate();
-        if(verific.VerificareTelefon(this.nrTelefon)==false) System.out.println("Numar de telefon invalid!");
     }
     @Override
     public void AfisareClienti() { System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email);
@@ -81,27 +79,6 @@ public class ClientMajor extends Client {
 
     }
 
-    @Override
-    public void AdaugareClient(Client[] oldClients,Client newClient, int n)
-    {
-        AddClient addClient=new AddClient(oldClients,newClient,n);
-        oldClients[n]=newClient;
-        WarningAdd warningAdd=new WarningAdd();
-        warningAdd.warning(addClient);
-    }
-
-    @Override
-    public void StergereClient(Client[] oldClients, String id)
-    {
-        int memorare=0;
-        DeleteClient deleteClient=new DeleteClient(oldClients,id);
-        for(int i=0;i< oldClients.length;i++)
-            if(oldClients[i].getCnp().equals(id))  memorare=i;
-        for(int i=memorare;i< oldClients.length-1;i++)
-            oldClients[i]=oldClients[i+1];
-        WarningAdd warningAdd=new WarningAdd();
-        warningAdd.warning(deleteClient);
-    }
 
     public static String aflaLuna(int luna) {
         switch (luna) {

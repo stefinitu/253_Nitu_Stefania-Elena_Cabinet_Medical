@@ -1,15 +1,30 @@
 package Services;
 
-public class CostSpitalizare {
-    public int CostClientMajor(int nr_spit)
-    {
-        int cost_total_major=nr_spit*100;
-       return cost_total_major;
+public class CostSpitalizare implements CostSpital {
+    private int nrSpitallizare;
+
+    public CostSpitalizare(int nrSpitallizare) {
+        this.nrSpitallizare = nrSpitallizare;
     }
 
-    public int CostClientMinor(int nr_spit)
+    public int getNrSpitallizare() {
+        return nrSpitallizare;
+    }
+
+    public void setNrSpitallizare(int nrSpitallizare) {
+        this.nrSpitallizare = nrSpitallizare;
+    }
+    @Override
+    public int CostClientMajor()
     {
-        int cost_total_minor=nr_spit*80;
-        return cost_total_minor;
+        int costTotalMajor=nrSpitallizare*100;
+       return costTotalMajor;
+    }
+
+    @Override
+    public int CostClientMinor()
+    {
+        int costTotalMinor=nrSpitallizare*80;
+        return costTotalMinor;
     }
 }

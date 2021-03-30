@@ -1,10 +1,12 @@
+import Services.Weekend;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class VerificarePlanifWeekend
+public class VerificarePlanifWeekend implements Weekend
 {
     private Programare prog;
 
@@ -20,6 +22,7 @@ public class VerificarePlanifWeekend
         this.prog = prog;
     }
 
+    @Override
     public void VerificarePlanificareWeekend() throws ParseException {
         String dataPlanif=Integer.toString(prog.getZi_planificare()).concat("/").concat(Integer.toString(prog.getLuna_planificare())).concat("/").concat(Integer.toString(prog.getAn_planificare()));
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);

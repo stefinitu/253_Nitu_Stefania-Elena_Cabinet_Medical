@@ -1,4 +1,3 @@
-import Services.VerificareDate;
 
 import java.util.Scanner;
 
@@ -58,8 +57,6 @@ public class ClientMinor extends Client {
         this.prenumeInsotitor =scanner.nextLine();
         System.out.println("Introduceti numarul de telefon al insotitorului:");
         this.nrTelefonInsotitor =scanner.nextLine();
-        VerificareDate verific = new VerificareDate();
-        if(verific.VerificareTelefon(this.nrTelefonInsotitor)==false) System.out.println("Numar de telefon invalid!");
 
     }
     @Override
@@ -84,27 +81,6 @@ public void AfisareClienti() {
             System.out.println("\nData nasterii este:".concat(dataNasterii));
         }
 
-    @Override
-    public void AdaugareClient(Client[] oldClients,Client newClient, int n)
-    {
-        AddClient addClient=new AddClient(oldClients,newClient,n);
-        oldClients[n]=newClient;
-        WarningAdd warningAdd=new WarningAdd();
-        warningAdd.warning(addClient);
-    }
-
-    @Override
-    public void StergereClient(Client[] oldClients, String id)
-    {
-        int memorare=0;
-        DeleteClient deleteClient=new DeleteClient(oldClients,id);
-        for(int i=0;i< oldClients.length;i++)
-            if(oldClients[i].getCnp().equals(id))  memorare=i;
-        for(int i=memorare;i< oldClients.length-1;i++)
-            oldClients[i]=oldClients[i+1];
-        WarningAdd warningAdd=new WarningAdd();
-        warningAdd.warning(deleteClient);
-    }
 
     public static String aflaLuna(int luna) {
         switch (luna) {

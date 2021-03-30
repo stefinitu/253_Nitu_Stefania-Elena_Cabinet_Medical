@@ -1,4 +1,6 @@
-public class MaxMinAverage {
+import Services.MaxMinAvCalculator;
+
+public class MaxMinAverage implements MaxMinAvCalculator {
     private Personal[] ang;
     private int n;
 
@@ -23,6 +25,7 @@ public class MaxMinAverage {
         this.n = n;
     }
 
+    @Override
     public double Maxim()
     {
         double maxsal=0.0;
@@ -30,7 +33,7 @@ public class MaxMinAverage {
             if(maxsal<ang[i].getSalariu()) maxsal=ang[i].getSalariu();
         return maxsal;
     }
-
+@Override
     public double Minim()
     {
         double minsal=ang[0].getSalariu();
@@ -38,7 +41,7 @@ public class MaxMinAverage {
             if(minsal>ang[i].getSalariu()) minsal=ang[i].getSalariu();
         return minsal;
     }
-
+@Override
     public double Average()
     {
         double sum=0;

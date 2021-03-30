@@ -18,7 +18,6 @@ public class MenuMain {
                 int nrClienti;
                 System.out.println("Introduceti numarul de clienti:");
                 nrClienti=Integer.parseInt(sc.nextLine());
-                VerificareDate verif=new VerificareDate();
                 Client cl[] = new Client[nrClienti];
                 String linie;
                 for(int i=0;i<nrClienti;i++)
@@ -29,14 +28,16 @@ public class MenuMain {
                 case "CLIENT MINOR":
                     cl[i]=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                     cl[i].CitireClienti();
-                    if(verif.VerificareCNP(cl[i].getCnp())==false) System.out.println("CNP invalid!");
-                    if(verif.VerificareEmail(cl[i].getEmail())==false) System.out.println("Email invalid!");
+                    VerificareDate verif=new VerificareDate(cl[i].getCnp(),cl[i].getEmail());
+                    if(verif.VerificareCNP()==false) System.out.println("CNP invalid!");
+                    if(verif.VerificareEmail()==false) System.out.println("Email invalid!");
                     break;
                 case "CLIENT MAJOR":
                     cl[i]=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
                     cl[i].CitireClienti();
-                    if(verif.VerificareCNP(cl[i].getCnp())==false) System.out.println("CNP invalid!");
-                    if(verif.VerificareEmail(cl[i].getEmail())==false) System.out.println("Email invalid!");
+                    VerificareDate verific=new VerificareDate(cl[i].getCnp(),cl[i].getEmail());
+                    if(verific.VerificareCNP()==false) System.out.println("CNP invalid!");
+                    if(verific.VerificareEmail()==false) System.out.println("Email invalid!");
                     break;
                 default:
                     System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
@@ -66,8 +67,8 @@ public class MenuMain {
                 {r[i].CitireReteta();}
                 for(int i=0;i<nrRetete;i++)
                 {
-                    SumaMedicamente sum = new SumaMedicamente();
-                    double calc =sum.CalculSumaMed(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret());
+                    SumaMedicamente sum = new SumaMedicamente(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret());
+                    double calc =sum.CalculSumaMed();
                     System.out.println("\nSuma medicamentelor de pe reteta "+(i+1)+" este "+calc);
                 }
                 break;
@@ -186,12 +187,14 @@ public class MenuMain {
                     case "CLIENT MINOR":
                         pacientNou=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                         pacientNou.CitireClienti();
-                        pacientNou.AdaugareClient(c,pacientNou,nrCl);
+                        AddClient add=new AddClient(c,pacientNou,nrCl);
+                        add.AdaugareClient();
                         break;
                     case "CLIENT MAJOR":
                         pacientNou=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
                         pacientNou.CitireClienti();
-                        pacientNou.AdaugareClient(c,pacientNou,nrCl);
+                        AddClient addc=new AddClient(c,pacientNou,nrCl);
+                        addc.AdaugareClient();
                         break;
                     default:
                         System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
@@ -230,7 +233,8 @@ public class MenuMain {
                 String alegere=" ";
                 System.out.println("Introduceti CNP-ul persoanei pe care doriti sa o stergeti:");
                 alegere=s.nextLine();
-                clie[0].StergereClient(clie,alegere);
+                DeleteClient del=new DeleteClient(clie,alegere);
+                del.StergereClient();
                 System.out.println("Afisam pacientii ramasi:");
                 for(int i=0;i<nrPacienti-1;i++)
                     clie[i].AfisareClienti();
@@ -305,7 +309,6 @@ public class MenuMain {
                 System.out.println("Introduceti numarul de consultatii:");
                 numarConsultatii=Integer.parseInt(scan11.nextLine());
                 Consultatie[] cs = new Consultatie[numarConsultatii];
-                CostSpitalizare costs=new CostSpitalizare();
                 Client client_initial=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                 Programare program=new Programare(0,0,client_initial,0,0,0,0,0,0," ");
                 String[] namemed={"a","b"};
@@ -319,10 +322,12 @@ public class MenuMain {
                 if(cs[i].getNrZileSpitalizare()!=0)
                 {
                     if (cs[i].getProg().getClient() instanceof ClientMinor)
-                    {int costSpitalizareMinor=costs.CostClientMinor(cs[i].getNrZileSpitalizare());
+                    {CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
+                    int costSpitalizareMinor=costs.CostClientMinor();
                     System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMinor + " lei.");}
                     else
-                    {int costSpitalizareMajor=costs.CostClientMajor(cs[i].getNrZileSpitalizare());
+                    {   CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
+                        int costSpitalizareMajor=costs.CostClientMajor();
                         System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMajor + " lei.");}
                 }
                 else System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
