@@ -62,7 +62,7 @@ Interfete:
 -IdentifiableCons - genereaza automat ID-ul consultatiilor
 
 
-Interogarile din MENIU (se lucreaza la proiect):
+Interogarile din MENIU:
 
 1.Ordonarea crescatoare a clientilor dupa numele de familie si verificarea corectitudinii CNP-ului, email-ului si numarului de telefon.
 
