@@ -5,8 +5,8 @@ public class Medic extends Personal {
     private String specializare;
     private boolean rezident;
     private boolean garda;
-    public Medic(String cnp, String nume, String prenume, String sectie, int zi_angajare, int luna_angajare, int an_angajare, double salariu, String nr_telefon, String email, double codParafa, String specializare, boolean rezident, boolean garda) {
-        super(cnp, nume, prenume, sectie, zi_angajare, luna_angajare, an_angajare, salariu, nr_telefon, email);
+    public Medic(String cnp, String nume, String prenume, String sectie, int ziAngajare, int lunaAngajare, int anAngajare, double salariu, String nrTelefon, String email, double codParafa, String specializare, boolean rezident, boolean garda) {
+        super(cnp, nume, prenume, sectie, ziAngajare, lunaAngajare, anAngajare, salariu, nrTelefon, email);
         this.codParafa = codParafa;
         this.specializare = specializare;
         this.rezident = rezident;

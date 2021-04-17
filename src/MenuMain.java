@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.*;
 import java.util.*;
 
@@ -6,10 +8,11 @@ import Services.CostSpitalizare;
 import Services.VerificareDate;
 public class MenuMain {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie si verificarea corectitudinii datelor introduse\n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga un client dintr-un array dat dupa CNP-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). \n11.Sa se calculeze costul suplimentar platit de un client care necesita spitalizare (100 lei/zi pentru major, 80 lei/zi pentru minor)");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie si verificarea corectitudinii datelor introduse\n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga un client dintr-un array dat dupa CNP-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). \n11.Sa se calculeze costul suplimentar platit de un client care necesita spitalizare (100 lei/zi pentru major, 80 lei/zi pentru minor) \n12.Citire si afisare medici din fisierul Medic.csv in fisierul MedicRezultat.CSV");
     }
-    public MenuMain() throws ParseException {
+    public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
+        SingletonResult result=new SingletonResult();
         menu();
         switch(in.nextInt())
         {
@@ -50,6 +53,8 @@ public class MenuMain {
                     System.out.println("\nClientul nr "+(i+1));
                     cl[i].AfisareClienti();
                 }
+                SingletonResult.getInstance().setOption(1);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 2:
                 Scanner scn=new Scanner(System.in);
@@ -71,6 +76,8 @@ public class MenuMain {
                     double calc =sum.CalculSumaMed();
                     System.out.println("\nSuma medicamentelor de pe reteta "+(i+1)+" este "+calc);
                 }
+                SingletonResult.getInstance().setOption(2);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 3:
                 Scanner sca=new Scanner(System.in);
@@ -107,6 +114,8 @@ public class MenuMain {
                 double minsal=maxMinAverage.Minim();
                 double average=maxMinAverage.Average();
                 System.out.println("Salariul maxim este:"+ maxsal + "\nSalariul minim este: "+ minsal + "\n" + "\nSalariul mediu este" + average);
+                SingletonResult.getInstance().setOption(3);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 4:
                 System.out.println("Datele consultatiei (Datele programarii, datele pacientului, datele retetei si datele medicului care efectueaza consultatia!)");
@@ -120,6 +129,8 @@ public class MenuMain {
                 Consultatie cons=new Consultatie("",progr,0,0,0," ",re,med,0);
                 cons.CitireConsultatie();
                 System.out.println("ID-ul consultatiei pacientului " + cons.getProg().getClient().getNume() + " " + cons.getProg().getClient().getPrenume() + " generat automat este: " + cons.getIdConsultatie());
+                SingletonResult.getInstance().setOption(4);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 5:
                 Scanner scanner5=new Scanner(System.in);
@@ -148,6 +159,8 @@ public class MenuMain {
                 }
                 for(int i=0;i<nClients;i++)
                  persoana[i].CalculVarsta();
+                SingletonResult.getInstance().setOption(5);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 6:
                 Scanner scc=new Scanner(System.in);
@@ -205,6 +218,8 @@ public class MenuMain {
                     System.out.println("\nClientul nr " + (i + 1));
                     c[i].AfisareClienti();
                 }
+                SingletonResult.getInstance().setOption(6);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 7:
                 Scanner s=new Scanner(System.in);
@@ -238,6 +253,8 @@ public class MenuMain {
                 System.out.println("Afisam pacientii ramasi:");
                 for(int i=0;i<nrPacienti-1;i++)
                     clie[i].AfisareClienti();
+                SingletonResult.getInstance().setOption(7);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 8:
                 Scanner scanner8=new Scanner(System.in);
@@ -257,6 +274,8 @@ public class MenuMain {
                 System.out.println("Afisare lista de medici dupa aplicarea bonusului:");
                 for(int i=0;i<nrMed;i++)
                     System.out.println("\nMedicul " + medic[i].getNume() +" " + medic[i].getPrenume() + " are salariul " + medic[i].getSalariu());
+                SingletonResult.getInstance().setOption(8);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 9:
                 Scanner inp=new Scanner(System.in);
@@ -277,6 +296,8 @@ public class MenuMain {
                 Reducere red=new Reducere(consult[i]);
                 red.ReducereClienti();
                 }
+                SingletonResult.getInstance().setOption(9);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 10:
                 Scanner sc10=new Scanner(System.in);
@@ -302,6 +323,8 @@ public class MenuMain {
                 {
                     System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZiPlanificare()+"/"+programare[i].getLunaPlanificare()+"/"+programare[i].getAnPlanificare());
                 }
+                SingletonResult.getInstance().setOption(10);
+                SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 11:
                 Scanner scan11=new Scanner(System.in);
@@ -332,9 +355,15 @@ public class MenuMain {
                 }
                 else System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
                 }
+                SingletonResult.getInstance().setOption(11);
+                SingletonResult.getInstance().WritingTimestamp();
+                break;
+            case 12:
+                SingletonMedic singletonMedic=new SingletonMedic();
+                SingletonMedic.getInstanceRead().Reading();
                 break;
             default:
-                System.err.println("Optiune invalida! Alegeti un numar intre 1-11!");
+                System.err.println("Optiune invalida! Alegeti un numar intre 1-12!");
                 break;
         }
     }
