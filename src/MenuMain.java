@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.*;
 import java.util.*;
@@ -359,8 +358,20 @@ public class MenuMain {
                 SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 12:
-                SingletonMedic singletonMedic=new SingletonMedic();
-                SingletonMedic.getInstanceRead().Reading();
+                SingletonCitire singletonCitire =new SingletonCitire();
+                Scanner scanner12=new Scanner(System.in);
+                System.out.println("Introduceti tipul de obiect pe care doriti sa il cititi (medic/asistent):");
+                String aleg=scanner12.nextLine();
+                switch(aleg.toUpperCase()){
+                    case "MEDIC":
+                        SingletonCitire.getInstanceRead().ReadingMedic();
+                        break;
+                    case "ASISTENT":
+                        SingletonCitire.getInstanceRead().ReadingAsistent();
+                        break;
+                    default:
+                        System.out.println("Optiune invalida!");
+                        break;}
                 break;
             default:
                 System.err.println("Optiune invalida! Alegeti un numar intre 1-12!");

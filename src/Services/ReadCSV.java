@@ -3,5 +3,6 @@ package Services;
 import java.io.FileNotFoundException;
 
 public interface ReadCSV {
-    void Reading() throws FileNotFoundException;
+    void ReadingMedic() throws FileNotFoundException;
+    void ReadingAsistent() throws FileNotFoundException;
 }
