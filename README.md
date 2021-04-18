@@ -85,3 +85,11 @@ Interogarile din MENIU:
 10.Se verifica daca data planificarii este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare).
 
 11.Pentru pacientii care necesita spitalizare se afiseaza costul spitalizarii (100 lei/zi pentru client major, 80 lei/zi pentru client minor).
+
+
+
+PARTEA A DOUA
+
+-Adaugarea optiunii 12 (CITIRE MEDIC, ASISTENT, CLIENT MAJOR, CLIENT MINOR DIN FISIER CSV SI AFISAREA DATELOR CITITE IN ALT FISIER CSV)
+-Adaugarea fisierelor .csv care retin datele intoarse de operatiunile 2-11 din meniu
+-Adaugarea fisierului Rezultat.csv ce tine evidenta operatiilor efectuate (Denumirea operatiei + timestamp)
