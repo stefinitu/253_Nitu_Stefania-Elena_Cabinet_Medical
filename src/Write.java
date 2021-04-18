@@ -72,46 +72,108 @@ public class Write implements WriteCSV {
     }
 
     public void WritingTimestamp() throws IOException {
-        FileOutputStream f = new FileOutputStream(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Rezultat.csv"));
-        ObjectOutputStream o = new ObjectOutputStream(f);
+        FileOutputStream f = new FileOutputStream(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Rezultat.csv"), true);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String s=timestamp.toString();
+        String comma=",";
+        String endline="\n";
+        byte[] time=s.getBytes();
+        byte[] commabin=comma.getBytes();
+        byte[] endbin=endline.getBytes();
         switch(option)
         {
             case 1:
-                o.writeObject("S-au ordonat crescator clientii" + "," + timestamp + "\n");
+                String text1="S-au ordonat crescator clientii";
+                byte[] textbin=text1.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 2:
-                o.writeObject("Calculul sumei medicamentelor" + "," + timestamp + "\n");
+                String text2="Calculul sumei medicamentelor";
+                textbin=text2.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 3:
-                o.writeObject("Salariul minim, maxim si mediu" + "," + timestamp + "\n");
+                String text3="Salariul minim, maxim si mediu";
+                textbin=text3.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 4:
-                o.writeObject("Generare ID Consultatie" + "," + timestamp + "\n");
+                String text4="Generare ID Consultatie";
+                textbin=text4.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 5:
-                o.writeObject("Calculul datei nasterii" + "," + timestamp + "\n");
+                String text5="Calculul datei nasterii";
+                textbin=text5.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 6:
-                o.writeObject("Adaugare client nou" + "," + timestamp + "\n");
+                String text6="Adaugare client nou";
+                textbin=text6.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 7:
-                o.writeObject("Stergere client" + "," + timestamp + "\n");
+                String text7="Stergere client";
+                textbin=text7.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 8:
-                o.writeObject("Acordare sporuri medici" + "," + timestamp + "\n");
+                String text8="Acordare sporuri medici";
+                textbin=text8.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 9:
-                o.writeObject("Acordare reducere persoanelor cu varsta peste 60 de ani" + "," + timestamp + "\n");
+                String text9="Acordare reducere persoanelor cu varsta peste 60 de ani";
+                textbin=text9.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 10:
-                o.writeObject("Verificare data planificarii weekend" + "," + timestamp + "\n");
+                String text10="Verificare data planificarii weekend";
+                textbin=text10.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             case 11:
-                o.writeObject("Calculul costului spitalizarii" + "," + timestamp + "\n");
+                String text11="Calculul costului spitalizarii";
+                textbin=text11.getBytes();
+                f.write(textbin);
+                f.write(commabin);
+                f.write(time);
+                f.write(endbin);
                 break;
             default:
-                o.writeObject("Eroare la scrierea in fisier! Optiune invalida");
+                String mesaj="Eroare la scrierea in fisier!";
+                byte[] mesajbin=mesaj.getBytes();
+                f.write(mesajbin);
         }
     }
 

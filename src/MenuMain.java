@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.*;
 import java.util.*;
@@ -69,12 +70,17 @@ public class MenuMain {
                 }
                 for(int i=0;i<nrRetete;i++)
                 {r[i].CitireReteta();}
+                FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\CalculReteta.csv");
                 for(int i=0;i<nrRetete;i++)
                 {
                     SumaMedicamente sum = new SumaMedicamente(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret());
                     double calc =sum.CalculSumaMed();
+                    csvWrite.append(String.join(",", Double.toString(calc)));
+                    csvWrite.append("\n");
                     System.out.println("\nSuma medicamentelor de pe reteta "+(i+1)+" este "+calc);
                 }
+                csvWrite.flush();
+                csvWrite.close();
                 SingletonResult.getInstance().setOption(2);
                 SingletonResult.getInstance().WritingTimestamp();
                 break;
