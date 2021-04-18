@@ -1,8 +1,24 @@
 import java.io.*;
 import java.sql.Timestamp;
+import java.util.*;
 
 public class Write implements WriteCSV {
     public int option;
+    public Medic[] m;
+    public List<List<String>> a=new ArrayList<>();
+    public Reteta[] r;
+
+    public Write(List<List<String>> a) {
+        this.a = a;
+    }
+
+    public List<List<String>> getA() {
+        return a;
+    }
+
+    public void setA(List<List<String>> a) {
+        this.a = a;
+    }
 
     public Write(int option) {
         this.option = option;
@@ -10,6 +26,23 @@ public class Write implements WriteCSV {
 
     public int getOption() {
         return option;
+    }
+
+    public Medic[] getM() {
+        return m;
+    }
+
+    public void setM(Medic[] m) {
+        this.m = m;
+    }
+
+
+    public Reteta[] getR() {
+        return r;
+    }
+
+    public void setR(Reteta[] r) {
+        this.r = r;
     }
 
     public void setOption(int option) {
@@ -58,6 +91,18 @@ public class Write implements WriteCSV {
             default:
                 o.writeObject("Eroare la scrierea in fisier! Optiune invalida");
         }
+    }
+
+    public void WritingAsistent() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\AsistentResult.csv");
+        for(List <String> data:a)
+        {
+    csvWrite.append(String.join(",",data));
+    csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
     }
 
 }
