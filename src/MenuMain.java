@@ -360,16 +360,26 @@ public class MenuMain {
             case 12:
                 SingletonCitire singletonCitire =new SingletonCitire();
                 Scanner scanner12=new Scanner(System.in);
-                System.out.println("Introduceti tipul de obiect pe care doriti sa il cititi (medic/asistent):");
+                System.out.println("Introduceti tipul de obiect pe care doriti sa il cititi (medic/asistent/reteta/client major/client minor):");
                 String aleg=scanner12.nextLine();
                 switch(aleg.toUpperCase()){
                     case "MEDIC":
                         SingletonCitire.getInstanceRead().ReadingMedic();
+                        SingletonResult.getInstance().WritingMedic();
                         break;
                     case "ASISTENT":
                         SingletonCitire.getInstanceRead().ReadingAsistent();
                         SingletonResult.getInstance().WritingAsistent();
                         break;
+                    case "RETETA":
+                        SingletonCitire.getInstanceRead().ReadingReteta();
+                        SingletonResult.getInstance().WritingReteta();
+                    case "CLIENT MAJOR":
+                        SingletonCitire.getInstanceRead().ReadingClientMajor();
+                        SingletonResult.getInstance().WritingClientMajor();
+                    case "CLIENT MINOR":
+                        SingletonCitire.getInstanceRead().ReadingClientMinor();
+                        SingletonResult.getInstance().WritingClientMinor();
                     default:
                         System.out.println("Optiune invalida!");
                         break;}

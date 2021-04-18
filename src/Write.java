@@ -4,9 +4,27 @@ import java.util.*;
 
 public class Write implements WriteCSV {
     public int option;
-    public Medic[] m;
+    public List<List<String>> m=new ArrayList<>();
     public List<List<String>> a=new ArrayList<>();
-    public Reteta[] r;
+    public List<List<String>> r=new ArrayList<>();
+    public List<List<String>> clmaj=new ArrayList<>();
+    public List<List<String>> clmin=new ArrayList<>();
+
+    public List<List<String>> getClmaj() {
+        return clmaj;
+    }
+
+    public void setClmaj(List<List<String>> clmaj) {
+        this.clmaj = clmaj;
+    }
+
+    public List<List<String>> getClmin() {
+        return clmin;
+    }
+
+    public void setClmin(List<List<String>> clmin) {
+        this.clmin = clmin;
+    }
 
     public Write(List<List<String>> a) {
         this.a = a;
@@ -28,20 +46,24 @@ public class Write implements WriteCSV {
         return option;
     }
 
-    public Medic[] getM() {
+    public Write(List<List<String>> m, List<List<String>> r) {
+        this.m = m;
+        this.r = r;
+    }
+
+    public List<List<String>> getM() {
         return m;
     }
 
-    public void setM(Medic[] m) {
+    public void setM(List<List<String>> m) {
         this.m = m;
     }
 
-
-    public Reteta[] getR() {
+    public List<List<String>> getR() {
         return r;
     }
 
-    public void setR(Reteta[] r) {
+    public void setR(List<List<String>> r) {
         this.r = r;
     }
 
@@ -103,6 +125,57 @@ public class Write implements WriteCSV {
         }
         csvWrite.flush();
         csvWrite.close();
+        System.out.println("S-a scris in fisier!");
     }
 
+    public void WritingMedic() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\MedicResult.csv");
+        for(List <String> data:m)
+        {
+            csvWrite.append(String.join(",",data));
+            csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
+        System.out.println("S-a scris in fisier!");
+    }
+    public void WritingReteta() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\RetetaResult.csv");
+        for(List <String> data:r)
+        {
+            csvWrite.append(String.join(",",data));
+            csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
+        System.out.println("S-a scris in fisier!");
+    }
+
+    public void WritingClientMajor() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMajResult.csv");
+        for(List <String> data:a)
+        {
+            csvWrite.append(String.join(",",data));
+            csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
+        System.out.println("S-a scris in fisier!");
+    }
+
+    public void WritingClientMinor() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMinResult.csv");
+        for(List <String> data:a)
+        {
+            csvWrite.append(String.join(",",data));
+            csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
+        System.out.println("S-a scris in fisier!");
+    }
 }
