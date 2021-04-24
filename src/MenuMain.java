@@ -425,6 +425,7 @@ public class MenuMain {
                 result.getInstance().WritingTimestamp();
                 break;
             case 10:
+                FileWriter csvWrite10 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\PlanificariNoi.csv", true);
                 Scanner sc10=new Scanner(System.in);
                 Client pac;
                 int nrPr=0;
@@ -447,13 +448,27 @@ public class MenuMain {
                 for(int i=0;i<nrPr;i++)
                 {
                     System.out.println("Pentru programarea "+(i+1)+ " avem: "+ programare[i].getZiPlanificare()+"/"+programare[i].getLunaPlanificare()+"/"+programare[i].getAnPlanificare());
+                    csvWrite10.append(programare[i].getClient().getNume());
+                    csvWrite10.append(",");
+                    csvWrite10.append(programare[i].getClient().getPrenume());
+                    csvWrite10.append(",");
+                    csvWrite10.append(Integer.toString(programare[i].getZiPlanificare()));
+                    csvWrite10.append("/");
+                    csvWrite10.append(Integer.toString(programare[i].getLunaPlanificare()));
+                    csvWrite10.append("/");
+                    csvWrite10.append(Integer.toString(programare[i].getAnPlanificare()));
+                    csvWrite10.append("/");
+                    csvWrite10.append("\n");
                 }
+                csvWrite10.flush();
+                csvWrite10.close();
                 SingletonResult.getInstance().setOption(10);
                 SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 11:
+                FileWriter csvWrite11 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\CosturiPacienti.csv");
                 Scanner scan11=new Scanner(System.in);
-                int numarConsultatii=0;
+               int numarConsultatii=0;
                 System.out.println("Introduceti numarul de consultatii:");
                 numarConsultatii=Integer.parseInt(scan11.nextLine());
                 Consultatie[] cs = new Consultatie[numarConsultatii];
@@ -472,16 +487,33 @@ public class MenuMain {
                     if (cs[i].getProg().getClient() instanceof ClientMinor)
                     {CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
                     int costSpitalizareMinor=costs.CostClientMinor();
-                    System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMinor + " lei.");}
+                    System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMinor + " lei.");
+                    csvWrite11.append("Pacientul ");
+                    csvWrite11.append(cs[i].getProg().getClient().getNume());
+                    csvWrite11.append(",");
+                    csvWrite11.append(Double.toString(costSpitalizareMinor));
+                    csvWrite11.append("\n");}
                     else
                     {   CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
                         int costSpitalizareMajor=costs.CostClientMajor();
-                        System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMajor + " lei.");}
+                        System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMajor + " lei.");
+                        csvWrite11.append("Pacientul ");
+                        csvWrite11.append(cs[i].getProg().getClient().getNume());
+                        csvWrite11.append(",");
+                        csvWrite11.append(Double.toString(costSpitalizareMajor));
+                        csvWrite11.append("\n");}
                 }
-                else System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
+                else {System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
+                    csvWrite11.append("Pacientul ");
+                    csvWrite11.append(cs[i].getProg().getClient().getNume());
+                    csvWrite11.append(",");
+                    csvWrite11.append("nu are de achitat");
+                    csvWrite11.append("\n");}
+                    csvWrite11.flush();
+                    csvWrite11.close();
                 }
-                SingletonResult.getInstance().setOption(11);
-                SingletonResult.getInstance().WritingTimestamp();
+                result.getInstance().setOption(11);
+                result.getInstance().WritingTimestamp();
                 break;
             case 12:
                 Scanner scanner12=new Scanner(System.in);

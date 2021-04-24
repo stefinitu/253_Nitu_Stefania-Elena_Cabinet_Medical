@@ -1,5 +1,7 @@
 import Services.Reducible;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 
 public class Reducere implements Reducible {
@@ -18,8 +20,8 @@ public class Reducere implements Reducible {
     }
 
     @Override
-    public void ReducereClienti()
-    {
+    public void ReducereClienti() throws IOException {
+        FileWriter csvWriteRed = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Reduceri.csv", true);
         String prefAn=" ";
         String sufAn=" ";
         int genInt = Integer.parseInt(consult.getProg().getClient().cnp.substring(0,1));
@@ -35,5 +37,15 @@ public class Reducere implements Reducible {
         int age=year-Integer.parseInt(anNasterii);
         if(age>=60) {consult.getReteta().ReducereMedicamente();
         System.out.println("Pentru pacientul cu varsta de "+age+" noua suma dupa reducere este " + consult.getReteta().SumaMed(consult.getReteta().getNr_medicamente(), consult.getReteta().getNr_bucati(), consult.getReteta().getPret()));
-    }}
+        csvWriteRed.append(getConsult().getProg().getClient().getNume());
+        csvWriteRed.append(",");
+        csvWriteRed.append(getConsult().getProg().getClient().getPrenume());
+        csvWriteRed.append(",");
+        csvWriteRed.append(Integer.toString(age));
+        csvWriteRed.append(",");
+        csvWriteRed.append(Double.toString(consult.getReteta().SumaMed(consult.getReteta().getNr_medicamente(), consult.getReteta().getNr_bucati(), consult.getReteta().getPret())));
+        csvWriteRed.append("\n");
+    }
+    csvWriteRed.flush();
+    csvWriteRed.close();}
 }

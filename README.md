@@ -62,7 +62,7 @@ Interfete:
 -IdentifiableCons - genereaza automat ID-ul consultatiilor
 
 
-Interogarile din MENIU:
+Interogarile din MENIU (atat cu posibilitatea citirii datelor de intrare din fisier, cat si cu posibilitatea scrierii rezultatului in fisiere CSV):
 
 1.Ordonarea crescatoare a clientilor dupa numele de familie si verificarea corectitudinii CNP-ului, email-ului si numarului de telefon.
 
@@ -90,7 +90,7 @@ Interogarile din MENIU:
 
 PARTEA A DOUA
 
--Adaugarea optiunii 12 (CITIRE MEDIC, ASISTENT, CLIENT MAJOR, CLIENT MINOR DIN FISIER CSV SI AFISAREA DATELOR CITITE IN ALT FISIER CSV)
+-Adaugarea optiunii 12 (CITIRE MEDIC, ASISTENT, CLIENT MAJOR, CLIENT MINOR SI RETETA DIN FISIER CSV SI AFISAREA DATELOR CITITE IN ALT FISIER CSV)
 
 -Adaugarea fisierelor .csv care retin datele intoarse de operatiunile 2-11 din meniu
 

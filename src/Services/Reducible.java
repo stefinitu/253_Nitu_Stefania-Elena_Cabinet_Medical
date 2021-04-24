@@ -1,5 +1,7 @@
 package Services;
 
+import java.io.IOException;
+
 public interface Reducible {
-    void ReducereClienti();
+    void ReducereClienti() throws IOException;
 }
