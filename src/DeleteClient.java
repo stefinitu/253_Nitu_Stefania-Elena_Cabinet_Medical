@@ -1,13 +1,35 @@
 import Services.Deletable;
 import Services.Reportable;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DeleteClient implements Reportable, Deletable {
     private Client[] oldClients;
     private String id;
+    private List<List<String>> clmin=new ArrayList<>();
+    public List<List<String>> clmaj=new ArrayList<>();
 
     public DeleteClient(Client[] oldClients, String id) {
         this.oldClients = oldClients;
         this.id = id;
+    }
+
+    public List<List<String>> getClmin() {
+        return clmin;
+    }
+
+    public void setClmin(List<List<String>> clmin) {
+        this.clmin = clmin;
+    }
+
+    public List<List<String>> getClmaj() {
+        return clmaj;
+    }
+
+    public void setClmaj(List<List<String>> clmaj) {
+        this.clmaj = clmaj;
     }
 
     public Client[] getOldClients() {
@@ -37,6 +59,36 @@ public class DeleteClient implements Reportable, Deletable {
             oldClients[i]=oldClients[i+1];
         WarningAdd warningAdd=new WarningAdd();
         warningAdd.warning(deleteClient);
+    }
+    @Override
+    public void StergereClientMinCSV() throws IOException {
+        int i=0;
+        int memorare=0;
+        for(List<String> data:clmin)
+        {for(String data1:data)
+                if(data1.equals(id)) memorare=i;
+                        i++;}
+        clmin.remove(memorare);
+        Write wr=new Write(0);
+        wr.setClmin(clmin);
+        wr.WritingClientMinor();
+        System.out.println("Stergere client minor!");
+    }
+
+    @Override
+    public void StergereClientMajCSV() throws IOException {
+        int i=0;
+        int memorare=0;
+        for(List<String> data:clmaj)
+        {for(String data1:data)
+            if(data1.equals(id)) memorare=i;
+            i++;}
+        System.out.println(memorare);
+        clmaj.remove(memorare);
+        Write wr=new Write(0);
+        wr.setClmaj(clmaj);
+        wr.WritingClientMajor();
+        System.out.println("Stergere client major!");
     }
 
     @Override

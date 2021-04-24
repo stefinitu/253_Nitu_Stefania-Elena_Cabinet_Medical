@@ -6,6 +6,8 @@ import java.util.*;
 import Services.SumaMedicamente;
 import Services.CostSpitalizare;
 import Services.VerificareDate;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+
 public class MenuMain {
     public void menu()
     {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie si verificarea corectitudinii datelor introduse\n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga un client dintr-un array dat dupa CNP-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). \n11.Sa se calculeze costul suplimentar platit de un client care necesita spitalizare (100 lei/zi pentru major, 80 lei/zi pentru minor) \n12.Citire si afisare obiecte din fisier csv");
@@ -13,6 +15,8 @@ public class MenuMain {
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
         SingletonResult result=new SingletonResult();
+        SingletonCitire singletonCitire =new SingletonCitire();
+        Scanner citire_op=new Scanner(System.in);
         menu();
         switch(in.nextInt())
         {
@@ -87,6 +91,7 @@ public class MenuMain {
             case 3:
                 Scanner sca=new Scanner(System.in);
                 int nrPers;
+                FileWriter csvWrite3 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\SalMinMaxMediu.csv",true);
                 System.out.println("Introduceti numarul de angajati:");
                 nrPers=sca.nextInt();
                 Personal p[] = new Personal[nrPers];
@@ -116,11 +121,22 @@ public class MenuMain {
                 }
                 MaxMinAverage maxMinAverage = new MaxMinAverage(p,nrPers);
                 double maxsal=maxMinAverage.Maxim();
+                csvWrite3.append("Salariul maxim,");
+                csvWrite3.append(String.join(",", Double.toString(maxsal)));
+                csvWrite3.append("\n");
                 double minsal=maxMinAverage.Minim();
+                csvWrite3.append("Salariul minim,");
+                csvWrite3.append(String.join(",", Double.toString(minsal)));
+                csvWrite3.append("\n");
                 double average=maxMinAverage.Average();
-                System.out.println("Salariul maxim este:"+ maxsal + "\nSalariul minim este: "+ minsal + "\n" + "\nSalariul mediu este" + average);
-                SingletonResult.getInstance().setOption(3);
-                SingletonResult.getInstance().WritingTimestamp();
+                csvWrite3.append("Salariul mediu,");
+                csvWrite3.append(String.join(",", Double.toString(average)));
+                csvWrite3.append("\n");
+                csvWrite3.flush();
+                csvWrite3.close();
+                System.out.println("Salariul maxim este:"+ maxsal + "\nSalariul minim este: "+ minsal + "\n" + "Salariul mediu este" + average);
+                result.getInstance().setOption(3);
+                result.getInstance().WritingTimestamp();
                 break;
             case 4:
                 System.out.println("Datele consultatiei (Datele programarii, datele pacientului, datele retetei si datele medicului care efectueaza consultatia!)");
@@ -133,18 +149,30 @@ public class MenuMain {
                 Medic med=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                 Consultatie cons=new Consultatie("",progr,0,0,0," ",re,med,0);
                 cons.CitireConsultatie();
+                FileWriter csvWrite4 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\GenIDCons.csv",true);
                 System.out.println("ID-ul consultatiei pacientului " + cons.getProg().getClient().getNume() + " " + cons.getProg().getClient().getPrenume() + " generat automat este: " + cons.getIdConsultatie());
-                SingletonResult.getInstance().setOption(4);
-                SingletonResult.getInstance().WritingTimestamp();
+                csvWrite4.append("Pacientul ");
+                csvWrite4.append(cons.getProg().getClient().getNume());
+                csvWrite4.append(String.join(",", cons.getIdConsultatie()));
+                csvWrite4.append("\n");
+                csvWrite4.flush();
+                csvWrite4.close();
+                result.getInstance().setOption(4);
+                result.getInstance().WritingTimestamp();
                 break;
             case 5:
                 Scanner scanner5=new Scanner(System.in);
                 int nClients;
-                System.out.println("Introduceti numarul de clienti:");
-                nClients=Integer.parseInt(scanner5.nextLine());
-                Client persoana[] = new Client[nClients];
+                Client persoana[] = new Client[100];
+                List<String> age=new ArrayList<>();
                 String lines;
-                for(int i=0;i<nClients;i++)
+                System.out.println("Doriti citirea din fisier? (DA/NU)");
+                lines=scanner5.nextLine();
+                if(lines.toUpperCase()=="NU")
+                {
+                    System.out.println("Introduceti numarul de clienti:");
+                    nClients=Integer.parseInt(scanner5.nextLine());
+                    for(int i=0;i<nClients;i++)
                 {
                     System.out.println("Introduceti tipul de client (client minor/client major):");
                     lines=scanner5.nextLine();
@@ -162,29 +190,54 @@ public class MenuMain {
                             break;
                     }
                 }
-                for(int i=0;i<nClients;i++)
-                 persoana[i].CalculVarsta();
-                SingletonResult.getInstance().setOption(5);
-                SingletonResult.getInstance().WritingTimestamp();
+                for(int i=0;i<nClients;i++) {
+                    persoana[i].CalculVarsta();
+                }
+                result.getInstance().setOption(5);
+                result.getInstance().WritingTimestamp();}
+
+                else
+                {
+                    System.out.println("Introduceti tipul de client (client minor/client major):");
+                    lines=scanner5.nextLine();
+                    switch(lines.toUpperCase()){
+                        case "CLIENT MINOR":
+                            singletonCitire.getInstanceRead().ReadingClientMinor();
+                            result.getInstance().WritingAge();
+                            break;
+                        case "CLIENT MAJOR":
+                            singletonCitire.getInstanceRead().ReadingClientMajor();
+                            result.getInstance().WritingAge();
+                            break;
+                        default:
+                            System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
+                            break;
+                    }
+                }
                 break;
             case 6:
                 Scanner scc=new Scanner(System.in);
-                int nrCl;
+                int nrCl=0;
+                Client[] c = new Client[100];
+                System.out.println("Cititi clientii din fisier? (DA/NU)");
+                String l=scc.nextLine();
+                int opt=1;
+                if(l.toUpperCase()=="NU")
+                {
+                    opt=0;
                 System.out.println("Introduceti numarul de clienti:");
                 nrCl=Integer.parseInt(scc.nextLine());
-                Client[] c = new Client[nrCl+1];
-                String l;
                 for(int i=0;i<nrCl;i++)
                 {
                     System.out.println("Introduceti tipul de client (client minor/client major):");
                     l=scc.nextLine();
                     switch(l.toUpperCase()){
                         case "CLIENT MINOR":
-                            c[i]=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
+                            c[i]=new ClientMinor("000000", " ", " ", " ", " ", " ", " ", " ", " ");
                             c[i].CitireClienti();
                             break;
                         case "CLIENT MAJOR":
-                            c[i]=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
+                            c[i]=new ClientMajor("0000000", " ", " ", " "," "," ",0," ");
                             c[i].CitireClienti();
                             break;
                         default:
@@ -197,41 +250,53 @@ public class MenuMain {
                     System.out.println("\nClientul nr " + (i + 1));
                     c[i].AfisareClienti();
                 }
+                }
+
                 System.out.println("Noul client");
                 System.out.println("\nIntroduceti tipul de client (client minor/client major):");
                 l=scc.nextLine();
                 Client pacientNou;
                 switch(l.toUpperCase()){
                     case "CLIENT MINOR":
-                        pacientNou=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
+                        pacientNou=new ClientMinor("000000", " ", " ", " ", " ", " ", " ", " ", " ");
                         pacientNou.CitireClienti();
                         AddClient add=new AddClient(c,pacientNou,nrCl);
-                        add.AdaugareClient();
+                        if(opt==0) add.AdaugareClient();
+                        else add.AdaugareClientMinCSV();
                         break;
                     case "CLIENT MAJOR":
-                        pacientNou=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
+                        pacientNou=new ClientMajor("000000", " ", " ", " "," "," ",0," ");
                         pacientNou.CitireClienti();
                         AddClient addc=new AddClient(c,pacientNou,nrCl);
-                        addc.AdaugareClient();
+                        if(opt==0) addc.AdaugareClient();
+                        else addc.AdaugareClientMajCSV();
                         break;
                     default:
                         System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
                         break;
                 }
-                System.out.println("Dupa adaugare avem: ");
+                if(opt==0)
+                {System.out.println("Dupa adaugare avem: ");
                 for(int i=0;i<=nrCl;i++) {
                     System.out.println("\nClientul nr " + (i + 1));
                     c[i].AfisareClienti();
-                }
-                SingletonResult.getInstance().setOption(6);
-                SingletonResult.getInstance().WritingTimestamp();
+                }}
+                result.getInstance().setOption(6);
+                result.getInstance().WritingTimestamp();
                 break;
             case 7:
                 Scanner s=new Scanner(System.in);
-                System.out.println("Introduceti numarul de pacienti din baza de date:");
-                int nrPacienti=Integer.parseInt(s.nextLine());;
-                Client[] clie=new Client[nrPacienti];
-                String st;
+                Client[] clie=new Client[100];
+                List<List<String>> clientimin=new ArrayList<>();
+                List<List<String>> clientimaj=new ArrayList<>();
+                int nrPacienti=0;
+                System.out.println("Cititi clientii din fisier? (DA/NU)");
+                String st=s.nextLine();
+                String clientop=" ";
+                opt=1;
+                if(st.toUpperCase()=="NU")
+                {System.out.println("Introduceti numarul de pacienti din baza de date:");
+                nrPacienti=Integer.parseInt(s.nextLine());;
                 for(int i=0;i<nrPacienti;i++)
                 {
                     System.out.println("Introduceti tipul de client (client minor/client major):");
@@ -249,24 +314,65 @@ public class MenuMain {
                             System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
                             break;
                     }
+                    clientop=st.toUpperCase();
+                }}
+                else
+                {
+                    System.out.println("Introduceti tipul de client (client minor/client major):");
+                    st=s.nextLine();
+                    switch(st.toUpperCase()){
+                        case "CLIENT MINOR":
+                            singletonCitire.getInstanceRead().ReadingClientMinor();
+                            clientimin.addAll(singletonCitire.getInstanceRead().getClientimin());
+                            break;
+                        case "CLIENT MAJOR":
+                            singletonCitire.getInstanceRead().ReadingClientMajor();
+                            clientimaj.addAll(singletonCitire.getInstanceRead().getClientimaj());
+                            for(List <String> data:clientimaj)
+                                System.out.println(data);
+                            break;
+                        default:
+                            System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
+                            break;
                 }
+                clientop=st;
+                }
+
                 String alegere=" ";
                 System.out.println("Introduceti CNP-ul persoanei pe care doriti sa o stergeti:");
                 alegere=s.nextLine();
-                DeleteClient del=new DeleteClient(clie,alegere);
+                if(opt==0)
+                { DeleteClient del=new DeleteClient(clie,alegere);
                 del.StergereClient();
                 System.out.println("Afisam pacientii ramasi:");
                 for(int i=0;i<nrPacienti-1;i++)
-                    clie[i].AfisareClienti();
-                SingletonResult.getInstance().setOption(7);
-                SingletonResult.getInstance().WritingTimestamp();
+                    clie[i].AfisareClienti();}
+                else
+                {
+                    DeleteClient del=new DeleteClient(clie,alegere);
+                    if(clientop=="CLIENT MINOR")
+                    {
+                        del.setClmin(clientimin);
+                        del.StergereClientMinCSV();
+                    }
+                    else {
+                        del.setClmaj(clientimaj);
+                        del.StergereClientMajCSV();
+                    }
+                }
+                result.getInstance().setOption(7);
+                result.getInstance().WritingTimestamp();
                 break;
             case 8:
                 Scanner scanner8=new Scanner(System.in);
                 int nrMed=0;
-                System.out.println("Introduceti numarul de medici:");
+                Medic medic[] = new Medic[100];
+                System.out.println("Cititi clientii din fisier? (DA/NU)");
+                String str8=scanner8.nextLine();
+                opt=1;
+                if(str8.toUpperCase()=="NU")
+                {System.out.println("Introduceti numarul de medici:");
                 nrMed=Integer.parseInt(scanner8.nextLine());
-                Medic medic[] = new Medic[nrMed];
                 for(int i=0;i<nrMed;i++) {
                     medic[i]=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                     medic[i].CitirePersonal();
@@ -278,9 +384,23 @@ public class MenuMain {
                 }
                 System.out.println("Afisare lista de medici dupa aplicarea bonusului:");
                 for(int i=0;i<nrMed;i++)
-                    System.out.println("\nMedicul " + medic[i].getNume() +" " + medic[i].getPrenume() + " are salariul " + medic[i].getSalariu());
-                SingletonResult.getInstance().setOption(8);
-                SingletonResult.getInstance().WritingTimestamp();
+                    System.out.println("\nMedicul " + medic[i].getNume() +" " + medic[i].getPrenume() + " are salariul " + medic[i].getSalariu());}
+                else
+                {
+                    List <List<String>> medici=new ArrayList<>();
+                   singletonCitire.getInstanceRead().ReadingMedic();
+                    medici.addAll(singletonCitire.getInstanceRead().getMedici());
+                    int vechime=0;
+                    int anActual=0;
+                    for(List <String> data:medici)
+                            { anActual = Calendar.getInstance().get(Calendar.YEAR);
+                                vechime=anActual-Integer.parseInt(data.get(6));
+                                if(vechime>=10) data.set(7,Double.toString(Double.parseDouble(data.get(7))+0.25*Double.parseDouble(data.get(7))));
+                            }
+                    result.getInstance().setM(medici);
+                    result.getInstance().WritingMedic();}
+                result.getInstance().setOption(8);
+                result.getInstance().WritingTimestamp();
                 break;
             case 9:
                 Scanner inp=new Scanner(System.in);
@@ -301,8 +421,8 @@ public class MenuMain {
                 Reducere red=new Reducere(consult[i]);
                 red.ReducereClienti();
                 }
-                SingletonResult.getInstance().setOption(9);
-                SingletonResult.getInstance().WritingTimestamp();
+                result.getInstance().setOption(9);
+                result.getInstance().WritingTimestamp();
                 break;
             case 10:
                 Scanner sc10=new Scanner(System.in);
@@ -364,7 +484,6 @@ public class MenuMain {
                 SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 12:
-                SingletonCitire singletonCitire =new SingletonCitire();
                 Scanner scanner12=new Scanner(System.in);
                 System.out.println("Introduceti tipul de obiect pe care doriti sa il cititi (medic/asistent/reteta/client major/client minor):");
                 String aleg=scanner12.nextLine();
@@ -380,12 +499,15 @@ public class MenuMain {
                     case "RETETA":
                         SingletonCitire.getInstanceRead().ReadingReteta();
                         SingletonResult.getInstance().WritingReteta();
+                        break;
                     case "CLIENT MAJOR":
                         SingletonCitire.getInstanceRead().ReadingClientMajor();
                         SingletonResult.getInstance().WritingClientMajor();
+                        break;
                     case "CLIENT MINOR":
                         SingletonCitire.getInstanceRead().ReadingClientMinor();
                         SingletonResult.getInstance().WritingClientMinor();
+                        break;
                     default:
                         System.out.println("Optiune invalida!");
                         break;}

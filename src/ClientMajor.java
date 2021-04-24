@@ -1,4 +1,6 @@
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class ClientMajor extends Client {
     private double idCardSanatate;
@@ -10,6 +12,10 @@ public class ClientMajor extends Client {
         this.nrTelefon = nrTelefon;
     }
 
+    public String getNumeInsotitor(){return " "; }
+    public String getPrenumeInsotitor(){ return " ";}
+    public String getNrTelefonInsotitor(){return " ";}
+    @Override
     public double getIdCardSanatate() {
         return idCardSanatate;
     }
@@ -18,6 +24,7 @@ public class ClientMajor extends Client {
         this.idCardSanatate = idCardSanatate;
     }
 
+    @Override
     public String getNrTelefon() {
         return nrTelefon;
     }
@@ -25,7 +32,6 @@ public class ClientMajor extends Client {
     public void setNrTelefon(String nrTelefon) {
         this.nrTelefon = nrTelefon;
     }
-
 
     @Override
     public void CitireClienti() {
@@ -52,8 +58,8 @@ public class ClientMajor extends Client {
     }
 
     @Override
-    public void CalculVarsta()
-    {
+    public void CalculVarsta() throws IOException {
+        FileWriter csvWritemaj = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv",true);
         String prefixAn;
         String sufixAn;
         int luna;
@@ -73,6 +79,12 @@ public class ClientMajor extends Client {
             String lunaM = aflaLuna(luna);
             String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
             System.out.println("\nData nasterii este:".concat(dataNasterii));
+            csvWritemaj.append("Pacientul ");
+            csvWritemaj.append(String.join(",", nume));
+            csvWritemaj.append(String.join(",", dataNasterii));
+            csvWritemaj.append("\n");
+            csvWritemaj.flush();
+            csvWritemaj.close();
         }
 
     }

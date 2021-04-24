@@ -1,20 +1,49 @@
 import Services.ReadCSV;
+import Services.SumaMedicamente;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.io.File;
 
 public class Read implements ReadCSV {
+    private List<List<String>> clientimin=new ArrayList<>();
+    private List<List<String>> clientimaj=new ArrayList<>();
+    private List<List<String>> medici=new ArrayList<>();
+
+    public List<List<String>> getMedici() {
+        return medici;
+    }
+
+    public void setMedici(List<List<String>> medici) {
+        this.medici = medici;
+    }
+
+    public void setClientimin(List<List<String>> clientimin) {
+        this.clientimin = clientimin;
+    }
+
+    public List<List<String>> getClientimin() {
+        return clientimin;
+    }
+
+    public List<List<String>> getClientimaj() {
+        return clientimaj;
+    }
+
+    public void setClientimaj(List<List<String>> clientimaj) {
+        this.clientimaj = clientimaj;
+    }
+
     public void ReadingMedic() throws FileNotFoundException {
         SingletonResult res=new SingletonResult();
-        List<List<String>> medici=new ArrayList<>();
         Medic[] Med = new Medic[100];
         int i = 0;
         try (Scanner in = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Medic.csv"))) {
             while (in.hasNextLine()) {
                 List<String> medic=new ArrayList<>();
                 String linie = in.nextLine();
-                String[] cuv = linie.split(";", 14);
+                String[] cuv = linie.split(",", 14);
                 Med[i] = new Medic(" ", " ", " ", " ", 0, 0, 0, 0, " ", " ", 0, " ", true, true);
                 Med[i].cnp = cuv[0];
                 medic.add(cuv[0]);
@@ -58,7 +87,7 @@ public class Read implements ReadCSV {
                 while (inn.hasNextLine()) {
                     List<String> asistent=new ArrayList<>();
                     String line = inn.nextLine();
-                    String[] cuv = line.split(";", 14);
+                    String[] cuv = line.split(",", 14);
                     Asist[i] = new Asistent(" ", " ", " ", " ",0,0,0,0.0, " ", " ",0);
                     Asist[i].cnp = cuv[0];
                     asistent.add(cuv[0]);
@@ -101,7 +130,7 @@ public class Read implements ReadCSV {
             while (inn.hasNextLine()) {
                 List<String> reteta=new ArrayList<>();
                 String line = inn.nextLine();
-                String[] cuv = line.split(";", 14);
+                String[] cuv = line.split(",", 14);
                 reteta.add(cuv[0]);
                 reteta.add(cuv[1]);
                 reteta.add(cuv[2]);
@@ -121,51 +150,122 @@ public class Read implements ReadCSV {
 
     public void ReadingClientMajor() throws FileNotFoundException {
         int i = 0;
-        List<List<String>> clientimaj=new ArrayList<>();
+        List<String> age=new ArrayList<>();
         try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMaj.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> clientmaj=new ArrayList<>();
                 String line = inn.nextLine();
-                String[] cuv = line.split(";", 14);
+                String[] cuv = line.split(",", 14);
                 clientmaj.add(cuv[0]);
-                clientmaj.add(cuv[1]);
+                String prefixAn;
+                String sufixAn;
+                int luna;
+                int zi;
+                int genInt = new Integer(cuv[0].substring(0,1));
+                    if(genInt == 1 || genInt == 2) {
+                        prefixAn = "19";
+                    } else {
+                        prefixAn = "20";
+                    }
+                    sufixAn = cuv[0].substring(1, 3);
+                    luna = new Integer(cuv[0].substring(3, 5));
+                    zi = new Integer(cuv[0].substring(5,7));
+                    String lunaM = aflaLuna(luna);
+                    String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
+                    age.add(dataNasterii);
+                    if(cuv.length>=8)
+                    {clientmaj.add(cuv[1]);
                 clientmaj.add(cuv[2]);
                 clientmaj.add(cuv[3]);
                 clientmaj.add(cuv[4]);
+                clientmaj.add(cuv[5]);
+                clientmaj.add(cuv[6]);
+                clientmaj.add(cuv[7]);}
                 clientimaj.add(clientmaj);
                 i++;
             }
-            System.out.println("Clientii cititi sunt:");
-            for (i=0;i<clientimaj.size();i++)
-            {
-                System.out.println("\nReteta nr "+ (i+1) + ":"+clientimaj.get(i));
-            }
             SingletonResult.getInstance().setClmaj(clientimaj);
+            SingletonResult.getInstance().setAge(age);
         }
     }
 
     public void ReadingClientMinor() throws FileNotFoundException {
+        List<String> age=new ArrayList<>();
         int i = 0;
-        List<List<String>> clientimin=new ArrayList<>();
+        String line;
         try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMin.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> clientmin=new ArrayList<>();
-                String line = inn.nextLine();
-                String[] cuv = line.split(";", 14);
+                line = inn.nextLine();
+                String[] cuv = line.split(",", 10);
                 clientmin.add(cuv[0]);
-                clientmin.add(cuv[1]);
+                String prefixAn;
+                String sufixAn=" ";
+                int luna=0;
+                int zi=0;
+                prefixAn="20";
+                if(cuv[0].length()>=3) sufixAn = cuv[0].substring(1, 3);
+                if(cuv[0].length()>=5) luna = new Integer(cuv[0].substring(3, 5));
+                if(cuv[0].length()>=7) zi = new Integer(cuv[0].substring(5,7));
+                String lunaM = aflaLuna(luna);
+                String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
+                age.add(dataNasterii);
+                if(cuv.length>=9)
+                {clientmin.add(cuv[1]);
                 clientmin.add(cuv[2]);
                 clientmin.add(cuv[3]);
                 clientmin.add(cuv[4]);
+                clientmin.add(cuv[5]);
+                clientmin.add(cuv[6]);
+                clientmin.add(cuv[7]);
+                clientmin.add(cuv[8]);}
                 clientimin.add(clientmin);
                 i++;
             }
-            System.out.println("Clientii cititi sunt:");
-            for (i=0;i<clientimin.size();i++)
-            {
-                System.out.println("\nReteta nr "+ (i+1) + ":"+clientimin.get(i));
-            }
-            SingletonResult.getInstance().setClmaj(clientimin);
+            SingletonResult.getInstance().setClmin(clientimin);
+            SingletonResult.getInstance().setAge(age);
+        }
+    }
+    public static String aflaLuna(int luna) {
+        switch (luna) {
+            case 1:
+                return "Ianuarie";
+
+            case 2:
+                return "Februarie";
+
+            case 3:
+                return "Martie";
+
+            case 4:
+                return "Aprilie";
+
+            case 5:
+                return "Mai";
+
+            case 6:
+                return "Iunie";
+
+            case 7:
+                return "Iulie";
+
+            case 8:
+                return "August";
+
+            case 9:
+                return "Septembrie";
+
+            case 10:
+                return "Obtombrie";
+
+            case 11:
+                return "Noiembrie";
+
+            case 12:
+                return "Decembrie";
+
+            default:
+                return "Nu exista";
         }
     }
 }

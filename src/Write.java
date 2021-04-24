@@ -1,3 +1,5 @@
+import Services.SumaMedicamente;
+
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.*;
@@ -9,6 +11,15 @@ public class Write implements WriteCSV {
     public List<List<String>> r=new ArrayList<>();
     public List<List<String>> clmaj=new ArrayList<>();
     public List<List<String>> clmin=new ArrayList<>();
+    public List<String> age=new ArrayList<>();
+
+    public List<String> getAge() {
+        return age;
+    }
+
+    public void setAge(List<String> age) {
+        this.age = age;
+    }
 
     public List<List<String>> getClmaj() {
         return clmaj;
@@ -218,7 +229,7 @@ public class Write implements WriteCSV {
     public void WritingClientMajor() throws IOException
     {
         FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMajResult.csv");
-        for(List <String> data:a)
+        for(List <String> data:clmaj)
         {
             csvWrite.append(String.join(",",data));
             csvWrite.append("\n");
@@ -231,7 +242,19 @@ public class Write implements WriteCSV {
     public void WritingClientMinor() throws IOException
     {
         FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMinResult.csv");
-        for(List <String> data:a)
+        for(List <String> data:clmin)
+        {
+            csvWrite.append(String.join(",",data));
+            csvWrite.append("\n");
+        }
+        csvWrite.flush();
+        csvWrite.close();
+        System.out.println("S-a scris in fisier!");
+    }
+    public void WritingAge() throws IOException
+    {
+        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv");
+        for(String data:age)
         {
             csvWrite.append(String.join(",",data));
             csvWrite.append("\n");

@@ -1,4 +1,6 @@
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ClientMinor extends Client {
@@ -12,7 +14,7 @@ public class ClientMinor extends Client {
         this.prenumeInsotitor = prenumeInsotitor;
         this.nrTelefonInsotitor = nrTelefonInsotitor;
     }
-
+    @Override
     public String getNumeInsotitor() {
         return numeInsotitor;
     }
@@ -21,6 +23,7 @@ public class ClientMinor extends Client {
         this.numeInsotitor = numeInsotitor;
     }
 
+    @Override
     public String getPrenumeInsotitor() {
         return prenumeInsotitor;
     }
@@ -29,6 +32,7 @@ public class ClientMinor extends Client {
         this.prenumeInsotitor = prenumeInsotitor;
     }
 
+    @Override
     public String getNrTelefonInsotitor() {
         return nrTelefonInsotitor;
     }
@@ -36,6 +40,8 @@ public class ClientMinor extends Client {
     public void setNrTelefonInsotitor(String nrTelefonInsotitor) {
         this.nrTelefonInsotitor = nrTelefonInsotitor;
     }
+    public double getIdCardSanatate() {return 0;}
+    public String getNrTelefon() {return " ";}
     @Override
     public void CitireClienti() {
         Scanner scanner=new Scanner(System.in);
@@ -64,21 +70,27 @@ public void AfisareClienti() {
         System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nEmail:" + this.email + "\nGen:" + this.gen + "\nAdresa:" + this.adresa + "\n Nume de familie insotitor: " + this.numeInsotitor + "\nPrenume insotitor: "+ this.prenumeInsotitor + "\nNumar de telefon insotitor: "+ this.nrTelefonInsotitor);}
 
     @Override
-    public void CalculVarsta()
-    {
+    public void CalculVarsta() throws IOException {
         String prefixAn=" ";
         String sufixAn=" ";
+        FileWriter csvWritemin = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv",true);
         int luna;
         int zi;
         if(cnp.length() != 13) {
             System.out.println("CNP invalid. Introduceti un CNP cu 13 cifre!");
-        } else  prefixAn = "20";
+        } else  prefixAn="20";
             sufixAn = cnp.substring(1, 3);
             luna = new Integer(cnp.substring(3, 5));
             zi = new Integer(cnp.substring(5,7));
             String lunaM = aflaLuna(luna);
             String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
             System.out.println("\nData nasterii este:".concat(dataNasterii));
+        csvWritemin.append("Pacientul ");
+        csvWritemin.append(String.join(",", nume));
+        csvWritemin.append(String.join(",", dataNasterii));
+        csvWritemin.append("\n");
+        csvWritemin.flush();
+        csvWritemin.close();
         }
 
 

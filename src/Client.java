@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 abstract public class Client implements Comparable<Client>{
     protected String cnp;
@@ -65,7 +66,12 @@ abstract public class Client implements Comparable<Client>{
     }
     abstract public void CitireClienti();
     abstract public void AfisareClienti();
-    abstract public void CalculVarsta();
+    abstract public void CalculVarsta() throws IOException;
+    abstract public double getIdCardSanatate();
+    abstract public String getNrTelefon();
+    abstract public String getNumeInsotitor();
+    abstract public String getPrenumeInsotitor();
+    abstract public String getNrTelefonInsotitor();
 
     @Override
     public int compareTo(Client client) {

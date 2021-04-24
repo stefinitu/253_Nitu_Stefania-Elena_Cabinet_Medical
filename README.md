@@ -91,5 +91,7 @@ Interogarile din MENIU:
 PARTEA A DOUA
 
 -Adaugarea optiunii 12 (CITIRE MEDIC, ASISTENT, CLIENT MAJOR, CLIENT MINOR DIN FISIER CSV SI AFISAREA DATELOR CITITE IN ALT FISIER CSV)
+
 -Adaugarea fisierelor .csv care retin datele intoarse de operatiunile 2-11 din meniu
--Adaugarea fisierului Rezultat.csv ce tine evidenta operatiilor efectuate (Denumirea operatiei + timestamp)
+
+-Adaugarea fisierului Rezultat.csv ce tine evidenta operatiilor efectuate (Denumirea operatiei + timestamp) folosind File Output Stream
