@@ -56,7 +56,7 @@ public class AddClient implements Reportable, Addable {
         warningAdd.warning(addClient);
     }
     public void AdaugareClientMajCSV() throws IOException {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMajResult.csv", true);
+        FileWriter csvWrite = new FileWriter("src\\ClientMajResult.csv", true);
         String clnou[]=new String[15];
         clnou[0]=newClient.getCnp();
         clnou[1]=newClient.getNume();
@@ -67,15 +67,8 @@ public class AddClient implements Reportable, Addable {
         clnou[6]=newClient.getAdresa();
         clnou[7]=Double.toString(newClient.getIdCardSanatate());
         clnou[8]= newClient.getNrTelefon();
-        clientNou.add(clnou[0]);
-        clientNou.add(clnou[1]);
-        clientNou.add(clnou[2]);
-        clientNou.add(clnou[3]);
-        clientNou.add(clnou[4]);
-        clientNou.add(clnou[5]);
-        clientNou.add(clnou[6]);
-        clientNou.add(clnou[7]);
-        clientNou.add(clnou[8]);
+        for(int i=0;i<9;i++)
+        clientNou.add(clnou[i]);
         for(String data:clientNou)
         {
             csvWrite.append(String.join(",",data));
@@ -86,7 +79,7 @@ public class AddClient implements Reportable, Addable {
     }
 
     public void AdaugareClientMinCSV() throws IOException {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMinResult.csv", true);
+        FileWriter csvWrite = new FileWriter("src\\ClientMinResult.csv", true);
         String clnou[]=new String[15];
         clnou[0]=newClient.getCnp();
         clnou[1]=newClient.getNume();
@@ -98,16 +91,8 @@ public class AddClient implements Reportable, Addable {
         clnou[7]=newClient.getNumeInsotitor();
         clnou[8]= newClient.getPrenumeInsotitor();
         clnou[9]= newClient.getNrTelefonInsotitor();
-        clientNou.add(clnou[0]);
-        clientNou.add(clnou[1]);
-        clientNou.add(clnou[2]);
-        clientNou.add(clnou[3]);
-        clientNou.add(clnou[4]);
-        clientNou.add(clnou[5]);
-        clientNou.add(clnou[6]);
-        clientNou.add(clnou[7]);
-        clientNou.add(clnou[8]);
-        clientNou.add(clnou[9]);
+        for(int i=0;i<10;i++)
+        clientNou.add(clnou[i]);
         for(String data:clientNou)
         {
             csvWrite.append(String.join(",",data));

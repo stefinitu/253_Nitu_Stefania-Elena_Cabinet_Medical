@@ -1,21 +1,18 @@
 import java.util.Scanner;
 
 public class Reteta {
-    private double id_reteta = 222;
-    private int nr_medicamente = 2;
-    private String[] denumire = {"a", "b"};
-    private double[] pret = {3, 4};
-    private int[] nr_bucati = {5, 6};
+    private double id_reteta;
+    private int nr_medicamente;
+    private String[] denumire;
+    private double[] pret;
+    private int[] nr_bucati;
 
     public Reteta(double id_reteta, int nr_medicamente, String[] denumire, double[] pret, int[] nr_bucati) {
         this.id_reteta = id_reteta;
         this.nr_medicamente = nr_medicamente;
-        for (int i = 0; i < nr_medicamente; i++)
-            this.denumire[i] = denumire[i];
-        for (int i = 0; i < nr_medicamente; i++)
-            this.pret[i] = pret[i];
-        for (int i = 0; i < nr_medicamente; i++)
-            this.nr_bucati[i] = nr_bucati[i];
+        this.denumire=denumire;
+        this.pret = pret;
+        this.nr_bucati = nr_bucati;
     }
 
     public double getId_reteta() {

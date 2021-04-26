@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.text.*;
 import java.util.*;
 
+import Services.SumaMedCSV;
 import Services.SumaMedicamente;
 import Services.CostSpitalizare;
 import Services.VerificareDate;
@@ -57,24 +58,28 @@ public class MenuMain {
                     System.out.println("\nClientul nr "+(i+1));
                     cl[i].AfisareClienti();
                 }
-                SingletonResult.getInstance().setOption(1);
-                SingletonResult.getInstance().WritingTimestamp();
+                result.getInstance().setOption(1);
+                result.getInstance().WritingTimestamp();
                 break;
             case 2:
                 Scanner scn=new Scanner(System.in);
-                int nrRetete;
+                List<List<String>> retete=new ArrayList<>();
+                FileWriter csvWrite = new FileWriter("src\\CalculReteta.csv");
+                System.out.println("Cititi retetele din fisier? (DA/NU)");
+                String str2=scn.nextLine();
+                if(str2.toUpperCase().equals("NU"))
+                {int nrRetete;
                 System.out.println("Introduceti numarul de retete:");
                 nrRetete=scn.nextInt();
                 Reteta[] r=new Reteta[nrRetete];
                 for(int i=0;i<nrRetete;i++)
-                {   String[] den={"a","b"};
-                    double[] pr={1.7,2.6};
-                    int[] bu={5,6};
+                {   String[] den=new String[100];
+                    double[] pr=new double[100];
+                    int[] bu=new int[100];
                     r[i]=new Reteta(0,2,den,pr,bu);
                 }
                 for(int i=0;i<nrRetete;i++)
                 {r[i].CitireReteta();}
-                FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\CalculReteta.csv");
                 for(int i=0;i<nrRetete;i++)
                 {
                     SumaMedicamente sum = new SumaMedicamente(r[i].getNr_medicamente(),r[i].getNr_bucati(), r[i].getPret());
@@ -84,14 +89,21 @@ public class MenuMain {
                     System.out.println("\nSuma medicamentelor de pe reteta "+(i+1)+" este "+calc);
                 }
                 csvWrite.flush();
-                csvWrite.close();
+                csvWrite.close();}
+                else
+                {
+                    double suma=0;
+                    singletonCitire.getInstanceRead().ReadingReteta();
+                    retete.addAll(singletonCitire.getInstanceRead().getRetete());
+                    SumaMedCSV sum=new SumaMedCSV(retete,0);
+                    sum.SumMedCSV();
+                }
                 SingletonResult.getInstance().setOption(2);
                 SingletonResult.getInstance().WritingTimestamp();
                 break;
             case 3:
                 Scanner sca=new Scanner(System.in);
                 int nrPers;
-                FileWriter csvWrite3 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\SalMinMaxMediu.csv",true);
                 System.out.println("Introduceti numarul de angajati:");
                 nrPers=sca.nextInt();
                 Personal p[] = new Personal[nrPers];
@@ -114,26 +126,11 @@ public class MenuMain {
                             break;
                     }
                 }
-                for(int i=0;i<nrPers;i++)
-                {
-                    System.out.println("\nPersonalul nr "+(i+1));
-                    p[i].AfisarePersonal();
-                }
+
                 MaxMinAverage maxMinAverage = new MaxMinAverage(p,nrPers);
                 double maxsal=maxMinAverage.Maxim();
-                csvWrite3.append("Salariul maxim,");
-                csvWrite3.append(String.join(",", Double.toString(maxsal)));
-                csvWrite3.append("\n");
                 double minsal=maxMinAverage.Minim();
-                csvWrite3.append("Salariul minim,");
-                csvWrite3.append(String.join(",", Double.toString(minsal)));
-                csvWrite3.append("\n");
                 double average=maxMinAverage.Average();
-                csvWrite3.append("Salariul mediu,");
-                csvWrite3.append(String.join(",", Double.toString(average)));
-                csvWrite3.append("\n");
-                csvWrite3.flush();
-                csvWrite3.close();
                 System.out.println("Salariul maxim este:"+ maxsal + "\nSalariul minim este: "+ minsal + "\n" + "Salariul mediu este" + average);
                 result.getInstance().setOption(3);
                 result.getInstance().WritingTimestamp();
@@ -142,14 +139,14 @@ public class MenuMain {
                 System.out.println("Datele consultatiei (Datele programarii, datele pacientului, datele retetei si datele medicului care efectueaza consultatia!)");
                 Client cli=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");;
                 Programare progr=new Programare(0,0,cli,0,0,0,0,0,0,"");
-                String[] denum={"a","b"};
-                double[] pret={1.7,2.6};
-                int[] bucati={5,6};
+                String[] denum=new String[100];
+                double[] pret=new double[100];
+                int[] bucati=new int[100];
                 Reteta re=new Reteta(0,2,denum,pret,bucati);
                 Medic med=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                 Consultatie cons=new Consultatie("",progr,0,0,0," ",re,med,0);
                 cons.CitireConsultatie();
-                FileWriter csvWrite4 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\GenIDCons.csv",true);
+                FileWriter csvWrite4 = new FileWriter("src\\GenIDCons.csv",true);
                 System.out.println("ID-ul consultatiei pacientului " + cons.getProg().getClient().getNume() + " " + cons.getProg().getClient().getPrenume() + " generat automat este: " + cons.getIdConsultatie());
                 csvWrite4.append("Pacientul ");
                 csvWrite4.append(cons.getProg().getClient().getNume());
@@ -168,7 +165,7 @@ public class MenuMain {
                 String lines;
                 System.out.println("Doriti citirea din fisier? (DA/NU)");
                 lines=scanner5.nextLine();
-                if(lines.toUpperCase()=="NU")
+                if(lines.toUpperCase().equals("NU"))
                 {
                     System.out.println("Introduceti numarul de clienti:");
                     nClients=Integer.parseInt(scanner5.nextLine());
@@ -222,7 +219,7 @@ public class MenuMain {
                 System.out.println("Cititi clientii din fisier? (DA/NU)");
                 String l=scc.nextLine();
                 int opt=1;
-                if(l.toUpperCase()=="NU")
+                if(l.toUpperCase().equals("NU"))
                 {
                     opt=0;
                 System.out.println("Introduceti numarul de clienti:");
@@ -233,22 +230,17 @@ public class MenuMain {
                     l=scc.nextLine();
                     switch(l.toUpperCase()){
                         case "CLIENT MINOR":
-                            c[i]=new ClientMinor("000000", " ", " ", " ", " ", " ", " ", " ", " ");
+                            c[i]=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                             c[i].CitireClienti();
                             break;
                         case "CLIENT MAJOR":
-                            c[i]=new ClientMajor("0000000", " ", " ", " "," "," ",0," ");
+                            c[i]=new ClientMajor(" ", " ", " ", " "," "," ",0," ");
                             c[i].CitireClienti();
                             break;
                         default:
                             System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
                             break;
                     }
-                }
-                System.out.println("Afisam clientii din baza de date:");
-                for(int i=0;i<nrCl;i++) {
-                    System.out.println("\nClientul nr " + (i + 1));
-                    c[i].AfisareClienti();
                 }
                 }
 
@@ -294,7 +286,7 @@ public class MenuMain {
                 String st=s.nextLine();
                 String clientop=" ";
                 opt=1;
-                if(st.toUpperCase()=="NU")
+                if(st.toUpperCase().equals("NU"))
                 {System.out.println("Introduceti numarul de pacienti din baza de date:");
                 nrPacienti=Integer.parseInt(s.nextLine());;
                 for(int i=0;i<nrPacienti;i++)
@@ -328,14 +320,12 @@ public class MenuMain {
                         case "CLIENT MAJOR":
                             singletonCitire.getInstanceRead().ReadingClientMajor();
                             clientimaj.addAll(singletonCitire.getInstanceRead().getClientimaj());
-                            for(List <String> data:clientimaj)
-                                System.out.println(data);
                             break;
                         default:
                             System.out.println("Optiune invalida! Alegeti dintre CLIENT MINOR sau CLIENT MAJOR!");
                             break;
                 }
-                clientop=st;
+                clientop=st.toUpperCase();
                 }
 
                 String alegere=" ";
@@ -350,7 +340,7 @@ public class MenuMain {
                 else
                 {
                     DeleteClient del=new DeleteClient(clie,alegere);
-                    if(clientop=="CLIENT MINOR")
+                    if(clientop.equals("CLIENT MINOR"))
                     {
                         del.setClmin(clientimin);
                         del.StergereClientMinCSV();
@@ -379,8 +369,8 @@ public class MenuMain {
                 }
                 for(int i=0;i<nrMed;i++)
                 {
-                    BonusMedic bonusMedic=new BonusMedic(medic[i]);
-                    bonusMedic.AdaugareBonusMedic();
+                    BonusMedic bonusMedic=new BonusMedic();
+                    bonusMedic.AdaugareBonusMedic(medic[i]);
                 }
                 System.out.println("Afisare lista de medici dupa aplicarea bonusului:");
                 for(int i=0;i<nrMed;i++)
@@ -390,13 +380,8 @@ public class MenuMain {
                     List <List<String>> medici=new ArrayList<>();
                    singletonCitire.getInstanceRead().ReadingMedic();
                     medici.addAll(singletonCitire.getInstanceRead().getMedici());
-                    int vechime=0;
-                    int anActual=0;
-                    for(List <String> data:medici)
-                            { anActual = Calendar.getInstance().get(Calendar.YEAR);
-                                vechime=anActual-Integer.parseInt(data.get(6));
-                                if(vechime>=10) data.set(7,Double.toString(Double.parseDouble(data.get(7))+0.25*Double.parseDouble(data.get(7))));
-                            }
+                    BonusMedic bonus=new BonusMedic();
+                    bonus.AdaugareBonusMedicCSV(medici);
                     result.getInstance().setM(medici);
                     result.getInstance().WritingMedic();}
                 result.getInstance().setOption(8);
@@ -425,19 +410,16 @@ public class MenuMain {
                 result.getInstance().WritingTimestamp();
                 break;
             case 10:
-                FileWriter csvWrite10 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\PlanificariNoi.csv", true);
+                FileWriter csvWrite10 = new FileWriter("src\\PlanificariNoi.csv", true);
                 Scanner sc10=new Scanner(System.in);
                 Client pac;
                 int nrPr=0;
-                String dataPlanif="05/05/2020";
-                String dataProg="04/06/2020";
+
                 pac = new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                 System.out.println("Introduceti numarul de programari:");
                 nrPr= Integer.parseInt(sc10.nextLine());
                 Programare[] programare=new Programare[nrPr];
-                SimpleDateFormat sdf;
-                Date dataPlan,dataPr;
-                Calendar calendar = Calendar.getInstance();
+
                 for(int i=0;i<nrPr;i++)
                 {programare[i]=new Programare(0,0,pac,0,0,0,0,0,0,"");
                     programare[i].CitireProg();
@@ -462,11 +444,10 @@ public class MenuMain {
                 }
                 csvWrite10.flush();
                 csvWrite10.close();
-                SingletonResult.getInstance().setOption(10);
-                SingletonResult.getInstance().WritingTimestamp();
+                result.getInstance().setOption(10);
+                result.getInstance().WritingTimestamp();
                 break;
             case 11:
-                FileWriter csvWrite11 = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\CosturiPacienti.csv");
                 Scanner scan11=new Scanner(System.in);
                int numarConsultatii=0;
                 System.out.println("Introduceti numarul de consultatii:");
@@ -474,44 +455,16 @@ public class MenuMain {
                 Consultatie[] cs = new Consultatie[numarConsultatii];
                 Client client_initial=new ClientMinor(" ", " ", " ", " ", " ", " ", " ", " ", " ");
                 Programare program=new Programare(0,0,client_initial,0,0,0,0,0,0," ");
-                String[] namemed={"a","b"};
-                double[] pricemed={1.7,2.6};
-                int[] nrbucmed={5,6};
+                String[] namemed=new String[100];
+                double[] pricemed=new double[100];
+                int[] nrbucmed=new int[100];
                 Reteta reteta=new Reteta(0,2,namemed,pricemed,nrbucmed);
                 Medic doctor=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
                 for(int i=0;i<numarConsultatii;i++)
                 {cs[i]=new Consultatie(" ",program,0,0,0," ",reteta,doctor,0);
                 cs[i].CitireConsultatie();
-                if(cs[i].getNrZileSpitalizare()!=0)
-                {
-                    if (cs[i].getProg().getClient() instanceof ClientMinor)
-                    {CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
-                    int costSpitalizareMinor=costs.CostClientMinor();
-                    System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMinor + " lei.");
-                    csvWrite11.append("Pacientul ");
-                    csvWrite11.append(cs[i].getProg().getClient().getNume());
-                    csvWrite11.append(",");
-                    csvWrite11.append(Double.toString(costSpitalizareMinor));
-                    csvWrite11.append("\n");}
-                    else
-                    {   CostSpitalizare costs=new CostSpitalizare(cs[i].getNrZileSpitalizare());
-                        int costSpitalizareMajor=costs.CostClientMajor();
-                        System.out.println("\nPacientul "+ cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " trebuie sa achite "+ costSpitalizareMajor + " lei.");
-                        csvWrite11.append("Pacientul ");
-                        csvWrite11.append(cs[i].getProg().getClient().getNume());
-                        csvWrite11.append(",");
-                        csvWrite11.append(Double.toString(costSpitalizareMajor));
-                        csvWrite11.append("\n");}
-                }
-                else {System.out.println("Pacientul " + cs[i].getProg().getClient().getNume() + " " + cs[i].getProg().getClient().getPrenume() + " nu trebuie sa achite nimic.");
-                    csvWrite11.append("Pacientul ");
-                    csvWrite11.append(cs[i].getProg().getClient().getNume());
-                    csvWrite11.append(",");
-                    csvWrite11.append("nu are de achitat");
-                    csvWrite11.append("\n");}
-                    csvWrite11.flush();
-                    csvWrite11.close();
-                }
+                CosturiCSV costs=new CosturiCSV(cs[i]);
+                costs.CostsCSV();}
                 result.getInstance().setOption(11);
                 result.getInstance().WritingTimestamp();
                 break;

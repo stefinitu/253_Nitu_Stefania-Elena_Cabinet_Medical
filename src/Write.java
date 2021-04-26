@@ -83,7 +83,7 @@ public class Write implements WriteCSV {
     }
 
     public void WritingTimestamp() throws IOException {
-        FileOutputStream f = new FileOutputStream(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Rezultat.csv"), true);
+        FileOutputStream f = new FileOutputStream(new File("src\\Rezultat.csv"), true);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String s=timestamp.toString();
         String comma=",";
@@ -190,7 +190,7 @@ public class Write implements WriteCSV {
 
     public void WritingAsistent() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\AsistentResult.csv");
+        FileWriter csvWrite = new FileWriter("src\\AsistentResult.csv");
         for(List <String> data:a)
         {
     csvWrite.append(String.join(",",data));
@@ -203,7 +203,7 @@ public class Write implements WriteCSV {
 
     public void WritingMedic() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\MedicResult.csv");
+        FileWriter csvWrite = new FileWriter("src\\MedicResult.csv");
         for(List <String> data:m)
         {
             csvWrite.append(String.join(",",data));
@@ -215,7 +215,7 @@ public class Write implements WriteCSV {
     }
     public void WritingReteta() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\RetetaResult.csv");
+        FileWriter csvWrite = new FileWriter("src\\RetetaResult.csv");
         for(List <String> data:r)
         {
             csvWrite.append(String.join(",",data));
@@ -228,7 +228,7 @@ public class Write implements WriteCSV {
 
     public void WritingClientMajor() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMajResult.csv");
+        FileWriter csvWrite = new FileWriter("src\\ClientMajResult.csv");
         for(List <String> data:clmaj)
         {
             csvWrite.append(String.join(",",data));
@@ -241,7 +241,7 @@ public class Write implements WriteCSV {
 
     public void WritingClientMinor() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMinResult.csv");
+        FileWriter csvWrite = new FileWriter("src\\ClientMinResult.csv");
         for(List <String> data:clmin)
         {
             csvWrite.append(String.join(",",data));
@@ -253,7 +253,7 @@ public class Write implements WriteCSV {
     }
     public void WritingAge() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv");
+        FileWriter csvWrite = new FileWriter("src\\DataNasterii.csv");
         for(String data:age)
         {
             csvWrite.append(String.join(",",data));

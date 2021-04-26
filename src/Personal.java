@@ -1,4 +1,4 @@
-abstract public class Personal {
+public abstract class Personal {
     protected String cnp;
     protected String nume;
     protected String prenume;

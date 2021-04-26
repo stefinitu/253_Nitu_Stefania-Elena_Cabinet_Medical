@@ -10,6 +10,15 @@ public class Read implements ReadCSV {
     private List<List<String>> clientimin=new ArrayList<>();
     private List<List<String>> clientimaj=new ArrayList<>();
     private List<List<String>> medici=new ArrayList<>();
+    private List<List<String>> retete=new ArrayList<>();
+
+    public List<List<String>> getRetete() {
+        return retete;
+    }
+
+    public void setRetete(List<List<String>> retete) {
+        this.retete = retete;
+    }
 
     public List<List<String>> getMedici() {
         return medici;
@@ -125,17 +134,13 @@ public class Read implements ReadCSV {
 
     public void ReadingReteta() throws FileNotFoundException {
         int i = 0;
-        List<List<String>> retete=new ArrayList<>();
         try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Reteta.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> reteta=new ArrayList<>();
                 String line = inn.nextLine();
-                String[] cuv = line.split(",", 14);
-                reteta.add(cuv[0]);
-                reteta.add(cuv[1]);
-                reteta.add(cuv[2]);
-                reteta.add(cuv[3]);
-                reteta.add(cuv[4]);
+                String[] cuv = line.split(",", 100);
+                for(int j=0;j<cuv.length;j++)
+                reteta.add(cuv[j]);
                 retete.add(reteta);
                 i++;
             }

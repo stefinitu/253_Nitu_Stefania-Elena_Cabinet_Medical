@@ -1,11 +1,10 @@
-import Services.Deletable;
 import Services.Reportable;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteClient implements Reportable, Deletable {
+public class DeleteClient implements Reportable {
     private Client[] oldClients;
     private String id;
     private List<List<String>> clmin=new ArrayList<>();
@@ -48,7 +47,6 @@ public class DeleteClient implements Reportable, Deletable {
         this.id = id;
     }
 
-    @Override
     public void StergereClient()
     {
         int memorare=0;
@@ -60,7 +58,7 @@ public class DeleteClient implements Reportable, Deletable {
         WarningAdd warningAdd=new WarningAdd();
         warningAdd.warning(deleteClient);
     }
-    @Override
+
     public void StergereClientMinCSV() throws IOException {
         int i=0;
         int memorare=0;
@@ -75,7 +73,7 @@ public class DeleteClient implements Reportable, Deletable {
         System.out.println("Stergere client minor!");
     }
 
-    @Override
+
     public void StergereClientMajCSV() throws IOException {
         int i=0;
         int memorare=0;
