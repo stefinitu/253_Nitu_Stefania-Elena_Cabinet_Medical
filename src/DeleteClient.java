@@ -81,7 +81,6 @@ public class DeleteClient implements Reportable {
         {for(String data1:data)
             if(data1.equals(id)) memorare=i;
             i++;}
-        System.out.println(memorare);
         clmaj.remove(memorare);
         Write wr=new Write(0);
         wr.setClmaj(clmaj);

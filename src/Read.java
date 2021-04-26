@@ -1,6 +1,4 @@
 import Services.ReadCSV;
-import Services.SumaMedicamente;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -48,7 +46,7 @@ public class Read implements ReadCSV {
         SingletonResult res=new SingletonResult();
         Medic[] Med = new Medic[100];
         int i = 0;
-        try (Scanner in = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Medic.csv"))) {
+        try (Scanner in = new Scanner(new File("src\\Medic.csv"))) {
             while (in.hasNextLine()) {
                 List<String> medic=new ArrayList<>();
                 String linie = in.nextLine();
@@ -92,7 +90,7 @@ public class Read implements ReadCSV {
             Asistent[] Asist = new Asistent[100];
             int i = 0;
             List<List<String>> asistenti=new ArrayList<>();
-            try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Asistent.csv"))) {
+            try (Scanner inn = new Scanner(new File("src\\Asistent.csv"))) {
                 while (inn.hasNextLine()) {
                     List<String> asistent=new ArrayList<>();
                     String line = inn.nextLine();
@@ -134,7 +132,7 @@ public class Read implements ReadCSV {
 
     public void ReadingReteta() throws FileNotFoundException {
         int i = 0;
-        try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Reteta.csv"))) {
+        try (Scanner inn = new Scanner(new File("src\\Reteta.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> reteta=new ArrayList<>();
                 String line = inn.nextLine();
@@ -156,7 +154,7 @@ public class Read implements ReadCSV {
     public void ReadingClientMajor() throws FileNotFoundException {
         int i = 0;
         List<String> age=new ArrayList<>();
-        try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMaj.csv"))) {
+        try (Scanner inn = new Scanner(new File("src\\ClientMaj.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> clientmaj=new ArrayList<>();
                 String line = inn.nextLine();
@@ -198,7 +196,7 @@ public class Read implements ReadCSV {
         List<String> age=new ArrayList<>();
         int i = 0;
         String line;
-        try (Scanner inn = new Scanner(new File("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\ClientMin.csv"))) {
+        try (Scanner inn = new Scanner(new File("src\\ClientMin.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> clientmin=new ArrayList<>();
                 line = inn.nextLine();

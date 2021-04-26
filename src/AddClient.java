@@ -50,7 +50,7 @@ public class AddClient implements Reportable, Addable {
     @Override
     public void AdaugareClient()
     {
-        AddClient addClient=new AddClient(oldClients,newClient,n);
+        AddClient addClient=new AddClient(this.oldClients,this.newClient,n);
         oldClients[n]=newClient;
         WarningAdd warningAdd=new WarningAdd();
         warningAdd.warning(addClient);
