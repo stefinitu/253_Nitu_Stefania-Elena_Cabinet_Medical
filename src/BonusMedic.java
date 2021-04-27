@@ -7,7 +7,7 @@ public class BonusMedic {
     public void AdaugareBonusMedic(Medic medic){
     int vechime;
     int anActual = Calendar.getInstance().get(Calendar.YEAR);
-    vechime=anActual-medic.getAnAngajare();
+    vechime=anActual-medic.infoAngajare.getAnAngajare();
     if(vechime>=10) medic.SporuriMedic();
     }
     public void AdaugareBonusMedicCSV(List <List<String>> medici)

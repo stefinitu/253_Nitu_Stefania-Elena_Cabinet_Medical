@@ -1,10 +1,6 @@
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.*;
 import java.util.*;
-
-import Services.SumaMedCSV;
-import Services.SumaMedicamente;
 
 
 public class MenuMain {
@@ -13,46 +9,20 @@ public class MenuMain {
     }
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
-        SingletonResult result=new SingletonResult();
-        SingletonCitire singletonCitire =new SingletonCitire();
-        int opt;
         menu();
         switch(in.nextInt())
         {
             case 1:
-                Scanner sc=new Scanner(System.in);
-                int nrClienti;
-                System.out.println("Introduceti numarul de clienti:");
-                nrClienti=Integer.parseInt(sc.nextLine());
-                Client cl[] = new Client[nrClienti];
-                TipClient tipcl=new TipClient(cl,nrClienti);
-                Arrays.sort(cl);
-                for(int i=0;i<nrClienti;i++)
-                {
-                    System.out.println("\nClientul nr "+(i+1));
-                    cl[i].AfisareClienti();
-                }
-                result.getInstance().setOption(1);
-                result.getInstance().WritingTimestamp();
+                Opt1 opt1=new Opt1();
+                opt1.Option1();
                 break;
             case 2:
                 Opt2 opt2=new Opt2();
                 opt2.Option2();
                 break;
             case 3:
-                Scanner sca=new Scanner(System.in);
-                int nrPers;
-                System.out.println("Introduceti numarul de angajati:");
-                nrPers=sca.nextInt();
-                Personal p[] = new Personal[nrPers];
-                String line;
-                TipAngajat tipang=new TipAngajat(nrPers,p);
-                tipang.AngajatTip();
-                MaxMinAverage maxMinAverage = new MaxMinAverage(p,nrPers);
-                double maxsal=maxMinAverage.Maxim();
-                double minsal=maxMinAverage.Minim();
-                double average=maxMinAverage.Average();
-                System.out.println("Salariul maxim este:"+ maxsal + "\nSalariul minim este: "+ minsal + "\n" + "Salariul mediu este" + average);
+                Opt3 opt3=new Opt3();
+                opt3.Option3();
                 break;
             case 4:
                 Opt4 opt4=new Opt4();
@@ -87,33 +57,8 @@ public class MenuMain {
                 opt11.Option11();
                 break;
             case 12:
-                Scanner scanner12=new Scanner(System.in);
-                System.out.println("Introduceti tipul de obiect pe care doriti sa il cititi (medic/asistent/reteta/client major/client minor):");
-                String aleg=scanner12.nextLine();
-                switch(aleg.toUpperCase()){
-                    case "MEDIC":
-                        SingletonCitire.getInstanceRead().ReadingMedic();
-                        SingletonResult.getInstance().WritingMedic();
-                        break;
-                    case "ASISTENT":
-                        SingletonCitire.getInstanceRead().ReadingAsistent();
-                        SingletonResult.getInstance().WritingAsistent();
-                        break;
-                    case "RETETA":
-                        SingletonCitire.getInstanceRead().ReadingReteta();
-                        SingletonResult.getInstance().WritingReteta();
-                        break;
-                    case "CLIENT MAJOR":
-                        SingletonCitire.getInstanceRead().ReadingClientMajor();
-                        SingletonResult.getInstance().WritingClientMajor();
-                        break;
-                    case "CLIENT MINOR":
-                        SingletonCitire.getInstanceRead().ReadingClientMinor();
-                        SingletonResult.getInstance().WritingClientMinor();
-                        break;
-                    default:
-                        System.out.println("Optiune invalida!");
-                        break;}
+                Opt12 opt12=new Opt12();
+                opt12.Option12();
                 break;
             default:
                 System.err.println("Optiune invalida! Alegeti un numar intre 1-12!");

@@ -11,7 +11,8 @@ public class Opt4 {
         double[] pret=new double[100];
         int[] bucati=new int[100];
         Reteta re=new Reteta(0,2,denum,pret,bucati);
-        Medic med=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
+        InfoAngajare info=new InfoAngajare(" ",0,0,0,0.0);
+        Medic med=new Medic(" ", " ", " ", info, " "," ",0," ",true, true);
         Consultatie cons=new Consultatie("",progr,0,0,0," ",re,med,0);
         cons.CitireConsultatie();
         FileWriter csvWrite4 = new FileWriter("src\\GenIDCons.csv",true);

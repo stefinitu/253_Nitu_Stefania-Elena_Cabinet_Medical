@@ -1,24 +1,18 @@
+
+
 public abstract class Personal {
     protected String cnp;
     protected String nume;
     protected String prenume;
-    protected String sectie;
-    protected int ziAngajare;
-    protected int lunaAngajare;
-    protected int anAngajare;
-    protected double salariu;
+    protected InfoAngajare infoAngajare;
     protected String nrTelefon;
     protected String email;
 
-    public Personal(String cnp, String nume, String prenume, String sectie, int ziAngajare, int lunaAngajare, int anAngajare, double salariu, String nrTelefon, String email) {
+    public Personal(String cnp, String nume, String prenume, InfoAngajare infoAngajare,  String nrTelefon, String email) {
         this.cnp = cnp;
         this.nume = nume;
         this.prenume = prenume;
-        this.sectie = sectie;
-        this.ziAngajare = ziAngajare;
-        this.lunaAngajare = lunaAngajare;
-        this.anAngajare = anAngajare;
-        this.salariu = salariu;
+        this.infoAngajare=infoAngajare;
         this.nrTelefon = nrTelefon;
         this.email = email;
     }
@@ -47,46 +41,6 @@ public abstract class Personal {
         this.prenume = prenume;
     }
 
-    public String getSectie() {
-        return sectie;
-    }
-
-    public void setSectie(String sectie) {
-        this.sectie = sectie;
-    }
-
-    public int getZiAngajare() {
-        return ziAngajare;
-    }
-
-    public void setZiAngajare(int ziAngajare) {
-        this.ziAngajare = ziAngajare;
-    }
-
-    public int getLunaAngajare() {
-        return lunaAngajare;
-    }
-
-    public void setLunaAngajare(int lunaAngajare) {
-        this.lunaAngajare = lunaAngajare;
-    }
-
-    public int getAnAngajare() {
-        return anAngajare;
-    }
-
-    public void setAnAngajare(int anAngajare) {
-        this.anAngajare = anAngajare;
-    }
-
-    public double getSalariu() {
-        return salariu;
-    }
-
-    public void setSalariu(double salariu) {
-        this.salariu = salariu;
-    }
-
     public String getNrTelefon() {
         return nrTelefon;
     }
@@ -101,6 +55,14 @@ public abstract class Personal {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public InfoAngajare getInfoAngajare() {
+        return infoAngajare;
+    }
+
+    public void setInfoAngajare(InfoAngajare infoAngajare) {
+        this.infoAngajare = infoAngajare;
     }
 
     abstract void CitirePersonal();

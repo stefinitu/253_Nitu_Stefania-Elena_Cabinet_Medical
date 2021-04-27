@@ -59,7 +59,7 @@ public class ClientMajor extends Client {
 
     @Override
     public void CalculVarsta() throws IOException {
-        FileWriter csvWritemaj = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv",true);
+        FileWriter csvWritemaj = new FileWriter("src\\DataNasterii.csv",true);
         String prefixAn;
         String sufixAn;
         int luna;

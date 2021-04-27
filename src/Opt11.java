@@ -16,7 +16,8 @@ public class Opt11 {
         double[] pricemed=new double[100];
         int[] nrbucmed=new int[100];
         Reteta reteta=new Reteta(0,2,namemed,pricemed,nrbucmed);
-        Medic doctor=new Medic(" ", " ", " ", " ", 0, 0, 0, 0.0, " "," ",0," ",true, true);
+        InfoAngajare info=new InfoAngajare(" ",0,0,0,0.0);
+        Medic doctor=new Medic(" ", " ", " ", info, " ", " ", 0, " ", true, true);
         for(int i=0;i<numarConsultatii;i++)
         {cs[i]=new Consultatie(" ",program,0,0,0," ",reteta,doctor,0);
             cs[i].CitireConsultatie();

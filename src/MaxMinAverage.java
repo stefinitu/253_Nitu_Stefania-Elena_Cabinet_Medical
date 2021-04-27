@@ -30,15 +30,15 @@ public class MaxMinAverage implements MaxMinAvCalculator {
     {
         double maxsal=0.0;
         for(int i=0;i<n;i++)
-            if(maxsal<ang[i].getSalariu()) maxsal=ang[i].getSalariu();
+            if(maxsal<ang[i].infoAngajare.getSalariu()) maxsal=ang[i].infoAngajare.getSalariu();
         return maxsal;
     }
 @Override
     public double Minim()
     {
-        double minsal=ang[0].getSalariu();
+        double minsal=ang[0].infoAngajare.getSalariu();
         for(int i=1;i<n;i++)
-            if(minsal>ang[i].getSalariu()) minsal=ang[i].getSalariu();
+            if(minsal>ang[i].infoAngajare.getSalariu()) minsal=ang[i].infoAngajare.getSalariu();
         return minsal;
     }
 @Override
@@ -46,7 +46,7 @@ public class MaxMinAverage implements MaxMinAvCalculator {
     {
         double sum=0;
         for(int i=0;i<n;i++)
-        sum=sum+ang[i].getSalariu();
+        sum=sum+ang[i].infoAngajare.getSalariu();
         sum=sum/n;
         return sum;
     }

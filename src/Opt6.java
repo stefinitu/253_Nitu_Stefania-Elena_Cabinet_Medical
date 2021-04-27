@@ -19,6 +19,9 @@ public class Opt6 {
             tipCli.TipCl();
         }
         TipClientAdd add=new TipClientAdd(opt,c,nrCl);
+        AddClient addcl=new AddClient(c,c[0],nrCl);
+        WarningAdd warningAdd=new WarningAdd();
+        warningAdd.warning(addcl);
         add.AddCl();
         if(opt==0)
         {System.out.println("Dupa adaugare avem: ");

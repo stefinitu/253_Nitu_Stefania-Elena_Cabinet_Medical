@@ -50,10 +50,7 @@ public class AddClient implements Reportable, Addable {
     @Override
     public void AdaugareClient()
     {
-        AddClient addClient=new AddClient(this.oldClients,this.newClient,n);
         oldClients[n]=newClient;
-        WarningAdd warningAdd=new WarningAdd();
-        warningAdd.warning(addClient);
     }
     public void AdaugareClientMajCSV() throws IOException {
         FileWriter csvWrite = new FileWriter("src\\ClientMajResult.csv", true);
@@ -63,15 +60,16 @@ public class AddClient implements Reportable, Addable {
         clnou[2]= newClient.getPrenume();
         clnou[3]=newClient.getEmail();
         clnou[4]=newClient.getGen();
-        clnou[5]=newClient.getEmail();
-        clnou[6]=newClient.getAdresa();
-        clnou[7]=Double.toString(newClient.getIdCardSanatate());
-        clnou[8]= newClient.getNrTelefon();
-        for(int i=0;i<9;i++)
+        clnou[5]=newClient.getAdresa();
+        clnou[6]=Double.toString(newClient.getIdCardSanatate());
+        clnou[7]= newClient.getNrTelefon();
+        for(int i=0;i<8;i++)
         clientNou.add(clnou[i]);
+        csvWrite.append("\n");
         for(String data:clientNou)
         {
-            csvWrite.append(String.join(",",data));
+            csvWrite.append(data);
+            csvWrite.append(",");
         }
         csvWrite.flush();
         csvWrite.close();
@@ -86,16 +84,17 @@ public class AddClient implements Reportable, Addable {
         clnou[2]= newClient.getPrenume();
         clnou[3]=newClient.getEmail();
         clnou[4]=newClient.getGen();
-        clnou[5]=newClient.getEmail();
-        clnou[6]=newClient.getAdresa();
-        clnou[7]=newClient.getNumeInsotitor();
-        clnou[8]= newClient.getPrenumeInsotitor();
-        clnou[9]= newClient.getNrTelefonInsotitor();
-        for(int i=0;i<10;i++)
+        clnou[5]=newClient.getAdresa();
+        clnou[6]=newClient.getNumeInsotitor();
+        clnou[7]= newClient.getPrenumeInsotitor();
+        clnou[8]= newClient.getNrTelefonInsotitor();
+        for(int i=0;i<9;i++)
         clientNou.add(clnou[i]);
+        csvWrite.append("\n");
         for(String data:clientNou)
         {
-            csvWrite.append(String.join(",",data));
+            csvWrite.append(data);
+            csvWrite.append(",");
         }
         csvWrite.flush();
         csvWrite.close();

@@ -51,22 +51,23 @@ public class Read implements ReadCSV {
                 List<String> medic=new ArrayList<>();
                 String linie = in.nextLine();
                 String[] cuv = linie.split(",", 14);
-                Med[i] = new Medic(" ", " ", " ", " ", 0, 0, 0, 0, " ", " ", 0, " ", true, true);
+                InfoAngajare info=new InfoAngajare(" ",0,0,0,0.0);
+                Med[i] = new Medic(" ", " ", " ", info, " ", " ", 0.0, " ", true, true);
                 Med[i].cnp = cuv[0];
                 medic.add(cuv[0]);
                 Med[i].nume = cuv[1];
                 medic.add(cuv[1]);
                 Med[i].prenume = cuv[2];
                 medic.add(cuv[2]);
-                Med[i].sectie = cuv[3];
+                Med[i].infoAngajare.setSectie(cuv[3]);
                 medic.add(cuv[3]);
-                Med[i].ziAngajare = Integer.parseInt(cuv[4]);
+                Med[i].infoAngajare.setZiAngajare(Integer.parseInt(cuv[4]));
                 medic.add(cuv[4]);
-                Med[i].lunaAngajare = Integer.parseInt(cuv[5]);
+                Med[i].infoAngajare.setLunaAngajare(Integer.parseInt(cuv[4]));
                 medic.add(cuv[5]);
-                Med[i].anAngajare = Integer.parseInt(cuv[6]);
+                Med[i].infoAngajare.setAnAngajare(Integer.parseInt(cuv[4]));
                 medic.add(cuv[6]);
-                Med[i].salariu = Double.parseDouble(cuv[7]);
+                Med[i].infoAngajare.setSalariu(Double.parseDouble(cuv[4]));
                 medic.add(cuv[7]);
                 Med[i].nrTelefon = cuv[8];
                 medic.add(cuv[8]);
@@ -88,6 +89,7 @@ public class Read implements ReadCSV {
     }
         public void ReadingAsistent() throws FileNotFoundException {
             Asistent[] Asist = new Asistent[100];
+            InfoAngajare info=new InfoAngajare(" ",0,0,0,0.0);
             int i = 0;
             List<List<String>> asistenti=new ArrayList<>();
             try (Scanner inn = new Scanner(new File("src\\Asistent.csv"))) {
@@ -95,22 +97,22 @@ public class Read implements ReadCSV {
                     List<String> asistent=new ArrayList<>();
                     String line = inn.nextLine();
                     String[] cuv = line.split(",", 14);
-                    Asist[i] = new Asistent(" ", " ", " ", " ",0,0,0,0.0, " ", " ",0);
+                    Asist[i] = new Asistent(" ", " ", " ", info," "," ",0);
                     Asist[i].cnp = cuv[0];
                     asistent.add(cuv[0]);
                     Asist[i].nume = cuv[1];
                     asistent.add(cuv[1]);
                     Asist[i].prenume = cuv[2];
                     asistent.add(cuv[2]);
-                    Asist[i].sectie = cuv[3];
+                    Asist[i].infoAngajare.setSectie(cuv[3]);
                     asistent.add(cuv[3]);
-                    Asist[i].ziAngajare = Integer.parseInt(cuv[4]);
+                    Asist[i].infoAngajare.setZiAngajare(Integer.parseInt(cuv[4]));
                     asistent.add(cuv[4]);
-                    Asist[i].lunaAngajare = Integer.parseInt(cuv[5]);
+                    Asist[i].infoAngajare.setLunaAngajare(Integer.parseInt(cuv[5]));
                     asistent.add(cuv[5]);
-                    Asist[i].anAngajare = Integer.parseInt(cuv[6]);
+                    Asist[i].infoAngajare.setAnAngajare(Integer.parseInt(cuv[6]));
                     asistent.add(cuv[6]);
-                    Asist[i].salariu = Double.parseDouble(cuv[7]);
+                    Asist[i].infoAngajare.setSalariu(Double.parseDouble(cuv[7]));
                     asistent.add(cuv[7]);
                     Asist[i].nrTelefon = cuv[8];
                     asistent.add(cuv[8]);

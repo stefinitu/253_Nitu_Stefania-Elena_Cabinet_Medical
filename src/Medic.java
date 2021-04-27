@@ -5,8 +5,8 @@ public class Medic extends Personal {
     private String specializare;
     private boolean rezident;
     private boolean garda;
-    public Medic(String cnp, String nume, String prenume, String sectie, int ziAngajare, int lunaAngajare, int anAngajare, double salariu, String nrTelefon, String email, double codParafa, String specializare, boolean rezident, boolean garda) {
-        super(cnp, nume, prenume, sectie, ziAngajare, lunaAngajare, anAngajare, salariu, nrTelefon, email);
+    public Medic(String cnp, String nume, String prenume, InfoAngajare infoAngajare, String nrTelefon, String email, double codParafa, String specializare, boolean rezident, boolean garda) {
+        super(cnp, nume, prenume, infoAngajare, nrTelefon, email);
         this.codParafa = codParafa;
         this.specializare = specializare;
         this.rezident = rezident;
@@ -55,15 +55,15 @@ public class Medic extends Personal {
         System.out.println("Introduceti prenumele:");
         this.prenume=scanner.nextLine();
         System.out.println("Introduceti sectia:");
-        this.sectie=scanner.nextLine();
+        this.infoAngajare.setSectie(scanner.nextLine());
         System.out.println("Introduceti ziua angajarii:");
-        this.ziAngajare =Integer.parseInt(scanner.nextLine());
+        this.infoAngajare.setZiAngajare(Integer.parseInt(scanner.nextLine()));
         System.out.println("Introduceti luna angajarii:");
-        this.lunaAngajare =Integer.parseInt(scanner.nextLine());
+        this.infoAngajare.setLunaAngajare(Integer.parseInt(scanner.nextLine()));
         System.out.println("Introduceti anul angajarii:");
-        this.anAngajare =Integer.parseInt(scanner.nextLine());
+        this.infoAngajare.setAnAngajare(Integer.parseInt(scanner.nextLine()));
         System.out.println("Introduceti salariul:");
-        this.salariu=Double.parseDouble(scanner.nextLine());
+        this.infoAngajare.setSalariu(Double.parseDouble(scanner.nextLine()));
         System.out.println("Introduceti numarul de telefon:");
         this.nrTelefon =scanner.nextLine();
         System.out.println("Introduceti adresa de email:");
@@ -78,12 +78,12 @@ public class Medic extends Personal {
         this.garda=Boolean.parseBoolean(scanner.nextLine());;}
         @Override
     public void AfisarePersonal(){
-        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.sectie +"\nZiua angajarii: " + this.ziAngajare + "\nLuna angajarii: " + this.lunaAngajare + "\nAnul angajarii: " + this.anAngajare + "\nSalariul : " + this.salariu + "\nNumarul de telefon: " + this.nrTelefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.codParafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
+        System.out.println("CNP:" + this.cnp + "\nNumele:" + this.nume + "\nPrenumele:" + this.prenume + "\nSectia: " + this.infoAngajare.getSectie() +"\nZiua angajarii: " + this.infoAngajare.getZiAngajare() + "\nLuna angajarii: " + this.infoAngajare.getLunaAngajare() + "\nAnul angajarii: " + this.infoAngajare.getAnAngajare() + "\nSalariul : " + this.infoAngajare.getSalariu() + "\nNumarul de telefon: " + this.nrTelefon + "\nAdresa de email: " + this.email + "\nCod parafa: "+ this.codParafa + "\nSpecializarea: "+ this.specializare + "\nESte rezident: "+ this.rezident + "\nEste medic de garda: "+ this.garda);
     }
 
     public void SporuriMedic()
     {
-        this.salariu=this.salariu+this.salariu*0.25;
+        this.infoAngajare.setSalariu(this.infoAngajare.getSalariu()+this.infoAngajare.getSalariu()*0.25);
     }
 }
 
