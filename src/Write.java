@@ -110,7 +110,7 @@ public class Write implements WriteCSV {
                 f.write(endbin);
                 break;
             case 3:
-                String text3="Salariul minim, maxim si mediu";
+                String text3="Salariul minim maxim si mediu";
                 textbin=text3.getBytes();
                 f.write(textbin);
                 f.write(commabin);
