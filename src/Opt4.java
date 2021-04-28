@@ -19,7 +19,8 @@ public class Opt4 {
         System.out.println("ID-ul consultatiei pacientului " + cons.getProg().getClient().getNume() + " " + cons.getProg().getClient().getPrenume() + " generat automat este: " + cons.getIdConsultatie());
         csvWrite4.append("Pacientul ");
         csvWrite4.append(cons.getProg().getClient().getNume());
-        csvWrite4.append(String.join(",", cons.getIdConsultatie()));
+        csvWrite4.append(",");
+        csvWrite4.append(cons.getIdConsultatie());
         csvWrite4.append("\n");
         csvWrite4.flush();
         csvWrite4.close();
