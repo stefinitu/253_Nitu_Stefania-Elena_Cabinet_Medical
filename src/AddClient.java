@@ -66,10 +66,12 @@ public class AddClient implements Reportable, Addable {
         for(int i=0;i<8;i++)
         clientNou.add(clnou[i]);
         csvWrite.append("\n");
+        int j=0;
         for(String data:clientNou)
         {
             csvWrite.append(data);
-            csvWrite.append(",");
+            if(j<7) csvWrite.append(",");
+            j++;
         }
         csvWrite.flush();
         csvWrite.close();
@@ -91,10 +93,12 @@ public class AddClient implements Reportable, Addable {
         for(int i=0;i<9;i++)
         clientNou.add(clnou[i]);
         csvWrite.append("\n");
+        int j=0;
         for(String data:clientNou)
         {
             csvWrite.append(data);
-            csvWrite.append(",");
+            if(j<8) csvWrite.append(",");
+            j++;
         }
         csvWrite.flush();
         csvWrite.close();

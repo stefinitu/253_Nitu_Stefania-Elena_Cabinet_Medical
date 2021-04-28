@@ -90,6 +90,27 @@ PARTEA A DOUA
 
 -Adaugarea optiunii 12 (CITIRE MEDIC, ASISTENT, CLIENT MAJOR, CLIENT MINOR SI RETETA DIN FISIER CSV SI AFISAREA DATELOR CITITE IN ALT FISIER CSV)
 
--Adaugarea fisierelor .csv care retin datele intoarse de operatiunile 2-11 (cu exceptia 3) din meniu
+-Adaugarea fisierelor .csv care retin datele intoarse de operatiunile 2-11 (cu exceptia 3) din meniu:
+
+AsistentResult
+
+ClientMajResult
+
+ClientMinResult
+
+CosturiPacienti
+
+DataNasterii
+
+GenIDCons
+
+MedicResult
+
+PlanificariNoi
+
+Reduceri
+
+RetetaResult
+
 
 -Adaugarea fisierului Rezultat.csv ce tine evidenta operatiilor efectuate (Denumirea operatiei + timestamp) folosind File Output Stream

@@ -21,7 +21,7 @@ public class Reducere implements Reducible {
 
     @Override
     public void ReducereClienti() throws IOException {
-        FileWriter csvWriteRed = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\Reduceri.csv", true);
+        FileWriter csvWriteRed = new FileWriter("src\\Reduceri.csv", true);
         String prefAn=" ";
         String sufAn=" ";
         int genInt = Integer.parseInt(consult.getProg().getClient().cnp.substring(0,1));

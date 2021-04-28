@@ -55,7 +55,8 @@ public class Read implements ReadCSV {
                 Med[i] = new Medic(" ", " ", " ", info, " ", " ", 0.0, " ", true, true);
                 Med[i].cnp = cuv[0];
                 medic.add(cuv[0]);
-                Med[i].nume = cuv[1];
+                if(cuv.length>1)
+                {Med[i].nume = cuv[1];
                 medic.add(cuv[1]);
                 Med[i].prenume = cuv[2];
                 medic.add(cuv[2]);
@@ -82,12 +83,13 @@ public class Read implements ReadCSV {
                 Med[i].setGarda(Boolean.parseBoolean(cuv[13]));
                 medic.add(cuv[13]);
                 medici.add(medic);
-                i++;
+                i++;}
             }
-            SingletonResult.getInstance().setM(medici);
+            res.getInstance().setM(medici);
         }
     }
         public void ReadingAsistent() throws FileNotFoundException {
+            SingletonResult res=new SingletonResult();
             Asistent[] Asist = new Asistent[100];
             InfoAngajare info=new InfoAngajare(" ",0,0,0,0.0);
             int i = 0;
@@ -100,7 +102,8 @@ public class Read implements ReadCSV {
                     Asist[i] = new Asistent(" ", " ", " ", info," "," ",0);
                     Asist[i].cnp = cuv[0];
                     asistent.add(cuv[0]);
-                    Asist[i].nume = cuv[1];
+                    if(cuv.length>1)
+                    {Asist[i].nume = cuv[1];
                     asistent.add(cuv[1]);
                     Asist[i].prenume = cuv[2];
                     asistent.add(cuv[2]);
@@ -121,18 +124,15 @@ public class Read implements ReadCSV {
                     Asist[i].setNrSaloaneAtribuite(Integer.parseInt(cuv[10]));
                     asistent.add(cuv[10]);
                     asistenti.add(asistent);
-                    i++;
+                    i++;}
                 }
-                System.out.println("Asistentii cititi sunt:");
-                for (i=0;i<asistenti.size();i++)
-                {
-                    System.out.println("\nAsistentul nr "+ (i+1) + ":"+asistenti.get(i));
-                }
-                SingletonResult.getInstance().setA(asistenti);
+
+                res.getInstance().setA(asistenti);
             }
     }
 
     public void ReadingReteta() throws FileNotFoundException {
+        SingletonResult res=new SingletonResult();
         int i = 0;
         try (Scanner inn = new Scanner(new File("src\\Reteta.csv"))) {
             while (inn.hasNextLine()) {
@@ -149,11 +149,12 @@ public class Read implements ReadCSV {
             {
                 System.out.println("\nReteta nr "+ (i+1) + ":"+retete.get(i));
             }
-            SingletonResult.getInstance().setR(retete);
+            res.getInstance().setR(retete);
         }
     }
 
     public void ReadingClientMajor() throws FileNotFoundException {
+        SingletonResult res=new SingletonResult();
         int i = 0;
         List<String> age=new ArrayList<>();
         try (Scanner inn = new Scanner(new File("src\\ClientMaj.csv"))) {
@@ -189,19 +190,19 @@ public class Read implements ReadCSV {
                 clientimaj.add(clientmaj);
                 i++;
             }
-            SingletonResult.getInstance().setClmaj(clientimaj);
-            SingletonResult.getInstance().setAge(age);
+            res.getInstance().setClmaj(clientimaj);
+            res.getInstance().setAge(age);
         }
     }
 
     public void ReadingClientMinor() throws FileNotFoundException {
+        SingletonResult res=new SingletonResult();
         List<String> age=new ArrayList<>();
         int i = 0;
-        String line;
         try (Scanner inn = new Scanner(new File("src\\ClientMin.csv"))) {
             while (inn.hasNextLine()) {
                 List<String> clientmin=new ArrayList<>();
-                line = inn.nextLine();
+                String line = inn.nextLine();
                 String[] cuv = line.split(",", 10);
                 clientmin.add(cuv[0]);
                 String prefixAn;
@@ -209,13 +210,13 @@ public class Read implements ReadCSV {
                 int luna=0;
                 int zi=0;
                 prefixAn="20";
-                if(cuv[0].length()>=3) sufixAn = cuv[0].substring(1, 3);
-                if(cuv[0].length()>=5) luna = new Integer(cuv[0].substring(3, 5));
-                if(cuv[0].length()>=7) zi = new Integer(cuv[0].substring(5,7));
+                sufixAn = cuv[0].substring(1, 3);
+                luna = new Integer(cuv[0].substring(3, 5));
+                zi = new Integer(cuv[0].substring(5,7));
                 String lunaM = aflaLuna(luna);
                 String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
                 age.add(dataNasterii);
-                if(cuv.length>=9)
+                if(cuv.length>8)
                 {clientmin.add(cuv[1]);
                 clientmin.add(cuv[2]);
                 clientmin.add(cuv[3]);
@@ -223,12 +224,13 @@ public class Read implements ReadCSV {
                 clientmin.add(cuv[5]);
                 clientmin.add(cuv[6]);
                 clientmin.add(cuv[7]);
-                clientmin.add(cuv[8]);}
+                clientmin.add(cuv[8]);
+                }
                 clientimin.add(clientmin);
                 i++;
             }
-            SingletonResult.getInstance().setClmin(clientimin);
-            SingletonResult.getInstance().setAge(age);
+            res.getInstance().setClmin(clientimin);
+            res.getInstance().setAge(age);
         }
     }
     public static String aflaLuna(int luna) {

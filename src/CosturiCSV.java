@@ -11,7 +11,7 @@ public class CosturiCSV {
     }
 
     public void CostsCSV() throws IOException {
-        FileWriter csvWrite11 = new FileWriter("src\\CosturiPacienti.csv");
+        FileWriter csvWrite11 = new FileWriter("src\\CosturiPacienti.csv",true);
         if(cs.getNrZileSpitalizare()!=0)
         {
             if (cs.getProg().getClient() instanceof ClientMinor)
