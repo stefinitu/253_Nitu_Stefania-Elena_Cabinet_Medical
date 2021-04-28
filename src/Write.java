@@ -253,7 +253,7 @@ public class Write implements WriteCSV {
     }
     public void WritingAge() throws IOException
     {
-        FileWriter csvWrite = new FileWriter("src\\DataNasterii.csv");
+        FileWriter csvWrite = new FileWriter("src\\DataNasterii.csv",true);
         for(String data:age)
         {
             csvWrite.append(String.join(",",data));

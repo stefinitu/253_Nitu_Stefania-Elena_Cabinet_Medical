@@ -86,8 +86,9 @@ public void AfisareClienti() {
             String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
             System.out.println("\nData nasterii este:".concat(dataNasterii));
         csvWritemin.append("Pacientul ");
-        csvWritemin.append(String.join(",", nume));
-        csvWritemin.append(String.join(",", dataNasterii));
+        csvWritemin.append(nume);
+        csvWritemin.append(",");
+        csvWritemin.append(dataNasterii);
         csvWritemin.append("\n");
         csvWritemin.flush();
         csvWritemin.close();

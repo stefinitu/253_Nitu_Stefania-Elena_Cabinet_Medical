@@ -80,8 +80,9 @@ public class ClientMajor extends Client {
             String dataNasterii = Integer.toString(zi).concat(" ").concat(lunaM).concat(" ").concat(prefixAn).concat(sufixAn);
             System.out.println("\nData nasterii este:".concat(dataNasterii));
             csvWritemaj.append("Pacientul ");
-            csvWritemaj.append(String.join(",", nume));
-            csvWritemaj.append(String.join(",", dataNasterii));
+            csvWritemaj.append(nume);
+            csvWritemaj.append(",");
+            csvWritemaj.append(dataNasterii);
             csvWritemaj.append("\n");
             csvWritemaj.flush();
             csvWritemaj.close();
