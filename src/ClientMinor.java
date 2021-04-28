@@ -73,7 +73,7 @@ public void AfisareClienti() {
     public void CalculVarsta() throws IOException {
         String prefixAn=" ";
         String sufixAn=" ";
-        FileWriter csvWritemin = new FileWriter("C:\\Users\\nitug\\IdeaProjects\\253_Nitu_Stefania-Elena_Cabinet_Medical\\src\\DataNasterii.csv",true);
+        FileWriter csvWritemin = new FileWriter("src\\DataNasterii.csv",true);
         int luna;
         int zi;
         if(cnp.length() != 13) {
