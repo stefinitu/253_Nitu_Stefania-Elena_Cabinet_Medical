@@ -5,52 +5,43 @@ import java.util.*;
 
 public class MenuMain {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.Ordonarea crescatoare a clientilor (cititi) dupa numele de familie dati de la tastatura\n2.Suma medicamentelor pentru fiecare reteta dintr-o lista data \n3.Sa se afiseze salariul minim, maxim si mediu dintr-o lista de angajati \n4.Generare ID consultatie \n5.Sa se afiseze data nasterii pentru clienti utilizand CNP-ul \n6.Sa se adauge un client nou in baza de date \n7.Sa se stearga un client dintr-un array dat dupa CNP-ul sau \n8.Pentru medicii cu vechime mai mare de 10 ani se acorda sporuri de 25% la salariul actual. Sa se afiseze noul salariu dupa bonus \n9.Persoanele peste 60 de ani beneficiaza de o reducere de 80% la pretul fiecarui medicament dintr-o reteta. Se afiseaza noua suma dupa aplicarea reducerii pentru un vector de consultatii. \n10.Sa se verifice pentru fiecare programare citita daca data planificata este in weekend. Daca este in weekend, se modifica data planificata pentru Luni (saptamana urmatoare). \n11.Sa se calculeze costul suplimentar platit de un client care necesita spitalizare (100 lei/zi pentru major, 80 lei/zi pentru minor) \n12.Citire si afisare obiecte din fisier csv");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.SELECT CLIENT MAJOR \n2.INSERT IN CLIENT MAJOR \n3.DELETE IN CLIENT MAJOR \n4.UPDATE IN CLIENT MAJOR \n5. SELECT IN CLIENT MINOR \n6.INSERT IN CLIENT MINOR \n7.DELETE CLIENT MINOR \n8.UPDATE IN CLIENT MINOR \n9.INSERT CLIENTI MAJORI DIN FISIER CSV \n10.INSERT CLIENTI MINORI DIN FISIER CSV \n11.SELECT MEDIC \n12.INSERT IN MEDIC \n 13.DELETE DIN MEDIC \n 14.UPDATE IN MEDIC");
     }
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
         menu();
+        SingletonBD.getInstanceMaj().ClMajInsertCSV();
         switch(in.nextInt())
         {
             case 1:
-                Opt1 opt1=new Opt1();
-                opt1.Option1();
+                SingletonBD.getInstanceMaj().ClMajSelect();
                 break;
             case 2:
-                Opt2 opt2=new Opt2();
-                opt2.Option2();
+                SingletonBD.getInstanceMaj().ClMajInsert();
                 break;
             case 3:
-                Opt3 opt3=new Opt3();
-                opt3.Option3();
+                SingletonBD.getInstanceMaj().ClMajDelete();
                 break;
             case 4:
-                Opt4 opt4=new Opt4();
-                opt4.Option4();
+                SingletonBD.getInstanceMaj().ClMajUpdate();
                 break;
             case 5:
-                Opt5 opt5=new Opt5();
-                opt5.Option5();
+                SingletonBD.getInstanceMin().ClMinSelect();
                 break;
             case 6:
-                Opt6 opt6=new Opt6();
-                opt6.Opt6();
+                SingletonBD.getInstanceMin().ClMinInsert();
                 break;
             case 7:
-                Opt7 opt7=new Opt7();
-                opt7.Option7();
+                SingletonBD.getInstanceMin().ClMinDelete();
                 break;
             case 8:
-                Opt8 opt8=new Opt8();
-                opt8.Option8();
+                SingletonBD.getInstanceMin().ClMinUpdate();
                 break;
             case 9:
-                Opt9 opt9=new Opt9();
-                opt9.Option9();
+                SingletonBD.getInstanceMaj().ClMajInsertCSV();
                 break;
             case 10:
-                Opt10 opt10=new Opt10();
-                opt10.Opt10();
+                SingletonBD.getInstanceMin().ClMinInsertCSV();
                 break;
             case 11:
                 Opt11 opt11=new Opt11();
