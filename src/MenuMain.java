@@ -5,12 +5,11 @@ import java.util.*;
 
 public class MenuMain {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.SELECT CLIENT MAJOR \n2.INSERT IN CLIENT MAJOR \n3.DELETE IN CLIENT MAJOR \n4.UPDATE IN CLIENT MAJOR \n5. SELECT IN CLIENT MINOR \n6.INSERT IN CLIENT MINOR \n7.DELETE CLIENT MINOR \n8.UPDATE IN CLIENT MINOR \n9.INSERT CLIENTI MAJORI DIN FISIER CSV \n10.INSERT CLIENTI MINORI DIN FISIER CSV \n11.SELECT MEDIC \n12.INSERT IN MEDIC \n 13.DELETE DIN MEDIC \n 14.UPDATE IN MEDIC");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.SELECT CLIENT MAJOR \n2.INSERT IN CLIENT MAJOR \n3.DELETE IN CLIENT MAJOR \n4.UPDATE IN CLIENT MAJOR \n5. SELECT IN CLIENT MINOR \n6.INSERT IN CLIENT MINOR \n7.DELETE CLIENT MINOR \n8.UPDATE IN CLIENT MINOR \n9.INSERT CLIENTI MAJORI DIN FISIER CSV \n10.INSERT CLIENTI MINORI DIN FISIER CSV \n11.SELECT MEDIC \n12.INSERT IN MEDIC \n13.DELETE DIN MEDIC \n14.UPDATE IN MEDIC");
     }
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
         menu();
-        SingletonBD.getInstanceMaj().ClMajInsertCSV();
         switch(in.nextInt())
         {
             case 1:
@@ -44,12 +43,10 @@ public class MenuMain {
                 SingletonBD.getInstanceMin().ClMinInsertCSV();
                 break;
             case 11:
-                Opt11 opt11=new Opt11();
-                opt11.Option11();
+                SingletonBD.getInstanceMed().MedicSelect();
                 break;
             case 12:
-                Opt12 opt12=new Opt12();
-                opt12.Option12();
+                SingletonBD.getInstanceMed().MedicInsert();
                 break;
             default:
                 System.err.println("Optiune invalida! Alegeti un numar intre 1-12!");
