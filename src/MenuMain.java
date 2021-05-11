@@ -5,7 +5,7 @@ import java.util.*;
 
 public class MenuMain {
     public void menu()
-    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.SELECT CLIENT MAJOR \n2.INSERT IN CLIENT MAJOR \n3.DELETE IN CLIENT MAJOR \n4.UPDATE IN CLIENT MAJOR \n5. SELECT IN CLIENT MINOR \n6.INSERT IN CLIENT MINOR \n7.DELETE CLIENT MINOR \n8.UPDATE IN CLIENT MINOR \n9.INSERT CLIENTI MAJORI DIN FISIER CSV \n10.INSERT CLIENTI MINORI DIN FISIER CSV \n11.SELECT MEDIC \n12.INSERT IN MEDIC \n13.DELETE DIN MEDIC \n14.UPDATE IN MEDIC");
+    {System.out.println("CABINET MEDICAL - MENIU \n Alegeti din urmatoarele optiuni: \n1.SELECT CLIENT MAJOR \n2.INSERT IN CLIENT MAJOR \n3.DELETE IN CLIENT MAJOR \n4.UPDATE IN CLIENT MAJOR \n5. SELECT IN CLIENT MINOR \n6.INSERT IN CLIENT MINOR \n7.DELETE CLIENT MINOR \n8.UPDATE IN CLIENT MINOR \n9.INSERT CLIENTI MAJORI DIN FISIER CSV \n10.INSERT CLIENTI MINORI DIN FISIER CSV \n11.SELECT MEDIC \n12.INSERT IN MEDIC \n13.UPDATE IN MEDIC \n14.INSERT MEDICI DIN FISIER CSV \n15.DELETE MEDIC");
     }
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
@@ -48,8 +48,17 @@ public class MenuMain {
             case 12:
                 SingletonBD.getInstanceMed().MedicInsert();
                 break;
+            case 13:
+                SingletonBD.getInstanceMed().MedicUpdate();
+                break;
+            case 14:
+                SingletonBD.getInstanceMed().MedicInsertCSV();
+                break;
+            case 15:
+                SingletonBD.getInstanceMed().MedicDelete();
+                break;
             default:
-                System.err.println("Optiune invalida! Alegeti un numar intre 1-12!");
+                System.err.println("Optiune invalida! Alegeti un numar intre 1-15!");
                 break;
         }
     }

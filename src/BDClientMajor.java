@@ -242,7 +242,7 @@ public class BDClientMajor {
                 ps.setString(4,data.get(3));
                 ps.setString(5,data.get(4));
                 ps.setString(6,data.get(5));
-                ps.setString(7,data.get(6));
+                ps.setDouble(7,Double.parseDouble(data.get(6)));
                 ps.setString(8,data.get(7));
                 int row=ps.executeUpdate();
                 if(row==1) System.out.println("S-a inserat un nou client major in baza de date!");
