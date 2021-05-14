@@ -31,8 +31,8 @@ public class BDMedic {
                 medic.add(String.valueOf(lunaAng));
                 int anAng = rs.getInt(7);
                 medic.add(String.valueOf(anAng));
-                String salariu = rs.getString(8);
-                medic.add(salariu);
+                Double salariu = rs.getDouble(8);
+                medic.add(salariu.toString());
                 String nrTelefon = rs.getString(9);
                 medic.add(nrTelefon);
                 String email = rs.getString(10);
