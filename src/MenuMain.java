@@ -9,7 +9,10 @@ public class MenuMain {
     }
     public MenuMain() throws ParseException, IOException {
         Scanner in =new Scanner(System.in);
-        menu();
+        System.out.println("Doriti sa lucrati din interfata (DA/NU)?");
+        String optionCons=in.nextLine();
+        if(optionCons.equals("NU"))
+        {menu();
         switch(in.nextInt())
         {
             case 1:
@@ -85,6 +88,12 @@ public class MenuMain {
                 System.err.println("Optiune invalida! Alegeti un numar intre 1-15!");
                 break;
         }
+    }
+    else
+    {
+    GUIMenu gui=new GUIMenu();
+    gui.GUI();
+    }
     }
     public static void main(String[] args) throws Exception{
         new MenuMain();

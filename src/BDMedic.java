@@ -62,8 +62,8 @@ public class BDMedic {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/CabinetMedical?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "stefania");
             System.out.println("Conectarea la baza de date s-a efectuat cu succes!");
-            String sqlInsertMin = "INSERT INTO Medic (cnp, NUME, PRENUME, SECTIE, ZI_ANGAJARE, LUNA_ANGAJARE, AN_ANGAJARE, SALARIU, NR_TELEFON, EMAIL, COD_PARAFA, SPECIALIZARE, REZIDENT, GARDA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sqlInsertMin);
+            String sqlInsertMed = "INSERT INTO Medic (cnp, NUME, PRENUME, SECTIE, ZI_ANGAJARE, LUNA_ANGAJARE, AN_ANGAJARE, SALARIU, NR_TELEFON, EMAIL, COD_PARAFA, SPECIALIZARE, REZIDENT, GARDA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInsertMed);
             InfoAngajare infoAng = new InfoAngajare(" ", 0, 0, 0, 0.0);
             Medic medic = new Medic(" ", " ", " ", infoAng, " ", " ", 0.0, " ", true, true);
             System.out.println("Citire medic nou:");
@@ -197,11 +197,11 @@ public class BDMedic {
                     String sqlUpdateMedicSalariu = "UPDATE medic SET SALARIU=? WHERE CNP=?";
                     PreparedStatement ps8 = conn.prepareStatement(sqlUpdateMedicSalariu);
                     System.out.println("Introduceti CNP-ul medicului");
-                    String cnpM = sc.nextLine();
+                    String cnp8 = sc.nextLine();
                     System.out.println("Introduceti noul salariu:");
                     Double salariuNou = Double.parseDouble(sc.nextLine());
                     ps8.setDouble(1, salariuNou);
-                    ps8.setString(2, cnpM);
+                    ps8.setString(2, cnp8);
                     int row8 = ps8.executeUpdate();
                     System.out.println("S-a actualizat un medic din baza de date! Randul afectat a fost " + row8);
                     break;

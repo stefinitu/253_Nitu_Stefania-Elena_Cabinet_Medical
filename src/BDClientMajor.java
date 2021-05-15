@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
+import java.awt.*;
 
 public class BDClientMajor {
     public void ClMajSelect() {
