@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GUIOp12 {
     public void GUI() {

@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.io.FileNotFoundException;
 import java.sql.*;
 
 public class GUIOp13 {

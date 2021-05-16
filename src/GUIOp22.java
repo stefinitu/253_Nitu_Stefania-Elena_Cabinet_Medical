@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.sql.*;
 
 
-public class GUIOp18 {
+public class GUIOp22 {
     public void GUI() {
         JPanel panel = new JPanel();
         JDialog dialog = new JDialog();
@@ -16,8 +16,8 @@ public class GUIOp18 {
             String text = JOptionPane.showInputDialog("DATA");
             switch (text) {
                 case "ID PROGRAMARE":
-                    String sqlUpdatePrMajID = "UPDATE programare_clientmajor SET ID_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps1 = conn.prepareStatement(sqlUpdatePrMajID);
+                    String sqlUpdatePrMinID = "UPDATE programare_clientminor SET ID_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps1 = conn.prepareStatement(sqlUpdatePrMinID);
                     String idVechi =JOptionPane.showInputDialog("ID vechi");
                     String idNou = JOptionPane.showInputDialog("ID nou");
                     ps1.setDouble(1, Double.parseDouble(idNou));
@@ -27,8 +27,8 @@ public class GUIOp18 {
                     break;
 
                 case "COD BILET TRIMITERE":
-                    String sqlUpdatePrMajCod = "UPDATE programare_clientmajor SET COD_BILET=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps2 = conn.prepareStatement(sqlUpdatePrMajCod);
+                    String sqlUpdatePrMinCod = "UPDATE programare_clientminor SET COD_BILET=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps2 = conn.prepareStatement(sqlUpdatePrMinCod);
                     String idString =JOptionPane.showInputDialog("ID");
                     Double id2=Double.parseDouble(idString);
                     String codString = JOptionPane.showInputDialog("Cod nou");
@@ -40,8 +40,8 @@ public class GUIOp18 {
                     break;
 
                 case "CNP":
-                    String sqlUpdatePrMajCnp = "UPDATE programare_clientmajor SET CNP=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps3 = conn.prepareStatement(sqlUpdatePrMajCnp);
+                    String sqlUpdatePrMinCnp = "UPDATE programare_clientminor SET CNP=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps3 = conn.prepareStatement(sqlUpdatePrMinCnp);
                     String id3 =JOptionPane.showInputDialog("ID");
                     String cnpNou = JOptionPane.showInputDialog("CNP nou");
                     ps3.setString(1, cnpNou);
@@ -52,8 +52,8 @@ public class GUIOp18 {
 
 
                 case "ZIUA PROGRAMARII":
-                    String sqlUpdatePrMajZiProg = "UPDATE programare_clientmajor SET ZI_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps4 = conn.prepareStatement(sqlUpdatePrMajZiProg);
+                    String sqlUpdatePrMinZiProg = "UPDATE programare_clientminor SET ZI_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps4 = conn.prepareStatement(sqlUpdatePrMinZiProg);
                     String id4 =JOptionPane.showInputDialog("ID");
                     String ziProgString = JOptionPane.showInputDialog("Zi programare noua");
                     int ziNoua = Integer.parseInt(ziProgString);
@@ -64,8 +64,8 @@ public class GUIOp18 {
                     break;
 
                 case "LUNA PROGRAMARII":
-                    String sqlUpdatePrMajLunaProg = "UPDATE programare_clientmajor SET LUNA_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps5 = conn.prepareStatement(sqlUpdatePrMajLunaProg);
+                    String sqlUpdatePrMinLunaProg = "UPDATE programare_clientminor SET LUNA_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps5 = conn.prepareStatement(sqlUpdatePrMinLunaProg);
                     String id5 =JOptionPane.showInputDialog("ID");
                     String lunaProgString = JOptionPane.showInputDialog("Luna programare noua");
                     int lunaNoua = Integer.parseInt(lunaProgString);
@@ -76,8 +76,8 @@ public class GUIOp18 {
                     break;
 
                 case "ANUL PROGRAMARII":
-                    String sqlUpdatePrMajAnProg = "UPDATE programare_clientmajor SET AN_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps6 = conn.prepareStatement(sqlUpdatePrMajAnProg);
+                    String sqlUpdatePrMinAnProg = "UPDATE programare_clientminor SET AN_PROGRAMARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps6 = conn.prepareStatement(sqlUpdatePrMinAnProg);
                     String id6 =JOptionPane.showInputDialog("ID");
                     String anProgString = JOptionPane.showInputDialog("An programare nou");
                     int anNou = Integer.parseInt(anProgString);
@@ -88,8 +88,8 @@ public class GUIOp18 {
                     break;
 
                 case "ZIUA PLANIFICARII":
-                    String sqlUpdatePrMajZiPlan = "UPDATE programare_clientmajor SET ZI_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps7 = conn.prepareStatement(sqlUpdatePrMajZiPlan);
+                    String sqlUpdatePrMinZiPlan = "UPDATE programare_clientminor SET ZI_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps7 = conn.prepareStatement(sqlUpdatePrMinZiPlan);
                     String id7 =JOptionPane.showInputDialog("ID");
                     String ziPlanString = JOptionPane.showInputDialog("Zi planificare noua");
                     int ziNouaPlan = Integer.parseInt(ziPlanString);
@@ -100,8 +100,8 @@ public class GUIOp18 {
                     break;
 
                 case "LUNA PLANIFICARII":
-                    String sqlUpdatePrMajLunaPlan = "UPDATE programare_clientmajor SET LUNA_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps8 = conn.prepareStatement(sqlUpdatePrMajLunaPlan);
+                    String sqlUpdatePrMinLunaPlan = "UPDATE programare_clientminor SET LUNA_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps8 = conn.prepareStatement(sqlUpdatePrMinLunaPlan);
                     String id8 =JOptionPane.showInputDialog("ID");
                     String lunaPlanString = JOptionPane.showInputDialog("Luna planificare noua");
                     int lunaNouaPlan = Integer.parseInt(lunaPlanString);
@@ -112,8 +112,8 @@ public class GUIOp18 {
                     break;
 
                 case "ANUL PLANIFICARII":
-                    String sqlUpdatePrMajAnPlan = "UPDATE programare_clientmajor SET AN_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps9 = conn.prepareStatement(sqlUpdatePrMajAnPlan);
+                    String sqlUpdatePrMinAnPlan = "UPDATE programare_clientminor SET AN_PLANIFICARE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps9 = conn.prepareStatement(sqlUpdatePrMinAnPlan);
                     String id9 =JOptionPane.showInputDialog("ID");
                     String anPlanString = JOptionPane.showInputDialog("An planificare nou");
                     int anNouPlan = Integer.parseInt(anPlanString);
@@ -124,8 +124,8 @@ public class GUIOp18 {
                     break;
 
                 case "SECTIE":
-                    String sqlUpdatePrMajSectie = "UPDATE programare_clientmajor SET SECTIE=? WHERE ID_PROGRAMARE=?";
-                    PreparedStatement ps10 = conn.prepareStatement(sqlUpdatePrMajSectie);
+                    String sqlUpdatePrMinSectie = "UPDATE programare_clientminor SET SECTIE=? WHERE ID_PROGRAMARE=?";
+                    PreparedStatement ps10 = conn.prepareStatement(sqlUpdatePrMinSectie);
                     String id10 =JOptionPane.showInputDialog("ID");
                     String sectieNoua = JOptionPane.showInputDialog("Sectie noua");
                     ps10.setString(1, sectieNoua);

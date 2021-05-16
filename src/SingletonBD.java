@@ -4,6 +4,7 @@ public class SingletonBD {
     private static BDMedic bdMedic = null;
     private static BDProgramareMaj bdProgramareMaj=null;
     private static BDProgramareMin bdProgramareMin=null;
+    private static BDAsistent bdAsistent=null;
     public static synchronized BDClientMajor getInstanceMaj(){
         if(bdClientMajor == null)
             bdClientMajor = new BDClientMajor();
@@ -32,5 +33,11 @@ public class SingletonBD {
         if(bdProgramareMin == null)
             bdProgramareMin = new BDProgramareMin();
         return bdProgramareMin;
+    }
+
+    public static synchronized BDAsistent getInstanceAsistent(){
+        if(bdAsistent == null)
+            bdAsistent = new BDAsistent();
+        return bdAsistent;
     }
 }

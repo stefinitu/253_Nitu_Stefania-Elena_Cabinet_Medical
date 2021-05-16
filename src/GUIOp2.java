@@ -30,6 +30,7 @@ public class GUIOp2 {
             String idCard=JOptionPane.showInputDialog("ID CARD SANATATE");
             Double idCardSanatate=Double.parseDouble(idCard);
             String nrTelefon=JOptionPane.showInputDialog("NR TELEFON");
+
             ps.setString(1, cnp);
             ps.setString(2, nume);
             ps.setString(3,prenume);

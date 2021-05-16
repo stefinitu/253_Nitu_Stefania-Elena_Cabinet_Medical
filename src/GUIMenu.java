@@ -26,6 +26,15 @@ public class GUIMenu {
         JButton opt17=new JButton("INSERT PROGRAMARE CLIENT MAJOR");
         JButton opt18=new JButton("UPDATE PROGRAMARE CLIENT MAJOR");
         JButton opt19=new JButton("DELETE PROGRAMARE CLIENT MAJOR");
+        JButton opt20=new JButton("SELECT PROGRAMARE CLIENT MINOR");
+        JButton opt21=new JButton("INSERT PROGRAMARE CLIENT MINOR");
+        JButton opt22=new JButton("UPDATE PROGRAMARE CLIENT MINOR");
+        JButton opt23=new JButton("DELETE PROGRAMARE CLIENT MINOR");
+        JButton opt24=new JButton("SELECT ASISTENT");
+        JButton opt25=new JButton("INSERT ASISTENT");
+        JButton opt26=new JButton("UPDATE ASISTENT");
+        JButton opt27=new JButton("DELETE ASISTENT");
+        JButton opt28=new JButton("INSERT ASISTENT DIN CSV");
 
         opt1.addActionListener(new ActionListener() {
             @Override
@@ -198,6 +207,91 @@ public class GUIMenu {
             }
         });
 
+        opt20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp20 guiOp20=new GUIOp20();
+                guiOp20.GUI();
+            }
+        });
+
+
+        opt21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp21 guiOp21=new GUIOp21();
+                guiOp21.GUI();
+            }
+        });
+
+
+        opt22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp22 guiOp22=new GUIOp22();
+                guiOp22.GUI();
+            }
+        });
+
+
+        opt23.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp23 guiOp23=new GUIOp23();
+                guiOp23.GUI();
+            }
+        });
+
+        opt24.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp24 guiOp24=new GUIOp24();
+                guiOp24.GUI();
+            }
+        });
+
+        opt25.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp25 guiOp25=new GUIOp25();
+                guiOp25.GUI();
+            }
+        });
+
+        opt26.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp26 guiOp26=new GUIOp26();
+                guiOp26.GUI();
+            }
+        });
+
+        opt27.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp27 guiOp27=new GUIOp27();
+                guiOp27.GUI();
+            }
+        });
+
+        opt28.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                GUIOp28 guiOp28=new GUIOp28();
+                guiOp28.GUI();
+            }
+        });
+
+
         JLabel label=new JLabel("Alegeti una din urmatoarele optiuni:");
         JPanel panel=new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(100,100,100,100));
@@ -223,6 +317,15 @@ public class GUIMenu {
         panel.add(opt17);
         panel.add(opt18);
         panel.add(opt19);
+        panel.add(opt20);
+        panel.add(opt21);
+        panel.add(opt22);
+        panel.add(opt23);
+        panel.add(opt24);
+        panel.add(opt25);
+        panel.add(opt26);
+        panel.add(opt27);
+        panel.add(opt28);
 
         frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
