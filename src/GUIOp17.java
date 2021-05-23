@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class GUIOp17 {
     public void GUI() {
