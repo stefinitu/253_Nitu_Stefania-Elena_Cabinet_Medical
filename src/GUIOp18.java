@@ -13,6 +13,11 @@ public class GUIOp18 {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/CabinetMedical?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "stefania");
             System.out.println("Conectarea la baza de date s-a efectuat cu succes!");
             String output="Introduceti tipul de data pe care doriti sa o modificati (ID PROGRAMARE/COD BILET TRIMITERE/CNP/ZIUA PROGRAMARII/LUNA PROGRAMARII/ANUL PROGRAMARII/ZIUA PLANIFICARII/LUNA PLANIFICARII/ANUL PLANIFICARII/SECTIA)";
+            JLabel outputLabel = new JLabel(output);
+            panel.add(outputLabel);
+            dialog.add(panel);
+            dialog.pack();
+            dialog.setVisible(true);
             String text = JOptionPane.showInputDialog("DATA");
             switch (text) {
                 case "ID PROGRAMARE":

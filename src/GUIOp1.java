@@ -47,8 +47,11 @@ public class GUIOp1 {
                 String output=out.concat("\n");
                 JLabel outputLabel = new JLabel(output);
                 panel.add(outputLabel);
+                outputLabel.setVerticalAlignment(JLabel.TOP);
+                Dimension DimMax = Toolkit.getDefaultToolkit().getScreenSize();
                 dialog.add(panel);
                 dialog.pack();
+                dialog.setSize(DimMax);
                 dialog.setVisible(true);
             }
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

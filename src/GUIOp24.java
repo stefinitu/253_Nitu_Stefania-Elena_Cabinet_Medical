@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +50,11 @@ public class GUIOp24 {
                 String out = data.toString();
                 String output=out.concat("\n");
                 JLabel outputLabel = new JLabel(output);
+                Dimension DimMax = Toolkit.getDefaultToolkit().getScreenSize();
                 panel.add(outputLabel);
                 dialog.add(panel);
                 dialog.pack();
+                dialog.setSize(DimMax);
                 dialog.setVisible(true);
             }
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

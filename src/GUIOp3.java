@@ -1,15 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class GUIOp3 {
     public void GUI()
     {
         JPanel panel=new JPanel();
         JDialog dialog = new JDialog();
+        JButton closeButton = new JButton("Close");
 
         Connection conn = null;
         Statement st = null;
@@ -28,6 +26,8 @@ public class GUIOp3 {
         } catch (SQLException | ClassNotFoundException var10) {
             var10.printStackTrace();
         }
+        dialog.add(closeButton, BorderLayout.SOUTH);
+        closeButton.addActionListener(e -> dialog.setVisible(false));
 
     }
 }

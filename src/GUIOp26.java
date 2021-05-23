@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.sql.*;
+import java.awt.*;
 
 public class GUIOp26 {
     public void GUI() {
@@ -15,6 +16,10 @@ public class GUIOp26 {
             String output="Introduceti tipul de data pe care doriti sa o modificati (CNP/NUME/PRENUME/SECTIE/GEN/ZIUA ANGAJARII/LUNA ANGAJARII/ANUL ANGAJARII/SALARIU/NUMAR DE TELEFON/EMAIL/NUMAR SALOANE ATRIBUITE)";
             JLabel outputLabel = new JLabel(output);
             panel.add(outputLabel);
+            outputLabel.setVerticalAlignment(JLabel.TOP);
+            outputLabel.setFont(new Font("Verdana", Font.PLAIN, 15));
+            outputLabel.setForeground(new Color(190, 90, 40));
+            outputLabel.setBackground(new Color(100, 20, 70));
             dialog.add(panel);
             dialog.pack();
             dialog.setVisible(true);

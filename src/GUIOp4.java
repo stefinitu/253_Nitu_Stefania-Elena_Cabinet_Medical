@@ -10,6 +10,7 @@ public class GUIOp4 {
     {
         JPanel panel=new JPanel();
         JDialog dialog = new JDialog();
+        JButton closeButton = new JButton("Close");
 
         Connection conn = null;
         Statement st = null;
@@ -124,6 +125,8 @@ public class GUIOp4 {
         } catch (SQLException | ClassNotFoundException var10) {
             var10.printStackTrace();
         }
+        dialog.add(closeButton, BorderLayout.SOUTH);
+        closeButton.addActionListener(e -> dialog.setVisible(false));
 
     }
 }
